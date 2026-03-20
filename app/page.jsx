@@ -5,7 +5,15 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Bold, Variable } from "lucide-react";
 import { useRef, useState } from "react";
 import "../styles/chain.css";
-
+import "../styles/glitch.css";
+import {
+  Sora,
+  Poppins,
+  Epilogue,
+  Archivo,
+  Lora,
+  Manrope,
+} from "next/font/google";
 const products = [
   {
     id: "cap",
@@ -163,6 +171,36 @@ const products = [
     ],
   },
 ];
+
+const sora = Sora({
+  subsets: ["latin"],
+  weight: ["300", "400", "600", "700"],
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+const epilogue = Epilogue({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+const archivo = Archivo({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const lora = Lora({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
 
 const titleContainer = {
   hidden: {},
@@ -410,13 +448,35 @@ export default function Home() {
         {/* CHAIN BACKGROUND ELEMENTS */}
 
         <div className="chain chain1">
-          <img src="/images/chain.png" className="baseImg" />
-          <div className="shine"></div>
+          <img src="/images/chain.png" className="baseImg" alt="" />
+          <img
+            src="/images/chain.png"
+            className="glowImg glowCore"
+            alt=""
+            aria-hidden="true"
+          />
+          <img
+            src="/images/chain.png"
+            className="glowImg glowBloom"
+            alt=""
+            aria-hidden="true"
+          />
         </div>
 
         <div className="chain chain2">
-          <img src="/images/chain.png" className="baseImg" />
-          <div className="shine"></div>
+          <img src="/images/chain.png" className="baseImg" alt="" />
+          <img
+            src="/images/chain.png"
+            className="glowImg glowCore"
+            alt=""
+            aria-hidden="true"
+          />
+          <img
+            src="/images/chain.png"
+            className="glowImg glowBloom"
+            alt=""
+            aria-hidden="true"
+          />
         </div>
         {/* HERO SECTION */}
         <section ref={heroRef} style={styles.heroSection}>
@@ -442,11 +502,18 @@ export default function Home() {
                       marginTop: "-7.5rem",
                     }}
                   >
-                    <span className="common-text">COMMON</span>
+                    <span
+                      className="common-text glitch-text"
+                      data-text="COMMON"
+                    >
+                      COMMON
+                    </span>
                   </motion.div>
 
                   <motion.div
-                    className="form-wrapper"
+                    div
+                    className="form-wrapper glitch-text"
+                    data-text="FORM"
                     style={{
                       scale: logoScalep,
                       transformOrigin: "left center",
@@ -464,14 +531,14 @@ export default function Home() {
                   color: heroParagraphColor,
                 }}
               >
-                AN INDEPENDENT ART & CLOTHING PROJECT
+                A STRUCTURE DISGUISED AS CLOTHING
               </motion.p>
               <motion.p
                 style={{ ...styles.heroLine2, color: heroParagraphColor }}
               >
-                COMMON FORM MAKES CLOTHING FOR THE HUMAN BODY. IT BEGINS WHERE
-                SKIN BEGINS. THERE IS NO PERFORMANCE, NO EXCESS. ONLY FORM,
-                REDUCED TO WHAT MATTERS.
+                COMMON FORM builds beneath IDENTITY — beyond PERFORMANCE, where
+                SIGNAL fades and STRUCTURE remains. EXCESS removed, DISTORTION
+                silenced — only BALANCE, CLARITY, FORM.
               </motion.p>
               <motion.p
                 style={{ ...styles.heroLine3, color: heroParagraphColor }}
@@ -776,7 +843,6 @@ const styles = {
     overflow: "visible",
   },
   heroText: {
-    fontFamily: "Galgo",
     fontSize: "18rem",
     display: "flex",
     flexDirection: "column",
@@ -805,20 +871,23 @@ const styles = {
   },
 
   heroLine: {
+    fontFamily: poppins.style.fontFamily,
     paddingLeft: "6rem",
     fontWeight: 500,
-    letterSpacing: "0.2rem",
-    fontSize: "5rem",
+    /*letterSpacing: "0.1rem",*/
+    fontSize: "4rem",
     maxWidth: "1090px",
-    lineHeight: "0.5",
-    fontWeight: 500,
+    lineHeight: "1",
+    fontWeight: 600,
     color: "#cfcfcf",
   },
   heroLine2: {
+    fontFamily: poppins.style.fontFamily,
     paddingLeft: "6rem",
-    paddingRight: "400px",
+
+    paddingRight: "300px",
     letterSpacing: "0.1rem",
-    fontSize: "2.8rem",
+    fontSize: "1.7rem",
     fontWeight: 100,
     maxWidth: "1090px",
     lineHeight: "1",
@@ -827,8 +896,9 @@ const styles = {
   heroLine3: {
     paddingLeft: "6rem",
     fontWeight: 100,
-    fontSize: "1.6rem",
+    fontSize: "1.0rem",
     letterSpacing: "0.2rem",
+    fontStyle: "italic",
     maxWidth: "1090px",
     lineHeight: "1",
     color: "#cfcfcf",
