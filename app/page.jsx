@@ -13,6 +13,7 @@ import {
   Archivo,
   Lora,
   Manrope,
+  Bebas_Neue,
 } from "next/font/google";
 const products = [
   {
@@ -171,6 +172,11 @@ const products = [
     ],
   },
 ];
+
+const bebas = Bebas_Neue({
+  subsets: ["latin"],
+  weight: "400", // Bebas only has 1 weight
+});
 
 const sora = Sora({
   subsets: ["latin"],
@@ -543,14 +549,14 @@ export default function Home() {
               <motion.p
                 style={{ ...styles.heroLine3, color: heroParagraphColor }}
               >
-                COMMON FORM IS BUILT AROUND THE HUMAN BODY — HOW IT MOVES,
-                RESTS, AND EXISTS IN SPACE. CLOTHING IS APPROACHED AS A QUIET
-                EXTENSION OF FORM RATHER THAN A STATEMENT, SHAPED BY PROPORTION,
-                WEIGHT, AND RESTRAINT. EACH PIECE IS DESIGNED TO FOLLOW THE
-                NATURAL LANGUAGE OF THE BODY, ALLOWING FABRIC TO SIT, FALL, AND
-                INTERACT WITHOUT FORCE OR EXCESS. THE FOCUS IS NOT ON TREND OR
-                DECORATION, BUT ON PRESENCE, BALANCE, AND LONGEVITY, CREATING
-                GARMENTS THAT FEEL CONSIDERED, LIVED IN, AND TIMELESS.
+                Common Form is built around the human body — how it moves,
+                pauses, and exists within space. Clothing is treated as a quiet
+                extension of form rather than a statement, shaped through
+                proportion, weight, and restraint. Each piece follows the
+                natural rhythm of the body, allowing fabric to settle, drape,
+                and respond without force or excess. The focus is not on trend
+                or decoration, but on presence, balance, and longevity, creating
+                garments that feel intentional, lived-in, and quietly timeless.
               </motion.p>
               <motion.p
                 style={{ ...styles.heroLine, color: heroParagraphColor }}
@@ -871,14 +877,14 @@ const styles = {
   },
 
   heroLine: {
-    fontFamily: poppins.style.fontFamily,
+    fontFamily: bebas.style.fontFamily,
     paddingLeft: "6rem",
     fontWeight: 500,
     /*letterSpacing: "0.1rem",*/
-    fontSize: "4rem",
+    fontSize: "5rem",
     maxWidth: "1090px",
     lineHeight: "1",
-    fontWeight: 600,
+    fontWeight: 400,
     color: "#cfcfcf",
   },
   heroLine2: {
@@ -886,19 +892,19 @@ const styles = {
     paddingLeft: "6rem",
 
     paddingRight: "300px",
-    letterSpacing: "0.1rem",
-    fontSize: "1.7rem",
-    fontWeight: 100,
+    letterSpacing: "0.5rem",
+    fontSize: "1rem",
+    fontWeight: 400,
     maxWidth: "1090px",
     lineHeight: "1",
     color: "#cfcfcf",
   },
   heroLine3: {
+    fontFamily: bebas.style.fontFamily,
     paddingLeft: "6rem",
     fontWeight: 100,
-    fontSize: "1.0rem",
+    fontSize: "0.77rem",
     letterSpacing: "0.2rem",
-    fontStyle: "italic",
     maxWidth: "1090px",
     lineHeight: "1",
     color: "#cfcfcf",
