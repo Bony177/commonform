@@ -1,7 +1,8 @@
 .chain {
   position: fixed; /* stays in background */
   pointer-events: none;
-  z-index: 1; /* behind UI */
+  z-index: 0; /* behind UI */
+  overflow: hidden; 
   /*width: 600px;  control size */
   
 }
@@ -11,7 +12,7 @@
 
   top: -33.8%;
   width: 1550px;
-  opacity: 0.5;
+  opacity: 0.9;
   
   right: -25%;
   /*transform: rotate(25deg);*/
@@ -22,12 +23,68 @@
   bottom: -50%;
   left: -40%;
   width: 1000px;
-  opacity: 0.5;
+  opacity: 0.9;
 }
 
 /* IMAGE */
 .baseImg {
   width: 100%;
   display: block;
+  position: relative;
+  z-index: 1;
+}
+.shine {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  /* 🔥 CORE + BLOOM in ONE gradient */
+  background: radial-gradient(
+    circle at 63% 37%,
+    rgba(120, 220, 255, 1) 0%,      /* ⚡ HOT CORE (almost white-blue) */
+    rgba(0, 170, 255, 0.9) 6%,      /* strong electric blue */
+    rgba(0, 170, 255, 0.4) 14%,     /* falloff starts */
+    rgba(0, 170, 255, 0.15) 22%,    /* soft glow */
+    transparent 35%                 /* cut it OFF (important) */
+  );
+
+  /* 🔥 THIS makes it glow like light, not paint */
+  filter: blur(6px);
+
+  /* ⚡ only show on chain */
+  mask-image: url("/images/chain.png");
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+
+  -webkit-mask-image: url("/images/chain.png");
+  -webkit-mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+
+  mix-blend-mode: screen;
+
+  animation: corePulse 4.5s ease-in-out infinite;
+}
+@keyframes corePulse {
+  0% {
+    opacity: 0.15;
+    transform: scale(0.95);
+    filter: blur(5px);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(1.08);
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 0.15;
+    transform: scale(0.95);
+    filter: blur(5px);
+  }
+}
+.chain1 .shine {
+  animation-duration: 6s;
 }
 
+.chain2 .shine {
+  animation-duration: 7.5s;
+}
