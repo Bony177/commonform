@@ -815,7 +815,8 @@ const styles = {
   heroLine3: {
     paddingLeft: "6rem",
     fontWeight: 100,
-    fontSize: "2rem",
+    fontSize: "1.6rem",
+    letterSpacing: "0.2rem",
     maxWidth: "1090px",
     lineHeight: "1",
     color: "#cfcfcf",
