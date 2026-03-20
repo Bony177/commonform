@@ -503,7 +503,7 @@ export default function Home() {
                     }}
                   >
                     <span
-                      className="common-text glitch-text"
+                      className="common-text glitch-text textured"
                       data-text="COMMON"
                     >
                       COMMON
@@ -512,7 +512,7 @@ export default function Home() {
 
                   <motion.div
                     div
-                    className="form-wrapper glitch-text"
+                    className="form-wrapper glitch-text textured"
                     data-text="FORM"
                     style={{
                       scale: logoScalep,
