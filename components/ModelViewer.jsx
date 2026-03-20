@@ -52,5 +52,5 @@ export default function ModelViewer({
     modelViewerProps["rotation-per-second"] = rotationPerSecond;
   }
 
-  return <model-viewer key={currentSrc} {...modelViewerProps} />;
+  return <model-viewer {...modelViewerProps} />;
 }

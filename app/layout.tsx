@@ -43,6 +43,24 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link
+          rel="preload"
+          href="/3d/cmodel2.glb"
+          as="fetch"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/3d/cmodel1.glb"
+          as="fetch"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/3d/guy.glb"
+          as="fetch"
+          crossOrigin="anonymous"
+        />
         <script
           type="module"
           src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
