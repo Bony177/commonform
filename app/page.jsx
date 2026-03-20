@@ -1,11 +1,13 @@
 "use client";
 import ProductCarousel from "@/components/product-carousel";
 import ProductGrid from "@/components/product-grid";
+import ModelViewer from "@/components/ModelViewer";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Bold, Variable } from "lucide-react";
 import { useRef, useState } from "react";
 import "../styles/chain.css";
 import "../styles/glitch.css";
+import SignalBars from "@/components/SignalBars";
 import {
   Sora,
   Poppins,
@@ -335,12 +337,14 @@ export default function Home() {
           isolation: "isolate", // important
         }}
       >
-        <model-viewer
-          src="/3d/guy.glb"
-          auto-rotate
-          rotation-per-second="15deg"
-          camera-controls={false}
-          disable-zoom
+        <ModelViewer
+          modelSources={["/3d/cmodel2.glb", "/3d/cmodel1.glb", "/3d/guy.glb"]}
+          autoSwitch
+          switchIntervalMs={7000}
+          autoRotate
+          rotationPerSecond="15deg"
+          cameraControls={false}
+          disableZoom
           style={{
             width: "100%",
             height: "100%",
@@ -595,11 +599,11 @@ export default function Home() {
                 </button>
 
                 {activeMedia.type === "model" ? (
-                  <model-viewer
+                  <ModelViewer
                     src={activeMedia.src}
-                    auto-rotate
-                    camera-controls
-                    disable-zoom
+                    autoRotate
+                    cameraControls
+                    disableZoom
                     style={{ width: "100%", height: "500px" }}
                   />
                 ) : (
