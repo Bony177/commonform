@@ -2,7 +2,7 @@
 import ProductCarousel from "@/components/product-carousel";
 import ProductGrid from "@/components/product-grid";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Variable } from "lucide-react";
+import { Bold, Variable } from "lucide-react";
 import { useRef, useState } from "react";
 
 const products = [
@@ -452,7 +452,7 @@ export default function Home() {
                   color: heroParagraphColor,
                 }}
               >
-                AN INDEPENDENT ART & CLOTHING <br></br>PROJECT
+                AN INDEPENDENT ART & CLOTHING PROJECT
               </motion.p>
               <motion.p
                 style={{ ...styles.heroLine2, color: heroParagraphColor }}
@@ -794,16 +794,20 @@ const styles = {
 
   heroLine: {
     paddingLeft: "6rem",
-
-    fontSize: "8rem",
+    fontWeight: 500,
+    letterSpacing: "0.2rem",
+    fontSize: "5rem",
     maxWidth: "1090px",
-    lineHeight: "1",
+    lineHeight: "0.5",
+    fontWeight: 500,
     color: "#cfcfcf",
   },
   heroLine2: {
     paddingLeft: "6rem",
-
-    fontSize: "4rem",
+    paddingRight: "400px",
+    letterSpacing: "0.1rem",
+    fontSize: "2.8rem",
+    fontWeight: 100,
     maxWidth: "1090px",
     lineHeight: "1",
     color: "#cfcfcf",
@@ -811,7 +815,7 @@ const styles = {
   heroLine3: {
     paddingLeft: "6rem",
     fontWeight: 100,
-    fontSize: "3rem",
+    fontSize: "2rem",
     maxWidth: "1090px",
     lineHeight: "1",
     color: "#cfcfcf",
