@@ -4,6 +4,7 @@ import ProductGrid from "@/components/product-grid";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Bold, Variable } from "lucide-react";
 import { useRef, useState } from "react";
+import "../styles/chain.css";
 
 const products = [
   {
@@ -406,6 +407,17 @@ export default function Home() {
       </header>
 
       <motion.main style={{ backgroundColor: bgColor }}>
+        {/* CHAIN BACKGROUND ELEMENTS */}
+
+        <div className="chain chain1">
+          <img src="/images/chain.png" className="baseImg" />
+          <div className="shine"></div>
+        </div>
+
+        <div className="chain chain2">
+          <img src="/images/chain.png" className="baseImg" />
+          <div className="shine"></div>
+        </div>
         {/* HERO SECTION */}
         <section ref={heroRef} style={styles.heroSection}>
           <div style={styles.heroInner}>
