@@ -779,22 +779,24 @@ const styles = {
   sceneSection: {
     position: "relative",
     minHeight: "200vh",
-    isolation: "isolate",
+    display: "grid",
+    gridTemplateColumns: "1fr",
+    gridTemplateRows: "1fr",
   },
   sceneBackground: {
+    gridArea: "1 / 1",
+    alignSelf: "start",
     position: "sticky",
     top: 0,
     height: "100vh",
-    marginBottom: "-100vh",
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
-    zIndex: -1,
     pointerEvents: "none",
   },
   sceneContent: {
+    gridArea: "1 / 1",
     position: "relative",
-    zIndex: 1,
   },
   heroSection: {
     paddingTop: "0rem",
