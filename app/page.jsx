@@ -1,7 +1,7 @@
 "use client";
 import ProductCarousel from "@/components/product-carousel";
 import ProductGrid from "@/components/product-grid";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 import { Bold, Variable } from "lucide-react";
 import { useRef, useState } from "react";
 import "../styles/chain.css";
@@ -222,6 +222,8 @@ export default function Home() {
     { src: "/images/bg3.jpg", start: 0.8, end: 1 },
   ];
 
+  const [activeBackground, setActiveBackground] = useState(backgrounds[0].src);
+
   const { scrollYProgress: heroScroll } = useScroll({
     target: heroRef,
     offset: ["start 40%", "end start"],
@@ -261,11 +263,14 @@ export default function Home() {
   const logoOpacityy = useTransform(heroScroll, [0, 0.42], [0, 1]);
   const logoFormX = useTransform(formScroll, [0, 0.22], ["10rem", "14.5rem"]);
 
-  const bgColor = useTransform(
-    scrollYProgress,
-    [0.7, 0.8],
-    ["rgba(10,10,10,0)", "rgba(255,255,255,0.95)"],
-  );
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    setActiveBackground((previous) => {
+      const next =
+        backgrounds.find((bg) => latest >= bg.start && latest < bg.end)?.src ??
+        backgrounds[backgrounds.length - 1].src;
+      return previous === next ? previous : next;
+    });
+  });
 
   // Header opacity control
   const headerOpacity = useTransform(
@@ -418,31 +423,21 @@ export default function Home() {
           overflow: "hidden",
         }}
       >
-        {backgrounds.map((bg, index) => {
-          const opacity = useTransform(
-            scrollYProgress,
-            [bg.start, bg.start + 0.001],
-            [0, 1],
-          );
-
-          return (
-            <motion.img
-              key={index}
-              src={bg.src}
-              alt=""
-              style={{
-                position: "fixed",
-                top: 0,
-                left: 0,
-                width: "100vw",
-                height: "100vh",
-                objectFit: "cover",
-                zIndex: -1,
-                opacity,
-              }}
-            />
-          );
-        })}
+        <motion.img
+          src={activeBackground}
+          alt=""
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            objectFit: "cover",
+            zIndex: -1,
+            opacity: 1,
+            pointerEvents: "none",
+          }}
+        />
 
         {/* your existing content stays here */}
         {/* CHAIN BACKGROUND ELEMENTS */}
@@ -655,9 +650,9 @@ const styles = {
     fontFamily: '"Geist", "Geist Fallback", sans-serif',
   },
   header: {
-    borderBottom: "1px solid #262626",
+    borderBottom: "none",
     padding: "0.25rem 1.5rem",
-    backgroundColor: "#0a0a0a",
+    backgroundColor: "transparent",
   },
   headerInner: {
     padding: "0.1rem 3rem",

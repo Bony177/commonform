@@ -3,7 +3,6 @@ import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import localFont from "next/font/local";
-import WaveBackground from "@/components/WaveBackground";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -41,8 +40,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preload" as="image" href="/images/background.jpg" />
+      </head>
       <body className={`${poppins.className} antialiased`}>
-        <WaveBackground />
         {children}
         <Analytics />
       </body>
