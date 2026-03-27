@@ -210,8 +210,18 @@ const titleLetter = {
 };
 
 export default function Home() {
-  const { scrollYProgress } = useScroll();
   const heroRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const backgrounds = [
+    { src: "/images/background.jpg", start: 0, end: 0.5 },
+    { src: "/images/bg2.jpg", start: 0.5, end: 0.8 },
+    { src: "/images/bg3.jpg", start: 0.8, end: 1 },
+  ];
+
   const { scrollYProgress: heroScroll } = useScroll({
     target: heroRef,
     offset: ["start 40%", "end start"],
@@ -408,19 +418,31 @@ export default function Home() {
           overflow: "hidden",
         }}
       >
-        <img
-          src="/images/background.jpg"
-          alt=""
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100vw",
-            height: "100vh",
-            objectFit: "cover",
-            zIndex: -1,
-          }}
-        />
+        {backgrounds.map((bg, index) => {
+          const opacity = useTransform(
+            scrollYProgress,
+            [bg.start, bg.start + 0.001],
+            [0, 1],
+          );
+
+          return (
+            <motion.img
+              key={index}
+              src={bg.src}
+              alt=""
+              style={{
+                position: "fixed",
+                top: 0,
+                left: 0,
+                width: "100vw",
+                height: "100vh",
+                objectFit: "cover",
+                zIndex: -1,
+                opacity,
+              }}
+            />
+          );
+        })}
 
         {/* your existing content stays here */}
         {/* CHAIN BACKGROUND ELEMENTS */}
@@ -595,7 +617,11 @@ export default function Home() {
                         borderColor: isActive ? "#fbbf24" : "#262626",
                       }}
                     >
-                      <img src={media.src} alt="" style={styles.thumbnailImage} />
+                      <img
+                        src={media.src}
+                        alt=""
+                        style={styles.thumbnailImage}
+                      />
                     </div>
                   );
                 })}
