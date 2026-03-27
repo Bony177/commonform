@@ -1,7 +1,6 @@
 "use client";
 import ProductCarousel from "@/components/product-carousel";
 import ProductGrid from "@/components/product-grid";
-import ModelViewer from "@/components/ModelViewer";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Bold, Variable } from "lucide-react";
 import { useRef, useState } from "react";
@@ -26,10 +25,6 @@ const products = [
 
     media: [
       {
-        type: "model",
-        src: "/models/cap.glb",
-      },
-      {
         type: "image",
         src: "/images/cap-1.png",
       },
@@ -51,10 +46,6 @@ const products = [
       "A relaxed-fit shirt built around minimal form. Quiet, neutral, and designed for everyday wear.",
 
     media: [
-      {
-        type: "model",
-        src: "/models/shirt.glb",
-      },
       {
         type: "image",
         src: "/images/shirt-1.jpg",
@@ -78,10 +69,6 @@ const products = [
 
     media: [
       {
-        type: "model",
-        src: "/models/jacket.glb",
-      },
-      {
         type: "image",
         src: "/images/jacket-1.jpg",
       },
@@ -103,10 +90,6 @@ const products = [
       "An oversized T-shirt featuring a composed graphic. Designed to feel like a visual reference rather than a statement.",
 
     media: [
-      {
-        type: "model",
-        src: "/models/tshirt-01.glb",
-      },
       {
         type: "image",
         src: "/images/tshirt-01-1.jpg",
@@ -130,10 +113,6 @@ const products = [
 
     media: [
       {
-        type: "model",
-        src: "/models/tshirt-02.glb",
-      },
-      {
         type: "image",
         src: "/images/tshirt-02-1.jpg",
       },
@@ -155,10 +134,6 @@ const products = [
       "A heavyweight T-shirt with a clean silhouette. Designed to sit outside fast trends.",
 
     media: [
-      {
-        type: "model",
-        src: "/models/tshirt-03.glb",
-      },
       {
         type: "image",
         src: "/images/tshirt-03-1.jpg",
@@ -325,34 +300,6 @@ export default function Home() {
 
   return (
     <>
-      <div
-        style={{
-          position: "fixed",
-          left: "59rem",
-          top: "10vh",
-          width: "420px",
-          height: "620px",
-          zIndex: 50,
-          pointerEvents: "none",
-          isolation: "isolate", // important
-        }}
-      >
-        <ModelViewer
-          modelSources={["/3d/cmodel2.glb", "/3d/cmodel1.glb", "/3d/guy.glb"]}
-          autoSwitch
-          switchIntervalMs={7000}
-          autoRotate
-          rotationPerSecond="15deg"
-          cameraControls={false}
-          disableZoom
-          style={{
-            width: "100%",
-            height: "100%",
-            display: "block", // VERY IMPORTANT
-          }}
-        />
-      </div>
-
       <motion.img
         src="/images/logo.png"
         alt="Logo"
@@ -383,9 +330,9 @@ export default function Home() {
             right: 0,
             height: "48px",
             zIndex: 20,
-            backgroundColor: "rgba(10,10,10,0.85)",
-            backdropFilter: "blur(10px)",
-            WebkitBackdropFilter: "blur(10px)",
+            backgroundColor: "transparent",
+            backdropFilter: "none",
+            WebkitBackdropFilter: "none",
             opacity: headerOpacity,
             display: "flex",
             alignItems: "center",
@@ -397,7 +344,7 @@ export default function Home() {
             style={{
               position: "fixed",
               left: "6rem",
-              top: "50%",
+              top: "4%",
               y: "-50%",
               fontFamily: "Galgo",
               fontSize: "7rem",
@@ -416,7 +363,7 @@ export default function Home() {
             style={{
               position: "fixed",
               left: logoFormX,
-              top: "50%",
+              top: "4%",
               y: "-50%",
               fontFamily: "Galgo",
               fontSize: "4.5rem",
@@ -454,7 +401,28 @@ export default function Home() {
         </div>
       </header>
 
-      <motion.main style={{ backgroundColor: bgColor }}>
+      <motion.main
+        style={{
+          position: "relative",
+          minHeight: "100vh",
+          overflow: "hidden",
+        }}
+      >
+        <img
+          src="/images/background.jpg"
+          alt=""
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            objectFit: "cover",
+            zIndex: -1,
+          }}
+        />
+
+        {/* your existing content stays here */}
         {/* CHAIN BACKGROUND ELEMENTS */}
 
         <div className="chain chain1">
@@ -590,7 +558,7 @@ export default function Home() {
               <p style={styles.description}>{activeProduct.description}</p>
             </div>
 
-            {/* Center - 3D T-shirt */}
+            {/* Center - Product media */}
             <div style={styles.carouselSection}>
               {/* MAIN VIEW */}
               <div style={styles.viewerWrapper}>
@@ -598,25 +566,15 @@ export default function Home() {
                   ‹
                 </button>
 
-                {activeMedia.type === "model" ? (
-                  <ModelViewer
-                    src={activeMedia.src}
-                    autoRotate
-                    cameraControls
-                    disableZoom
-                    style={{ width: "100%", height: "500px" }}
-                  />
-                ) : (
-                  <img
-                    src={activeMedia.src}
-                    alt={activeProduct.name}
-                    style={{
-                      width: "100%",
-                      height: "500px",
-                      objectFit: "contain",
-                    }}
-                  />
-                )}
+                <img
+                  src={activeMedia.src}
+                  alt={activeProduct.name}
+                  style={{
+                    width: "100%",
+                    height: "500px",
+                    objectFit: "contain",
+                  }}
+                />
 
                 <button style={styles.arrowRight} onClick={goNext}>
                   ›
@@ -637,15 +595,7 @@ export default function Home() {
                         borderColor: isActive ? "#fbbf24" : "#262626",
                       }}
                     >
-                      {media.type === "image" ? (
-                        <img
-                          src={media.src}
-                          alt=""
-                          style={styles.thumbnailImage}
-                        />
-                      ) : (
-                        <span style={styles.modelLabel}>3D</span>
-                      )}
+                      <img src={media.src} alt="" style={styles.thumbnailImage} />
                     </div>
                   );
                 })}
@@ -788,11 +738,6 @@ const styles = {
     objectFit: "cover",
   },
 
-  modelLabel: {
-    fontSize: "12px",
-    letterSpacing: "2px",
-    color: "#fbbf24",
-  },
   viewerWrapper: {
     position: "relative",
     width: "100%",

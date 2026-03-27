@@ -4,7 +4,6 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import localFont from "next/font/local";
 import WaveBackground from "@/components/WaveBackground";
-import Script from "next/script";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -42,30 +41,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <link
-          rel="preload"
-          href="/3d/cmodel2.glb"
-          as="fetch"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/3d/cmodel1.glb"
-          as="fetch"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/3d/guy.glb"
-          as="fetch"
-          crossOrigin="anonymous"
-        />
-        <script
-          type="module"
-          src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
-        ></script>
-      </head>
       <body className={`${poppins.className} antialiased`}>
         <WaveBackground />
         {children}
