@@ -1,7 +1,7 @@
 "use client";
 import ProductCarousel from "@/components/product-carousel";
 import ProductGrid from "@/components/product-grid";
-import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Bold, Variable } from "lucide-react";
 import { useRef, useState } from "react";
 import "../styles/chain.css";
@@ -209,20 +209,29 @@ const titleLetter = {
   },
 };
 
+function Scene({ background, height = "200vh", children, sectionRef }) {
+  return (
+    <section ref={sectionRef} style={{ ...styles.sceneSection, minHeight: height }}>
+      <div
+        style={{
+          ...styles.sceneBackground,
+          backgroundImage: `url('${background}')`,
+        }}
+      />
+      <div style={styles.sceneContent}>{children}</div>
+    </section>
+  );
+}
+
 export default function Home() {
   const heroRef = useRef(null);
+  const scene2Ref = useRef(null);
+  const scene3Ref = useRef(null);
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
   });
-  const backgrounds = [
-    { src: "/images/background.jpg", start: 0, end: 0.5 },
-    { src: "/images/bg2.jpg", start: 0.5, end: 0.8 },
-    { src: "/images/bg3.jpg", start: 0.8, end: 1 },
-  ];
-
-  const [activeBackground, setActiveBackground] = useState(backgrounds[0].src);
 
   const { scrollYProgress: heroScroll } = useScroll({
     target: heroRef,
@@ -262,15 +271,6 @@ export default function Home() {
   //const logoScaleY = useTransform(formScroll, [0, 0.22], [1, 6 / 29]);
   const logoOpacityy = useTransform(heroScroll, [0, 0.42], [0, 1]);
   const logoFormX = useTransform(formScroll, [0, 0.22], ["10rem", "14.5rem"]);
-
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    setActiveBackground((previous) => {
-      const next =
-        backgrounds.find((bg) => latest >= bg.start && latest < bg.end)?.src ??
-        backgrounds[backgrounds.length - 1].src;
-      return previous === next ? previous : next;
-    });
-  });
 
   // Header opacity control
   const headerOpacity = useTransform(
@@ -420,62 +420,43 @@ export default function Home() {
         style={{
           position: "relative",
           minHeight: "100vh",
-          overflow: "hidden",
+          overflow: "visible",
         }}
       >
-        <motion.img
-          src={activeBackground}
-          alt=""
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100vw",
-            height: "100vh",
-            objectFit: "cover",
-            zIndex: -1,
-            opacity: 1,
-            pointerEvents: "none",
-          }}
-        />
+        <Scene sectionRef={heroRef} background="/images/background.jpg" height="200vh">
+          <div className="chain chain1">
+            <img src="/images/chain.png" className="baseImg" alt="" />
+            <img
+              src="/images/chain.png"
+              className="glowImg glowCore"
+              alt=""
+              aria-hidden="true"
+            />
+            <img
+              src="/images/chain.png"
+              className="glowImg glowBloom"
+              alt=""
+              aria-hidden="true"
+            />
+          </div>
 
-        {/* your existing content stays here */}
-        {/* CHAIN BACKGROUND ELEMENTS */}
-
-        <div className="chain chain1">
-          <img src="/images/chain.png" className="baseImg" alt="" />
-          <img
-            src="/images/chain.png"
-            className="glowImg glowCore"
-            alt=""
-            aria-hidden="true"
-          />
-          <img
-            src="/images/chain.png"
-            className="glowImg glowBloom"
-            alt=""
-            aria-hidden="true"
-          />
-        </div>
-
-        <div className="chain chain2">
-          <img src="/images/chain.png" className="baseImg" alt="" />
-          <img
-            src="/images/chain.png"
-            className="glowImg glowCore"
-            alt=""
-            aria-hidden="true"
-          />
-          <img
-            src="/images/chain.png"
-            className="glowImg glowBloom"
-            alt=""
-            aria-hidden="true"
-          />
-        </div>
-        {/* HERO SECTION */}
-        <section ref={heroRef} style={styles.heroSection}>
-          <div style={styles.heroInner}>
+          <div className="chain chain2">
+            <img src="/images/chain.png" className="baseImg" alt="" />
+            <img
+              src="/images/chain.png"
+              className="glowImg glowCore"
+              alt=""
+              aria-hidden="true"
+            />
+            <img
+              src="/images/chain.png"
+              className="glowImg glowBloom"
+              alt=""
+              aria-hidden="true"
+            />
+          </div>
+          <div style={styles.heroSection}>
+            <div style={styles.heroInner}>
             {/* LEFT TEXT */}
             <div style={styles.heroText}>
               <motion.h1
@@ -489,7 +470,7 @@ export default function Home() {
                 initial="hidden"
                 animate="visible"
               >
-                <motion.div ref={heroRef}>
+                <motion.div>
                   <motion.div
                     style={{
                       scale: logoScalep,
@@ -565,10 +546,12 @@ export default function Home() {
               <img src="/images/hero.png" alt="Hero" style={styles.heroImg} />
             </div>
           </div>
-        </section>
+          </div>
+        </Scene>
 
         {/* Main Content */}
-        <section style={styles.siteSection}>
+        <Scene sectionRef={scene2Ref} background="/images/bg2.jpg" height="200vh">
+          <div style={styles.siteSection}>
           <div style={styles.container}>
             {/* Left - Description */}
             <div style={styles.descriptionSection}>
@@ -636,7 +619,10 @@ export default function Home() {
               />
             </div>
           </div>
-        </section>
+          </div>
+        </Scene>
+
+        <Scene sectionRef={scene3Ref} background="/images/bg3.jpg" height="200vh" />
       </motion.main>
     </>
   );
@@ -787,6 +773,26 @@ const styles = {
     fontSize: "48px",
     cursor: "pointer",
     transition: "color 0.3s ease",
+  },
+  sceneSection: {
+    position: "relative",
+    minHeight: "200vh",
+    isolation: "isolate",
+  },
+  sceneBackground: {
+    position: "sticky",
+    top: 0,
+    height: "100vh",
+    marginBottom: "-100vh",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    zIndex: -1,
+    pointerEvents: "none",
+  },
+  sceneContent: {
+    position: "relative",
+    zIndex: 1,
   },
   heroSection: {
     paddingTop: "0rem",
