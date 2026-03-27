@@ -551,7 +551,11 @@ export default function Home() {
 
         {/* Main Content */}
         <Scene sectionRef={scene2Ref} background="/images/bg2.jpg" height="200vh">
-          <div style={styles.siteSection}>
+          <div />
+        </Scene>
+
+        <Scene sectionRef={scene3Ref} background="/images/bg3.jpg" height="200vh">
+<div style={styles.siteSection}>
           <div style={styles.container}>
             {/* Left - Description */}
             <div style={styles.descriptionSection}>
@@ -621,8 +625,6 @@ export default function Home() {
           </div>
           </div>
         </Scene>
-
-        <Scene sectionRef={scene3Ref} background="/images/bg3.jpg" height="200vh" />
       </motion.main>
     </>
   );
@@ -896,3 +898,4 @@ const styles = {
     display: "block",
   },
 };
+
