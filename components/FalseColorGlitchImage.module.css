@@ -1,0 +1,51 @@
+.stack {
+  position: relative;
+  isolation: isolate;
+}
+
+.base {
+  z-index: 1;
+}
+
+.layer {
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 120ms steps(2, end);
+  will-change: transform, opacity, filter;
+}
+
+.active {
+  opacity: 1;
+  animation: glitchJitter 180ms steps(2, end) infinite;
+}
+
+.thermal {
+  z-index: 3;
+  mix-blend-mode: screen;
+  filter: sepia(1) saturate(3200%) hue-rotate(155deg) brightness(1.25)
+    contrast(1.2);
+}
+
+.negative {
+  z-index: 4;
+  mix-blend-mode: exclusion;
+  filter: invert(1) saturate(230%) hue-rotate(30deg) contrast(1.1);
+}
+
+@keyframes glitchJitter {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-1px, 1px);
+  }
+  50% {
+    transform: translate(1px, -1px);
+  }
+  75% {
+    transform: translate(1.5px, 0.5px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}

@@ -277,6 +277,35 @@ body {
   opacity: 1;
 }
 
+.scene2-style-note {
+  max-width: 900px;
+  border-right: 2px solid rgba(255, 255, 255, 0.45);
+  padding-right: 1rem;
+}
+
+.scene2-style-title {
+  font-size: 0.7rem;
+  letter-spacing: 0.35rem;
+  text-transform: uppercase;
+  opacity: 0.75;
+  margin-bottom: 0.4rem;
+}
+
+.scene2-style-main {
+  font-size: 1.05rem;
+  letter-spacing: 0.12rem;
+  line-height: 1.5;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.scene2-style-related {
+  font-size: 0.78rem;
+  line-height: 1.65;
+  letter-spacing: 0.08rem;
+  opacity: 0.8;
+}
+
 .scene2-line-3 {
   font-size: 1.1rem;
   line-height: 1.8;
@@ -314,7 +343,7 @@ body {
 }
 
 .ticker-track p {
-  font-family: ClashDisplay, sans-serif;
+  font-family: panchang;
   font-size: 6rem;
   letter-spacing: 0.2rem;
   color: #ffffff;

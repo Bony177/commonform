@@ -1,6 +1,7 @@
 "use client";
 import ProductCarousel from "@/components/product-carousel";
 import ProductGrid from "@/components/product-grid";
+import FalseColorGlitchImage from "@/components/FalseColorGlitchImage";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Bold, Variable } from "lucide-react";
 import { useRef, useState } from "react";
@@ -608,10 +609,13 @@ export default function Home() {
         >
           <div className="scene-image-wrapper">
             <div className="scene-image-sticky">
-              <img
+              <FalseColorGlitchImage
                 src="/images/scene2.png"
-                className="scene-image scene-image-2"
                 alt=""
+                imageClassName="scene-image scene-image-2"
+                intervalMs={6000}
+                durationMs={200}
+                jitterMs={1100}
               />
               <div className="scene2-ticker-sticky">
                 <div className="ticker">
@@ -630,6 +634,17 @@ export default function Home() {
             <p className="scene2-line scene2-line-1">FORM VARSITY</p>
 
             <p className="scene2-line scene2-line-2">BUILT ON STRUCTURE</p>
+
+            <div className="scene2-style-note">
+              <p className="scene2-style-title">WHAT THIS STYLE IS CALLED</p>
+              <p className="scene2-style-main">
+                Dreamy Negative / Thermal / False Color Effect
+              </p>
+              <p className="scene2-style-related">
+                Thermal Vision Effect, False Color Grading, Duotone / Gradient
+                Map Effect, Psychedelic Negative.
+              </p>
+            </div>
 
             <p className="scene2-line scene2-line-3">
               Structured jackets with defined presence.
