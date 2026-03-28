@@ -249,7 +249,10 @@ function ChainOverlay() {
 
 function Scene({ background, height = "200vh", children, sectionRef }) {
   return (
-    <section ref={sectionRef} style={{ ...styles.sceneSection, minHeight: height }}>
+    <section
+      ref={sectionRef}
+      style={{ ...styles.sceneSection, minHeight: height }}
+    >
       <div
         style={{
           ...styles.sceneBackground,
@@ -463,175 +466,197 @@ export default function Home() {
       >
         <ChainOverlay />
 
-        <Scene sectionRef={heroRef} background="/images/background.jpg" height="200vh">
-          <div style={styles.heroSection}>
-            <div style={styles.heroInner}>
-            {/* LEFT TEXT */}
-            <div style={styles.heroText}>
-              <motion.h1
-                style={{
-                  ...styles.heroTitle,
-                  lineHeight,
-
-                  opacity: heroLogoOpacity,
-                }}
-                variants={titleContainer}
-                initial="hidden"
-                animate="visible"
-              >
-                <motion.div>
-                  <motion.div
-                    style={{
-                      scale: logoScalep,
-                      transformOrigin: "left center",
-                      marginTop: "-7.5rem",
-                    }}
-                  >
-                    <span
-                      className="common-text glitch-text textured"
-                      data-text="COMMON"
-                    >
-                      COMMON
-                    </span>
-                  </motion.div>
-
-                  <motion.div
-                    div
-                    className="form-wrapper glitch-text textured"
-                    data-text="FORM"
-                    style={{
-                      scale: logoScalep,
-                      transformOrigin: "left center",
-                      marginTop: "-8.5rem",
-                    }}
-                  >
-                    FORM
-                  </motion.div>
-                </motion.div>
-              </motion.h1>
-
-              <motion.p
-                style={{
-                  ...styles.heroLine,
-                  color: heroParagraphColor,
-                }}
-              >
-                A STRUCTURE DISGUISED AS CLOTHING
-              </motion.p>
-              <motion.p
-                style={{ ...styles.heroLine2, color: heroParagraphColor }}
-              >
-                COMMON FORM builds beneath IDENTITY — beyond PERFORMANCE, where
-                SIGNAL fades and STRUCTURE remains. EXCESS removed, DISTORTION
-                silenced — only BALANCE, CLARITY, FORM.
-              </motion.p>
-              <motion.p
-                style={{ ...styles.heroLine3, color: heroParagraphColor }}
-              >
-                Common Form is built around the human body — how it moves,
-                pauses, and exists within space. Clothing is treated as a quiet
-                extension of form rather than a statement, shaped through
-                proportion, weight, and restraint. Each piece follows the
-                natural rhythm of the body, allowing fabric to settle, drape,
-                and respond without force or excess. The focus is not on trend
-                or decoration, but on presence, balance, and longevity, creating
-                garments that feel intentional, lived-in, and quietly timeless.
-              </motion.p>
-              <motion.p
-                style={{ ...styles.heroLine, color: heroParagraphColor }}
-              >
-                Quiet cevkjejveonstruction
-              </motion.p>
-
-              <motion.p
-                style={{ ...styles.heroLine, color: heroParagraphColor }}
-              >
-                Intendedevoevoenvon to remain
-              </motion.p>
-            </div>
-
-            {/* RIGHT IMAGE */}
-            <div style={styles.heroImageWrapper}>
-              <img src="/images/hero.png" alt="Hero" style={styles.heroImg} />
+        <Scene
+          sectionRef={heroRef}
+          background="/images/background.jpg"
+          height="200vh"
+        >
+          <div className="scene-image-wrapper">
+            <div className="scene-image-sticky">
+              <img src="/images/scene1.png" className="scene-image scene-image-1" />
             </div>
           </div>
+          <div style={styles.heroSection}>
+            <div style={styles.heroInner}>
+              {/* LEFT TEXT */}
+              <div style={styles.heroText}>
+                <motion.h1
+                  style={{
+                    ...styles.heroTitle,
+                    lineHeight,
+
+                    opacity: heroLogoOpacity,
+                  }}
+                  variants={titleContainer}
+                  initial="hidden"
+                  animate="visible"
+                >
+                  <motion.div>
+                    <motion.div
+                      style={{
+                        scale: logoScalep,
+                        transformOrigin: "left center",
+                        marginTop: "-7.5rem",
+                      }}
+                    >
+                      <span
+                        className="common-text glitch-text textured"
+                        data-text="COMMON"
+                      >
+                        COMMON
+                      </span>
+                    </motion.div>
+
+                    <motion.div
+                      div
+                      className="form-wrapper glitch-text textured"
+                      data-text="FORM"
+                      style={{
+                        scale: logoScalep,
+                        transformOrigin: "left center",
+                        marginTop: "-8.5rem",
+                      }}
+                    >
+                      FORM
+                    </motion.div>
+                  </motion.div>
+                </motion.h1>
+
+                <motion.p
+                  style={{
+                    ...styles.heroLine,
+                    color: heroParagraphColor,
+                  }}
+                >
+                  A STRUCTURE DISGUISED AS CLOTHING
+                </motion.p>
+                <motion.p
+                  style={{ ...styles.heroLine2, color: heroParagraphColor }}
+                >
+                  COMMON FORM builds beneath IDENTITY — beyond PERFORMANCE,
+                  where SIGNAL fades and STRUCTURE remains. EXCESS removed,
+                  DISTORTION silenced — only BALANCE, CLARITY, FORM.
+                </motion.p>
+                <motion.p
+                  style={{ ...styles.heroLine3, color: heroParagraphColor }}
+                >
+                  Common Form is built around the human body — how it moves,
+                  pauses, and exists within space. Clothing is treated as a
+                  quiet extension of form rather than a statement, shaped
+                  through proportion, weight, and restraint. Each piece follows
+                  the natural rhythm of the body, allowing fabric to settle,
+                  drape, and respond without force or excess. The focus is not
+                  on trend or decoration, but on presence, balance, and
+                  longevity, creating garments that feel intentional, lived-in,
+                  and quietly timeless.
+                </motion.p>
+                <motion.p
+                  style={{ ...styles.heroLine, color: heroParagraphColor }}
+                >
+                  Quiet cevkjejveonstruction
+                </motion.p>
+
+                <motion.p
+                  style={{ ...styles.heroLine, color: heroParagraphColor }}
+                >
+                  Intendedevoevoenvon to remain
+                </motion.p>
+              </div>
+
+              {/* RIGHT IMAGE */}
+              <div style={styles.heroImageWrapper}>
+                <img src="/images/hero.png" alt="Hero" style={styles.heroImg} />
+              </div>
+            </div>
           </div>
         </Scene>
 
         {/* Main Content */}
-        <Scene sectionRef={scene2Ref} background="/images/bg2.jpg" height="200vh">
-          <div />
-        </Scene>
-
-        <Scene sectionRef={scene3Ref} background="/images/bg3.jpg" height="200vh">
-<div style={styles.siteSection}>
-          <div style={styles.container}>
-            {/* Left - Description */}
-            <div style={styles.descriptionSection}>
-              <p style={styles.description}>{activeProduct.description}</p>
-            </div>
-
-            {/* Center - Product media */}
-            <div style={styles.carouselSection}>
-              {/* MAIN VIEW */}
-              <div style={styles.viewerWrapper}>
-                <button style={styles.arrowLeft} onClick={goPrev}>
-                  ‹
-                </button>
-
-                <img
-                  src={activeMedia.src}
-                  alt={activeProduct.name}
-                  style={{
-                    width: "100%",
-                    height: "500px",
-                    objectFit: "contain",
-                  }}
-                />
-
-                <button style={styles.arrowRight} onClick={goNext}>
-                  ›
-                </button>
-              </div>
-
-              {/* THUMBNAIL SLIDER */}
-              <div style={styles.thumbnailRow}>
-                {activeProduct.media.map((media, index) => {
-                  const isActive = index === activeMediaIndex;
-
-                  return (
-                    <div
-                      key={index}
-                      onClick={() => setActiveMediaIndex(index)}
-                      style={{
-                        ...styles.thumbnail,
-                        borderColor: isActive ? "#fbbf24" : "#262626",
-                      }}
-                    >
-                      <img
-                        src={media.src}
-                        alt=""
-                        style={styles.thumbnailImage}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Right - Grid and Title */}
-            <div style={styles.rightSection}>
-              <h2 style={styles.dropTitle}>DROP 01</h2>
-              <ProductGrid
-                products={products}
-                activeProduct={activeProduct}
-                onSelect={(product) => {
-                  setActiveProduct(product);
-                  setActiveMediaIndex(0);
-                }}
-              />
+        <Scene
+          sectionRef={scene2Ref}
+          background="/images/bg2.jpg"
+          height="200vh"
+        >
+          <div className="scene-image-wrapper">
+            <div className="scene-image-sticky">
+              <img src="/images/scene2.png" className="scene-image scene-image-2" />
             </div>
           </div>
+        </Scene>
+
+        <Scene
+          sectionRef={scene3Ref}
+          background="/images/bg3.jpg"
+          height="200vh"
+        >
+          <div style={styles.siteSection}>
+            <div style={styles.container}>
+              {/* Left - Description */}
+              <div style={styles.descriptionSection}>
+                <p style={styles.description}>{activeProduct.description}</p>
+              </div>
+
+              {/* Center - Product media */}
+              <div style={styles.carouselSection}>
+                {/* MAIN VIEW */}
+                <div style={styles.viewerWrapper}>
+                  <button style={styles.arrowLeft} onClick={goPrev}>
+                    ‹
+                  </button>
+
+                  <img
+                    src={activeMedia.src}
+                    alt={activeProduct.name}
+                    style={{
+                      width: "100%",
+                      height: "500px",
+                      objectFit: "contain",
+                    }}
+                  />
+
+                  <button style={styles.arrowRight} onClick={goNext}>
+                    ›
+                  </button>
+                </div>
+
+                {/* THUMBNAIL SLIDER */}
+                <div style={styles.thumbnailRow}>
+                  {activeProduct.media.map((media, index) => {
+                    const isActive = index === activeMediaIndex;
+
+                    return (
+                      <div
+                        key={index}
+                        onClick={() => setActiveMediaIndex(index)}
+                        style={{
+                          ...styles.thumbnail,
+                          borderColor: isActive ? "#fbbf24" : "#262626",
+                        }}
+                      >
+                        <img
+                          src={media.src}
+                          alt=""
+                          style={styles.thumbnailImage}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Right - Grid and Title */}
+              <div style={styles.rightSection}>
+                <h2 style={styles.dropTitle}>DROP 01</h2>
+                <ProductGrid
+                  products={products}
+                  activeProduct={activeProduct}
+                  onSelect={(product) => {
+                    setActiveProduct(product);
+                    setActiveMediaIndex(0);
+                  }}
+                />
+              </div>
+            </div>
           </div>
         </Scene>
       </motion.main>
@@ -813,6 +838,7 @@ const styles = {
     paddingTop: "0rem",
     minHeight: "200vh", // gives scroll room
     position: "relative",
+    zIndex: 1,
     overflow: "visible", // Allow content to overflow
   },
 
@@ -911,4 +937,3 @@ const styles = {
     display: "block",
   },
 };
-
