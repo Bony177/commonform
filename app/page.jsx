@@ -604,6 +604,32 @@ export default function Home() {
               />
             </div>
           </div>
+          <div className="scene2-text-container">
+            <p className="scene2-line scene2-line-1">FORM: VARSITY</p>
+
+            <p className="scene2-line scene2-line-2">BUILT ON STRUCTURE</p>
+
+            <p className="scene2-line scene2-line-3">
+              Structured jackets with defined presence.
+              <br />
+              Relaxed trousers with controlled fall.
+              <br />
+              Designed to move naturally — without losing form.
+            </p>
+
+            <p className="scene2-line scene2-line-4">
+              This collection is built on control.
+              <br />
+              Defined silhouettes, measured weight, and intentional
+              construction.
+              <br />
+              Varsity jackets bring presence. Trousers bring flow.
+              <br />
+              Together, they create a uniform that feels effortless but precise.
+            </p>
+
+            <p className="scene2-line scene2-line-5">COMMON FORM</p>
+          </div>
         </Scene>
 
         <Scene
