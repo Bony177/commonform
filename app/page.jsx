@@ -15,7 +15,13 @@ import {
   Lora,
   Manrope,
   Bebas_Neue,
+  Michroma,
 } from "next/font/google";
+
+const michroma = Michroma({
+  subsets: ["latin"],
+  weight: "400", // only one weight available
+});
 const products = [
   {
     id: "cap",
@@ -605,7 +611,7 @@ export default function Home() {
             </div>
           </div>
           <div className="scene2-text-container">
-            <p className="scene2-line scene2-line-1">FORM: VARSITY</p>
+            <p className="scene2-line scene2-line-1">FORM VARSITY</p>
 
             <p className="scene2-line scene2-line-2">BUILT ON STRUCTURE</p>
 
