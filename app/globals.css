@@ -181,7 +181,8 @@ body {
 
 .scene-image-2 {
   position: absolute;
-  left: 10%;
-  top: 30%;
-  height: 70vh;
+  left: 2%;
+  top: 7%;
+  height: 105vh;
+  max-height: none; 
 }
