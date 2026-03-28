@@ -499,10 +499,13 @@ export default function Home() {
         >
           <div className="scene-image-wrapper">
             <div className="scene-image-sticky">
-              <img
+              <FalseColorGlitchImage
                 src="/images/scene1.png"
-                className="scene-image scene-image-1"
                 alt=""
+                imageClassName="scene-image scene-image-1"
+                intervalMs={5000}
+                durationMs={500}
+                jitterMs={1100}
               />
             </div>
           </div>
@@ -674,10 +677,13 @@ export default function Home() {
         >
           <div className="scene-image-wrapper">
             <div className="scene-image-sticky">
-              <img
+              <FalseColorGlitchImage
                 src="/images/scene3a.png"
-                className="scene-image scene-image-3a"
                 alt=""
+                imageClassName="scene-image scene-image-3a"
+                intervalMs={4000}
+                durationMs={600}
+                jitterMs={1100}
               />
 
               <img

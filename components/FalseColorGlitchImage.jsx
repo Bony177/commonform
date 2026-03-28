@@ -50,7 +50,7 @@ export default function FalseColorGlitchImage({
   const activeClass = !disabled && isActive ? styles.active : "";
 
   return (
-    <div className={styles.stack}>
+    <>
       <img
         src={src}
         alt={alt}
@@ -68,6 +68,6 @@ export default function FalseColorGlitchImage({
         aria-hidden="true"
         className={`${imageClassName} ${styles.layer} ${styles.negative} ${activeClass}`.trim()}
       />
-    </div>
+    </>
   );
 }
