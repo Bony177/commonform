@@ -186,3 +186,22 @@ body {
   height: 105vh;
   max-height: none; 
 }
+.scene-image-3a {
+  position: absolute;
+  right: 1%;        /* move LEFT/RIGHT */
+  top: -30%;        /* move UP/DOWN */
+
+  height: 80vh;    /* size control */
+
+  transform: translate(0, 0); /* fine tuning */
+}
+
+.scene-image-3b {
+  position: absolute;
+  left: -12%;       /* move LEFT/RIGHT */
+  top: 30%;        /* move UP/DOWN */
+
+  height: 120vh;    /* size control */
+
+  transform: translate(0, 0); /* fine tuning */
+}

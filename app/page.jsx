@@ -264,6 +264,20 @@ function Scene({ background, height = "200vh", children, sectionRef }) {
   );
 }
 
+function ScrollScene({ background, height = "140vh", children }) {
+  return (
+    <section
+      style={{
+        ...styles.scrollSceneSection,
+        minHeight: height,
+        backgroundImage: `url('${background}')`,
+      }}
+    >
+      <div style={styles.scrollSceneContent}>{children}</div>
+    </section>
+  );
+}
+
 export default function Home() {
   const heroRef = useRef(null);
   const scene2Ref = useRef(null);
@@ -473,7 +487,11 @@ export default function Home() {
         >
           <div className="scene-image-wrapper">
             <div className="scene-image-sticky">
-              <img src="/images/scene1.png" className="scene-image scene-image-1" />
+              <img
+                src="/images/scene1.png"
+                className="scene-image scene-image-1"
+                alt=""
+              />
             </div>
           </div>
           <div style={styles.heroSection}>
@@ -579,7 +597,11 @@ export default function Home() {
         >
           <div className="scene-image-wrapper">
             <div className="scene-image-sticky">
-              <img src="/images/scene2.png" className="scene-image scene-image-2" />
+              <img
+                src="/images/scene2.png"
+                className="scene-image scene-image-2"
+                alt=""
+              />
             </div>
           </div>
         </Scene>
@@ -589,6 +611,24 @@ export default function Home() {
           background="/images/bg3.jpg"
           height="200vh"
         >
+          <div className="scene-image-wrapper">
+            <div className="scene-image-sticky">
+              <img
+                src="/images/scene3a.png"
+                className="scene-image scene-image-3a"
+                alt=""
+              />
+
+              <img
+                src="/images/scene3b.png"
+                className="scene-image scene-image-3b"
+                alt=""
+              />
+            </div>
+          </div>
+        </Scene>
+
+        <ScrollScene background="/images/background.jpg" height="140vh">
           <div style={styles.siteSection}>
             <div style={styles.container}>
               {/* Left - Description */}
@@ -658,7 +698,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </Scene>
+        </ScrollScene>
       </motion.main>
     </>
   );
@@ -833,6 +873,17 @@ const styles = {
     gridArea: "1 / 1",
     position: "relative",
     zIndex: 2,
+  },
+  scrollSceneSection: {
+    position: "relative",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+  },
+  scrollSceneContent: {
+    position: "relative",
+    width: "100%",
+    minHeight: "100%",
   },
   heroSection: {
     paddingTop: "0rem",
