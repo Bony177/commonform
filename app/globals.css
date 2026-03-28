@@ -11,7 +11,14 @@ body {
   box-sizing: border-box;
 }
 
-
+@font-face {
+  font-family: 'ClashDisplay';
+  src: url('/fonts/ClashDisplay-Bold.woff2') format('woff2'),
+       url('/fonts/ClashDisplay-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 
 html,
@@ -263,13 +270,38 @@ body {
 .scene2-line-4 {
   font-size: 1rem;
   line-height: 1.9;
-  letter-spacing: 0.12rem;
+  letter-spacing: 0.18rem;
   opacity: 0.7;
 }
 
-.scene2-line-5 {
-  font-size: 3rem;
-  letter-spacing: 0.5rem;
-  font-weight: 700;
-  opacity: 0.9;
+.ticker {
+  position: relative;
+  width: 100vw;          /* full viewport width */
+   /* center it */
+
+  overflow: hidden;
+}
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 40s linear infinite;
+}
+
+.ticker-track p {
+  font-family: ClashDisplay, sans-serif;
+  font-size: 6rem;
+  letter-spacing: 0.2rem;
+  color: #ffffff;
+  font-weight: 900;
+  margin-right: 4rem;
+  white-space: nowrap;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }

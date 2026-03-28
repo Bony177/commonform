@@ -16,8 +16,13 @@ import {
   Manrope,
   Bebas_Neue,
   Michroma,
+  Montserrat,
 } from "next/font/google";
 
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["700", "800", "900"], // 🔥 important for bold look
+});
 const michroma = Michroma({
   subsets: ["latin"],
   weight: "400", // only one weight available
@@ -634,7 +639,15 @@ export default function Home() {
               Together, they create a uniform that feels effortless but precise.
             </p>
 
-            <p className="scene2-line scene2-line-5">COMMON FORM</p>
+            <div className="ticker">
+              <div className="ticker-track">
+                <p>COMMON FORM</p>
+                <p>COMMON FORM</p>
+                <p>COMMON FORM</p>
+                <p>COMMON FORM</p>
+                <p>COMMON FORM</p>
+              </div>
+            </div>
           </div>
         </Scene>
 
