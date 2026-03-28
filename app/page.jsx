@@ -209,6 +209,44 @@ const titleLetter = {
   },
 };
 
+function ChainOverlay() {
+  return (
+    <>
+      <div className="chain chain1">
+        <img src="/images/chain.png" className="baseImg" alt="" />
+        <img
+          src="/images/chain.png"
+          className="glowImg glowCore"
+          alt=""
+          aria-hidden="true"
+        />
+        <img
+          src="/images/chain.png"
+          className="glowImg glowBloom"
+          alt=""
+          aria-hidden="true"
+        />
+      </div>
+
+      <div className="chain chain2">
+        <img src="/images/chain.png" className="baseImg" alt="" />
+        <img
+          src="/images/chain.png"
+          className="glowImg glowCore"
+          alt=""
+          aria-hidden="true"
+        />
+        <img
+          src="/images/chain.png"
+          className="glowImg glowBloom"
+          alt=""
+          aria-hidden="true"
+        />
+      </div>
+    </>
+  );
+}
+
 function Scene({ background, height = "200vh", children, sectionRef }) {
   return (
     <section ref={sectionRef} style={{ ...styles.sceneSection, minHeight: height }}>
@@ -423,38 +461,9 @@ export default function Home() {
           overflow: "visible",
         }}
       >
-        <Scene sectionRef={heroRef} background="/images/background.jpg" height="200vh">
-          <div className="chain chain1">
-            <img src="/images/chain.png" className="baseImg" alt="" />
-            <img
-              src="/images/chain.png"
-              className="glowImg glowCore"
-              alt=""
-              aria-hidden="true"
-            />
-            <img
-              src="/images/chain.png"
-              className="glowImg glowBloom"
-              alt=""
-              aria-hidden="true"
-            />
-          </div>
+        <ChainOverlay />
 
-          <div className="chain chain2">
-            <img src="/images/chain.png" className="baseImg" alt="" />
-            <img
-              src="/images/chain.png"
-              className="glowImg glowCore"
-              alt=""
-              aria-hidden="true"
-            />
-            <img
-              src="/images/chain.png"
-              className="glowImg glowBloom"
-              alt=""
-              aria-hidden="true"
-            />
-          </div>
+        <Scene sectionRef={heroRef} background="/images/background.jpg" height="200vh">
           <div style={styles.heroSection}>
             <div style={styles.heroInner}>
             {/* LEFT TEXT */}
@@ -788,6 +797,7 @@ const styles = {
     alignSelf: "start",
     position: "sticky",
     top: 0,
+    zIndex: 0,
     height: "100vh",
     backgroundSize: "cover",
     backgroundPosition: "center",
@@ -797,6 +807,7 @@ const styles = {
   sceneContent: {
     gridArea: "1 / 1",
     position: "relative",
+    zIndex: 2,
   },
   heroSection: {
     paddingTop: "0rem",
