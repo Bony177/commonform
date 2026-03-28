@@ -274,6 +274,15 @@ body {
   opacity: 0.7;
 }
 
+.scene2-ticker-sticky {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0vh;
+  z-index: 4;
+  pointer-events: none;
+}
+
 .ticker {
   position: relative;
   width: 100vw;          /* full viewport width */

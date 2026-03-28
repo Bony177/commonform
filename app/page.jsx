@@ -613,6 +613,17 @@ export default function Home() {
                 className="scene-image scene-image-2"
                 alt=""
               />
+              <div className="scene2-ticker-sticky">
+                <div className="ticker">
+                  <div className="ticker-track">
+                    <p>COMMON FORM</p>
+                    <p>COMMON FORM</p>
+                    <p>COMMON FORM</p>
+                    <p>COMMON FORM</p>
+                    <p>COMMON FORM</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div className="scene2-text-container">
@@ -638,16 +649,6 @@ export default function Home() {
               <br />
               Together, they create a uniform that feels effortless but precise.
             </p>
-
-            <div className="ticker">
-              <div className="ticker-track">
-                <p>COMMON FORM</p>
-                <p>COMMON FORM</p>
-                <p>COMMON FORM</p>
-                <p>COMMON FORM</p>
-                <p>COMMON FORM</p>
-              </div>
-            </div>
           </div>
         </Scene>
 
