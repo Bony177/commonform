@@ -508,6 +508,16 @@ export default function Home() {
                 jitterMs={1100}
               />
             </div>
+            <div className="scene1-bottom-copy" aria-hidden="true">
+              <p>
+                {" "}
+                EXISTS OUTSIDE THE ORDINARY EXISTS OUTSIDE THE ORDINARY EXISTS
+                OUTSIDE THE ORDINARY EXISTS
+                <br />
+                OUTSIDE THE ORDINARY EXISTS OUTSIDE THE ORDINARY EXISTS OUTSIDE
+                THE ORDINARY EXISTS
+              </p>
+            </div>
           </div>
           <div style={styles.heroSection}>
             <div style={styles.heroInner}>
