@@ -589,11 +589,15 @@ export default function Home() {
                   Quiet cevkjejveonstruction
                 </motion.p>
 
-                <motion.p
-                  style={{ ...styles.heroLine, color: heroParagraphColor }}
-                >
-                  Intendedevoevoenvon to remain
-                </motion.p>
+                <motion.img
+                  src="/images/back1.png"
+                  alt=""
+                  style={{
+                    paddingLeft: "6rem",
+                    width: "800px", // adjust size
+                    marginTop: "1rem",
+                  }}
+                />
               </div>
 
               {/* RIGHT IMAGE */}
