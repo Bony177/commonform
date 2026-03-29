@@ -639,14 +639,11 @@ export default function Home() {
             <p className="scene2-line scene2-line-2">BUILT ON STRUCTURE</p>
 
             <div className="scene2-style-note">
-              <p className="scene2-style-title">WHAT THIS STYLE IS CALLED</p>
-              <p className="scene2-style-main">
-                Dreamy Negative / Thermal / False Color Effect
-              </p>
-              <p className="scene2-style-related">
-                Thermal Vision Effect, False Color Grading, Duotone / Gradient
-                Map Effect, Psychedelic Negative.
-              </p>
+              <img
+                src="/images/scene2back.png"
+                alt="style visual"
+                className="scene2-style-image"
+              />
             </div>
 
             <p className="scene2-line scene2-line-3">

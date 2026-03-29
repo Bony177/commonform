@@ -239,7 +239,7 @@ body {
   display: flex;
   flex-direction: column;
 
-  gap: 10vh;
+  gap: 1vh;
 
   padding-top: 10vh;
   padding-right: 3rem; /* push from right */
@@ -307,17 +307,19 @@ body {
 }
 
 .scene2-line-3 {
-  font-size: 1.1rem;
-  line-height: 1.8;
+  font-family: panchang;
+  font-size: 0.8rem;
+  line-height: 1.4;
   letter-spacing: 0.15rem;
-  opacity: 0.75;
+  opacity: 0.95;
 }
 
 .scene2-line-4 {
-  font-size: 1rem;
-  line-height: 1.9;
+  font-family: panchang;
+  font-size: 0.8rem;
+  line-height: 1;
   letter-spacing: 0.18rem;
-  opacity: 0.7;
+  opacity: 0;
 }
 
 .scene2-ticker-sticky {
@@ -352,6 +354,24 @@ body {
   white-space: nowrap;
 }
 
+.scene2-style-note {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 4rem 0;
+}
+
+.scene2-style-image {
+  width: 100%;
+  max-width: 600px; /* adjust based on vibe */
+  height: auto;
+  object-fit: contain;
+
+  /* optional aesthetic tweaks */
+  opacity: 0.9;
+  filter: contrast(1.1) brightness(1.05);
+}
+
 @keyframes scroll {
   0% {
     transform: translateX(0);
@@ -360,3 +380,6 @@ body {
     transform: translateX(-50%);
   }
 }
+
+
+
