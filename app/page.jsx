@@ -705,8 +705,29 @@ export default function Home() {
 
               {/* 🔥 ADD THIS */}
               <div className="shoe-name">CF-AXIS/01</div>
+              <div className="shoename2">CF-GRND</div>
+              <div className="shoetxt">
+                CF-AXIS//01 is built as an extension of structure rather than
+                decoration — a form that exists in balance with movement,
+                weight, and space. The silhouette follows a controlled geometry,
+                where each panel, seam, and material transition is placed with
+                intention, allowing the shoe to feel both grounded and adaptive.
+                There is no excess, no unnecessary noise — only a quiet system
+                of layers working together beneath the surface.The construction
+                prioritizes stability without rigidity, creating a presence that
+                feels firm yet responsive. Textures shift subtly across the
+                upper, moving from tension to softness,
+              </div>
             </div>
+
             {/* 🔥 SCROLLABLE TEXT (ADD HERE) */}
+            <div className="scene3-shoe">
+              <img
+                src="/images/shoeback.png"
+                alt="style visual"
+                className="shoebackimage"
+              />
+            </div>
             <div className="scene3-text">CF-AXIS/01</div>
           </div>
         </Scene>

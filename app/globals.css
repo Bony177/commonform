@@ -455,6 +455,34 @@ body {
 
   pointer-events: none;
 }
+.shoename2{
+    position: absolute;
+  z-index: 10;
+
+  top: 47%;
+  right: 10%; /* 🔥 push to RIGHT SIDE */
+  left: auto; /* IMPORTANT */
+
+  transform: translateY(-50%); /* vertical center only */
+
+  width: 250px; /* 🔥 control text box width */
+
+  font-family: panchang, "Michroma", sans-serif;
+
+  font-size: 3rem;
+  line-height: 0.9; /* 🔥 VERY IMPORTANT for readability */
+  letter-spacing: 0.12rem;
+-webkit-text-stroke: 1px #265ece;
+  color: #265ece;
+
+  text-align: right; /* 🔥 aligns text nicely */
+
+  white-space: normal; /* 🔥 FIX (allow wrapping) */
+
+  pointer-events: none;
+  white-space: nowrap; 
+
+}
 
 
 .shoe-name {
@@ -473,6 +501,7 @@ body {
     white-space: nowrap; 
   font-size: 6rem;
   letter-spacing: 0.35rem;
+  -webkit-text-stroke: 3px #a72e1f;
  
 
   color: #a72e1f;
@@ -486,3 +515,50 @@ body {
   pointer-events: none;
 }
 
+
+.scene3-shoe {
+  position: absolute;
+  z-index: 1;
+
+  top: 50%;
+  left: 25%;
+
+  transform: translate(-50%, -50%);
+}
+
+
+.shoebackimage {
+  width: 600px; /* 🔥 control size */
+  height: auto;
+
+  opacity: 1;
+
+  pointer-events: none;
+}
+
+.shoetxt {
+  position: absolute;
+  z-index: 10;
+
+  top: 71%;
+  right: 3%; /* 🔥 push to RIGHT SIDE */
+  left: auto; /* IMPORTANT */
+
+  transform: translateY(-50%); /* vertical center only */
+
+  width: 250px; /* 🔥 control text box width */
+
+  font-family: panchang, "Michroma", sans-serif;
+
+  font-size: 0.65rem;
+  line-height: 0.9; /* 🔥 VERY IMPORTANT for readability */
+  letter-spacing: 0.12rem;
+
+  color: #265ece;
+
+  text-align: right; /* 🔥 aligns text nicely */
+
+  white-space: normal; /* 🔥 FIX (allow wrapping) */
+
+  pointer-events: none;
+}
