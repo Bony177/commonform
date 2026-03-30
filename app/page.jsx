@@ -702,7 +702,12 @@ export default function Home() {
                 className="scene-image scene-image-3b"
                 alt=""
               />
+
+              {/* 🔥 ADD THIS */}
+              <div className="shoe-name">CF-AXIS/01</div>
             </div>
+            {/* 🔥 SCROLLABLE TEXT (ADD HERE) */}
+            <div className="scene3-text">CF-AXIS/01</div>
           </div>
         </Scene>
 

@@ -426,4 +426,62 @@ body {
 }
 
 
+.scene3-text {
+  position: absolute;
+  z-index: 10;
+
+  /* 🎯 START POSITION (adjust from here) */
+  top:82%;
+  left: 35%;
+
+  transform: translate(-50%, -50%);
+   transform: translate(-50%, -50%) scaleY(1.2);
+
+  font-family: "Michroma", sans-serif;
+  font-family: panchang;
+    white-space: nowrap; 
+  font-size: 6rem;
+  letter-spacing: 0.35rem;
+
+  color: transparent; /* 🔥 remove fill */
+
+  -webkit-text-stroke: 3px #b74a3c;
+  /*text-shadow:
+
+  0px 1px 0px #ffffff,
+  0px 1px 0px #ffffff,
+  0px 1px 0px #ffffff,
+  0px 1px 0px #ffffff;*/
+
+  pointer-events: none;
+}
+
+
+.shoe-name {
+  position: absolute;
+  z-index: 10;
+
+  /* 🎯 START POSITION (adjust from here) */
+  top:82%;
+  left: 35%;
+
+  transform: translate(-50%, -50%);
+   transform: translate(-50%, -50%) scaleY(1.2);
+
+  font-family: "Michroma", sans-serif;
+  font-family: panchang;
+    white-space: nowrap; 
+  font-size: 6rem;
+  letter-spacing: 0.35rem;
+
+  color: #a72e1f;
+  /*text-shadow:
+
+  0px 1px 0px #ffffff,
+  0px 1px 0px #ffffff,
+  0px 1px 0px #ffffff,
+  0px 1px 0px #ffffff;*/
+
+  pointer-events: none;
+}
 
