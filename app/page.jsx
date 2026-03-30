@@ -345,6 +345,7 @@ export default function Home() {
     [0.15, 0.65, 0.7],
     [0, 20, 40],
   );
+  const headerBandOpacity = useTransform(heroScroll, [0.18, 0.28], [0, 1]);
 
   const heroParagraphColor = useTransform(
     scrollYProgress,
@@ -403,6 +404,12 @@ export default function Home() {
       {/* HEADER */}
       <header style={styles.header}>
         <div style={{ height: "0.5px" }} />
+        <motion.div
+          className="hero-header-band"
+          style={{
+            "--hero-header-band-progress": headerBandOpacity,
+          }}
+        />
 
         <motion.div
           style={{
@@ -429,7 +436,7 @@ export default function Home() {
               top: "4%",
               y: "-50%",
               fontFamily: "Galgo",
-              fontSize: "7rem",
+              fontSize: "4rem",
               letterSpacing: "0.26rem",
               color: "#fcf4f4",
               fontWeight: 600,
@@ -448,7 +455,7 @@ export default function Home() {
               top: "4%",
               y: "-50%",
               fontFamily: "Galgo",
-              fontSize: "4.5rem",
+              fontSize: "2.6rem",
               letterSpacing: "0.18rem",
               color: "#fcf4f4",
               opacity: logoOpacityy,

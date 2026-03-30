@@ -105,12 +105,44 @@ body {
   --chart-3: oklch(0.5 0.08 240);
   --chart-4: oklch(0.7 0.12 30);
   --chart-5: oklch(0.55 0.09 120);
+
+  /* Scene 1 fixed header band controls */
+  --hero-header-band-height: 3.5rem;
+  --hero-header-band-max-opacity: 1;
+  --hero-header-band-blur: 16px;
+  --hero-header-band-saturate: 140%;
+  --hero-header-band-top: rgba(8, 8, 10, 0.86);
+  --hero-header-band-bottom: rgba(8, 8, 10, 0.6);
+  --hero-header-band-border: rgba(255, 255, 255, 0.08);
 }
 
 
 .page {
   position: relative;
   z-index: 1;
+}
+
+.hero-header-band {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--hero-header-band-height);
+  background: linear-gradient(
+    to bottom,
+    var(--hero-header-band-top),
+    var(--hero-header-band-bottom)
+  );
+  backdrop-filter: blur(var(--hero-header-band-blur))
+    saturate(var(--hero-header-band-saturate));
+  -webkit-backdrop-filter: blur(var(--hero-header-band-blur))
+    saturate(var(--hero-header-band-saturate));
+  border-bottom: 1px solid var(--hero-header-band-border);
+  z-index: 15;
+  pointer-events: none;
+  opacity: calc(
+    var(--hero-header-band-progress, 0) * var(--hero-header-band-max-opacity)
+  );
 }
 
 
