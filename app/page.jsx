@@ -1,6 +1,7 @@
 "use client";
 import ProductCarousel from "@/components/product-carousel";
 import ProductGrid from "@/components/product-grid";
+import AutoRotateModelViewer from "@/components/AutoRotateModelViewer";
 import FalseColorGlitchImage from "@/components/FalseColorGlitchImage";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Bold, Variable } from "lucide-react";
@@ -28,6 +29,15 @@ const michroma = Michroma({
   subsets: ["latin"],
   weight: "400", // only one weight available
 });
+const modelPaths = [
+  "/3d/black varsity jacket 3d model (1).glb",
+  "/3d/leather racing jacket 3d model.glb",
+  "/3d/jacket red.glb",
+  "/3d/racing jacket 3d model.glb",
+  "/3d/black sneaker 3d model.glb",
+  "/3d/combat boot 3d model.glb",
+];
+
 const products = [
   {
     id: "cap",
@@ -160,7 +170,16 @@ const products = [
       },
     ],
   },
-];
+].map((product, index) => ({
+  ...product,
+  media: [
+    {
+      type: "model",
+      src: modelPaths[index] ?? modelPaths[0],
+    },
+    ...product.media,
+  ],
+}));
 
 const bebas = Bebas_Neue({
   subsets: ["latin"],
@@ -755,15 +774,15 @@ export default function Home() {
                     ‹
                   </button>
 
-                  <img
-                    src={activeMedia.src}
-                    alt={activeProduct.name}
-                    style={{
-                      width: "100%",
-                      height: "500px",
-                      objectFit: "contain",
-                    }}
-                  />
+                  {activeMedia.type === "model" ? (
+                    <AutoRotateModelViewer modelPath={activeMedia.src} />
+                  ) : (
+                    <img
+                      src={activeMedia.src}
+                      alt={activeProduct.name}
+                      style={styles.viewerImage}
+                    />
+                  )}
 
                   <button style={styles.arrowRight} onClick={goNext}>
                     ›
@@ -784,11 +803,15 @@ export default function Home() {
                           borderColor: isActive ? "#fbbf24" : "#262626",
                         }}
                       >
-                        <img
-                          src={media.src}
-                          alt=""
-                          style={styles.thumbnailImage}
-                        />
+                        {media.type === "model" ? (
+                          <span style={styles.modelThumbnailLabel}>3D</span>
+                        ) : (
+                          <img
+                            src={media.src}
+                            alt=""
+                            style={styles.thumbnailImage}
+                          />
+                        )}
                       </div>
                     );
                   })}
@@ -932,12 +955,26 @@ const styles = {
     objectFit: "cover",
   },
 
+  modelThumbnailLabel: {
+    fontSize: "0.72rem",
+    letterSpacing: "0.16em",
+    color: "#d1d5db",
+    fontWeight: 600,
+  },
+
+  viewerImage: {
+    width: "100%",
+    height: "500px",
+    objectFit: "contain",
+  },
+
   viewerWrapper: {
     position: "relative",
     width: "100%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    zIndex: 4,
   },
 
   arrowLeft: {

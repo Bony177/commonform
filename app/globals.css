@@ -594,3 +594,40 @@ body {
 
   pointer-events: none;
 }
+
+:root {
+  --cf-model-fit-padding: 0.73;
+  --cf-model-viewer-height: 500px;
+  --cf-model-viewer-bg: #0a0a0a;
+  --cf-model-viewer-radius: 8px;
+  --cf-model-viewer-loading-color: #9ca3af;
+  --cf-model-viewer-loading-size: 0.8rem;
+  --cf-model-viewer-loading-letter-spacing: 0.12em;
+}
+
+.cf-model-viewer {
+  width: 100%;
+  height: var(--cf-model-viewer-height);
+
+  border-radius: var(--cf-model-viewer-radius);
+  position: relative;
+  z-index: 4;
+  overflow: hidden;
+}
+
+.cf-model-viewer canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.cf-model-viewer__loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cf-model-viewer-loading-color);
+  font-size: var(--cf-model-viewer-loading-size);
+  letter-spacing: var(--cf-model-viewer-loading-letter-spacing);
+}
