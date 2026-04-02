@@ -43,7 +43,7 @@ export default function RootLayout({
       <head>
         <link rel="preload" as="image" href="/images/background.jpg" />
       </head>
-      <body className={`${poppins.className} antialiased`}>
+      <body className={`${poppins.className} antialiased texture-all-text`}>
         {children}
         <Analytics />
       </body>

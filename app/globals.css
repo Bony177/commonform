@@ -114,6 +114,55 @@ body {
   --hero-header-band-top: rgba(8, 8, 10, 0.86);
   --hero-header-band-bottom: rgba(8, 8, 10, 0.6);
   --hero-header-band-border: rgba(255, 255, 255, 0.08);
+
+  /* Global text texture controls */
+  --text-texture-image: url("/images/concrete-wall.jpg");
+  --text-texture-opacity: 0.96;
+  --text-texture-size: 1920px;
+  --text-texture-position-x: 50%;
+  --text-texture-position-y: 50%;
+  --text-texture-contrast: 1.04;
+  --text-texture-saturate: 0.9;
+  --text-texture-brightness: 1.43;
+  --textured-overlay-opacity: 0;
+}
+
+.texture-all-text :where(
+  [style*="color:#fff"],
+  [style*="color: #fff"],
+  [style*="color:#ffffff"],
+  [style*="color: #ffffff"],
+  [style*="color:white"],
+  [style*="color: white"],
+  .scene2-line,
+  .ticker-track p,
+  .texture-copy
+):not(.textured):not(.glitch-text) {
+  color: transparent !important;
+  -webkit-text-fill-color: transparent;
+  background-image:
+    linear-gradient(
+      rgba(0, 0, 0, calc(1 - var(--text-texture-opacity))),
+      rgba(0, 0, 0, calc(1 - var(--text-texture-opacity)))
+    ),
+    var(--text-texture-image);
+  background-size:
+    100% 100%,
+    var(--text-texture-size) auto;
+  background-position:
+    center,
+    var(--text-texture-position-x) var(--text-texture-position-y);
+  background-repeat:
+    no-repeat,
+    repeat;
+  background-attachment:
+    local,
+    fixed;
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: contrast(var(--text-texture-contrast))
+    saturate(var(--text-texture-saturate))
+    brightness(var(--text-texture-brightness));
 }
 
 

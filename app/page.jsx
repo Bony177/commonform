@@ -592,6 +592,7 @@ export default function Home() {
                 </motion.h1>
 
                 <motion.p
+                  className="texture-copy"
                   style={{
                     ...styles.heroLine,
                     color: heroParagraphColor,
@@ -600,6 +601,7 @@ export default function Home() {
                   A STRUCTURE DISGUISED AS CLOTHING
                 </motion.p>
                 <motion.p
+                  className="texture-copy"
                   style={{ ...styles.heroLine2, color: heroParagraphColor }}
                 >
                   COMMON FORM builds beneath IDENTITY — beyond PERFORMANCE,
@@ -607,6 +609,7 @@ export default function Home() {
                   DISTORTION silenced — only BALANCE, CLARITY, FORM.
                 </motion.p>
                 <motion.p
+                  className="texture-copy"
                   style={{ ...styles.heroLine3, color: heroParagraphColor }}
                 >
                   Common Form is built around the human body — how it moves,
@@ -620,6 +623,7 @@ export default function Home() {
                   and quietly timeless.
                 </motion.p>
                 <motion.p
+                  className="texture-copy"
                   style={{ ...styles.heroLine, color: heroParagraphColor }}
                 >
                   Quiet cevkjejveonstruction
