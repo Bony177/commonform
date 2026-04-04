@@ -220,26 +220,48 @@ const manrope = Manrope({
 const titleContainer = {
   hidden: {},
   visible: {
-    transition: {
-      staggerChildren: 0.045, // controls letter delay
-    },
+    transition: {},
   },
 };
 
 const titleLetter = {
   hidden: {
-    y: 120,
+    y: "120%",
     opacity: 0,
   },
-  visible: {
-    y: 0,
+  visible: (index = 0) => ({
+    y: "0%",
     opacity: 1,
     transition: {
-      duration: 1.2,
+      duration: 1,
+      delay: 0.12 + index * 0.04,
       ease: [0.22, 1, 0.36, 1], // luxury easing
     },
-  },
+  }),
 };
+
+function StaggeredHeadingWord({ word, className, startIndex = 0 }) {
+  return (
+    <span className={className} aria-label={word}>
+      {Array.from(word).map((char, index) => (
+        <span
+          key={`${word}-${index}`}
+          className="hero-title-letter-mask"
+          aria-hidden="true"
+        >
+          <motion.span
+            className="hero-title-letter glitch-text textured"
+            data-text={char}
+            variants={titleLetter}
+            custom={startIndex + index}
+          >
+            {char}
+          </motion.span>
+        </span>
+      ))}
+    </span>
+  );
+}
 
 const HERO_COPY_SCROLL_DEFAULTS = {
   start: 0.02,
@@ -770,18 +792,15 @@ export default function Home() {
                         y: "-5.5rem",
                       }}
                     >
-                      <span
-                        className="common-text glitch-text textured"
-                        data-text="COMMON"
-                      >
-                        COMMON
-                      </span>
+                      <StaggeredHeadingWord
+                        word="COMMON"
+                        className="common-text"
+                      />
                     </motion.div>
 
                     <motion.div
                       div
-                      className="form-wrapper glitch-text textured"
-                      data-text="FORM"
+                      className="form-wrapper"
                       style={{
                         display: "block",
                         scale: logoScalep,
@@ -789,7 +808,11 @@ export default function Home() {
                         y: "-9.5rem",
                       }}
                     >
-                      FORM
+                      <StaggeredHeadingWord
+                        word="FORM"
+                        className="form-text"
+                        startIndex={8}
+                      />
                     </motion.div>
                   </motion.div>
                 </motion.h1>

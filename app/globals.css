@@ -257,6 +257,18 @@ body {
   font-weight: normal;
   font-style: normal;
 }
+
+.hero-title-letter-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.hero-title-letter {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
 /* === STICKY SCENE IMAGE === */
 
 .scene-image-wrapper {
