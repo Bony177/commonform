@@ -665,14 +665,7 @@ export default function Home() {
               alignItems: "center",
             }}
           >
-            <span className="form-text-inline">
-              FORM
-              <img
-                className="inline-form-logo"
-                src="/images/logo.png"
-                alt="Logo"
-              />
-            </span>
+            <span className="form-text-inline">FORM</span>
           </motion.div>
         </motion.div>
 
@@ -797,7 +790,7 @@ export default function Home() {
                         initial="hidden"
                         animate="visible"
                         style={{
-                          width: "6rem",
+                          width: "18rem",
                           display: "inline-block",
                           marginLeft: "1rem",
                           verticalAlign: "middle",
