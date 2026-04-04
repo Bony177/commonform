@@ -125,6 +125,14 @@ body {
   --text-texture-saturate: 0.9;
   --text-texture-brightness: 1.43;
   --textured-overlay-opacity: 0;
+
+  /* Hero copy reveal controls (scroll-linked, easy to tweak) */
+  --hero-copy-scroll-start: 0.02;
+  --hero-copy-scroll-end: 0.24;
+  --hero-copy-scroll-stagger: 0.09;
+  --hero-copy-scroll-from-opacity: 0;
+  --hero-copy-scroll-from-y: 60;
+  --hero-copy-scroll-from-scale: 0.7;
 }
 
 .texture-all-text :where(
@@ -193,10 +201,6 @@ body {
     var(--hero-header-band-progress, 0) * var(--hero-header-band-max-opacity)
   );
 }
-
-
-
-
 
 .dark {
   --background: oklch(0.145 0 0);

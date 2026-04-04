@@ -5,7 +5,7 @@ import AutoRotateModelViewer from "@/components/AutoRotateModelViewer";
 import FalseColorGlitchImage from "@/components/FalseColorGlitchImage";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Bold, Variable } from "lucide-react";
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import "../styles/chain.css";
 import "../styles/glitch.css";
 import SignalBars from "@/components/SignalBars";
@@ -240,6 +240,24 @@ const titleLetter = {
   },
 };
 
+const HERO_COPY_SCROLL_DEFAULTS = {
+  start: 0.02,
+  end: 0.24,
+  stagger: 0.09,
+  fromOpacity: 0,
+  fromY: 60,
+  fromScale: 0.9,
+};
+
+function readRootCssNumber(variableName, fallback) {
+  if (typeof window === "undefined") return fallback;
+  const rawValue = getComputedStyle(document.documentElement)
+    .getPropertyValue(variableName)
+    .trim();
+  const parsed = Number.parseFloat(rawValue);
+  return Number.isFinite(parsed) ? parsed : fallback;
+}
+
 function ChainOverlay() {
   return (
     <>
@@ -339,6 +357,36 @@ export default function Home() {
     offset: ["start 0%", "end start"],
   });
 
+  const heroCopyScrollConfig = useMemo(
+    () => ({
+      start: readRootCssNumber(
+        "--hero-copy-scroll-start",
+        HERO_COPY_SCROLL_DEFAULTS.start,
+      ),
+      end: readRootCssNumber(
+        "--hero-copy-scroll-end",
+        HERO_COPY_SCROLL_DEFAULTS.end,
+      ),
+      stagger: readRootCssNumber(
+        "--hero-copy-scroll-stagger",
+        HERO_COPY_SCROLL_DEFAULTS.stagger,
+      ),
+      fromOpacity: readRootCssNumber(
+        "--hero-copy-scroll-from-opacity",
+        HERO_COPY_SCROLL_DEFAULTS.fromOpacity,
+      ),
+      fromY: readRootCssNumber(
+        "--hero-copy-scroll-from-y",
+        HERO_COPY_SCROLL_DEFAULTS.fromY,
+      ),
+      fromScale: readRootCssNumber(
+        "--hero-copy-scroll-from-scale",
+        HERO_COPY_SCROLL_DEFAULTS.fromScale,
+      ),
+    }),
+    [],
+  );
+
   const logoWidth = useTransform(heroScrolly, [0, 0.05], ["280px", "50px"]);
 
   const logoY = useTransform(heroScrolly, [0, 0.05], ["370vh", "0px"]);
@@ -371,6 +419,92 @@ export default function Home() {
     [0.7, 0.73], // adjust if needed
     ["#ffffff", "#0a0a0a"],
   );
+
+  const heroCopyLine1Range = [
+    heroCopyScrollConfig.start,
+    heroCopyScrollConfig.end,
+  ];
+  const heroCopyLine2Range = [
+    heroCopyScrollConfig.start + heroCopyScrollConfig.stagger,
+    heroCopyScrollConfig.end + heroCopyScrollConfig.stagger,
+  ];
+  const heroCopyLine3Range = [
+    heroCopyScrollConfig.start + heroCopyScrollConfig.stagger * 2,
+    heroCopyScrollConfig.end + heroCopyScrollConfig.stagger * 2,
+  ];
+  const heroCopyLine4Range = [
+    heroCopyScrollConfig.start + heroCopyScrollConfig.stagger * 3,
+    heroCopyScrollConfig.end + heroCopyScrollConfig.stagger * 3,
+  ];
+  const heroBack1Range = [
+    heroCopyScrollConfig.start + heroCopyScrollConfig.stagger * 4,
+    heroCopyScrollConfig.end + heroCopyScrollConfig.stagger * 4,
+  ];
+
+  const heroCopyLine1Opacity = useTransform(scrollYProgress, heroCopyLine1Range, [
+    heroCopyScrollConfig.fromOpacity,
+    1,
+  ]);
+  const heroCopyLine1Y = useTransform(scrollYProgress, heroCopyLine1Range, [
+    heroCopyScrollConfig.fromY,
+    0,
+  ]);
+  const heroCopyLine1Scale = useTransform(scrollYProgress, heroCopyLine1Range, [
+    heroCopyScrollConfig.fromScale,
+    1,
+  ]);
+
+  const heroCopyLine2Opacity = useTransform(scrollYProgress, heroCopyLine2Range, [
+    heroCopyScrollConfig.fromOpacity,
+    1,
+  ]);
+  const heroCopyLine2Y = useTransform(scrollYProgress, heroCopyLine2Range, [
+    heroCopyScrollConfig.fromY,
+    0,
+  ]);
+  const heroCopyLine2Scale = useTransform(scrollYProgress, heroCopyLine2Range, [
+    heroCopyScrollConfig.fromScale,
+    1,
+  ]);
+
+  const heroCopyLine3Opacity = useTransform(scrollYProgress, heroCopyLine3Range, [
+    heroCopyScrollConfig.fromOpacity,
+    1,
+  ]);
+  const heroCopyLine3Y = useTransform(scrollYProgress, heroCopyLine3Range, [
+    heroCopyScrollConfig.fromY,
+    0,
+  ]);
+  const heroCopyLine3Scale = useTransform(scrollYProgress, heroCopyLine3Range, [
+    heroCopyScrollConfig.fromScale,
+    1,
+  ]);
+
+  const heroCopyLine4Opacity = useTransform(scrollYProgress, heroCopyLine4Range, [
+    heroCopyScrollConfig.fromOpacity,
+    1,
+  ]);
+  const heroCopyLine4Y = useTransform(scrollYProgress, heroCopyLine4Range, [
+    heroCopyScrollConfig.fromY,
+    0,
+  ]);
+  const heroCopyLine4Scale = useTransform(scrollYProgress, heroCopyLine4Range, [
+    heroCopyScrollConfig.fromScale,
+    1,
+  ]);
+
+  const heroBack1Opacity = useTransform(scrollYProgress, heroBack1Range, [
+    heroCopyScrollConfig.fromOpacity,
+    1,
+  ]);
+  const heroBack1Y = useTransform(scrollYProgress, heroBack1Range, [
+    heroCopyScrollConfig.fromY,
+    0,
+  ]);
+  const heroBack1Scale = useTransform(scrollYProgress, heroBack1Range, [
+    heroCopyScrollConfig.fromScale,
+    1,
+  ]);
 
   const heroLogoOpacity = useTransform(heroScrolle, [0, 0.22], [1, 0]);
   const logoScalep = useTransform(heroScroll, [0, 0.35], [1, 20 / 29]);
@@ -596,13 +730,22 @@ export default function Home() {
                   style={{
                     ...styles.heroLine,
                     color: heroParagraphColor,
+                    opacity: heroCopyLine1Opacity,
+                    y: heroCopyLine1Y,
+                    scale: heroCopyLine1Scale,
                   }}
                 >
                   A STRUCTURE DISGUISED AS CLOTHING
                 </motion.p>
                 <motion.p
                   className="texture-copy"
-                  style={{ ...styles.heroLine2, color: heroParagraphColor }}
+                  style={{
+                    ...styles.heroLine2,
+                    color: heroParagraphColor,
+                    opacity: heroCopyLine2Opacity,
+                    y: heroCopyLine2Y,
+                    scale: heroCopyLine2Scale,
+                  }}
                 >
                   COMMON FORM builds beneath IDENTITY — beyond PERFORMANCE,
                   where SIGNAL fades and STRUCTURE remains. EXCESS removed,
@@ -610,7 +753,13 @@ export default function Home() {
                 </motion.p>
                 <motion.p
                   className="texture-copy"
-                  style={{ ...styles.heroLine3, color: heroParagraphColor }}
+                  style={{
+                    ...styles.heroLine3,
+                    color: heroParagraphColor,
+                    opacity: heroCopyLine3Opacity,
+                    y: heroCopyLine3Y,
+                    scale: heroCopyLine3Scale,
+                  }}
                 >
                   Common Form is built around the human body — how it moves,
                   pauses, and exists within space. Clothing is treated as a
@@ -624,7 +773,13 @@ export default function Home() {
                 </motion.p>
                 <motion.p
                   className="texture-copy"
-                  style={{ ...styles.heroLine, color: heroParagraphColor }}
+                  style={{
+                    ...styles.heroLine,
+                    color: heroParagraphColor,
+                    opacity: heroCopyLine4Opacity,
+                    y: heroCopyLine4Y,
+                    scale: heroCopyLine4Scale,
+                  }}
                 >
                   Quiet cevkjejveonstruction
                 </motion.p>
@@ -636,6 +791,9 @@ export default function Home() {
                     paddingLeft: "6rem",
                     width: "800px", // adjust size
                     marginTop: "1rem",
+                    opacity: heroBack1Opacity,
+                    y: heroBack1Y,
+                    scale: heroBack1Scale,
                   }}
                 />
               </div>
