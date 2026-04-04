@@ -377,6 +377,45 @@ export default function Home() {
     offset: ["start 0.5%", "end start"],
   });
 
+  // Hero logo morph settings (tweak these values)
+  const HERO_LOGO_TWEAK = {
+    widthRem: 18,
+    moveEnd: 0.34,
+    lockStart: 0.34,
+    lockEnd: 0.4,
+    xEnd: -205, // px: negative = move left, positive = move right
+    yEnd: -172, // px: negative = move up
+    scaleEnd: 0.33,
+    fixedLeft: "19.2rem",
+    fixedTop: "4%",
+  };
+
+  const heroLogoX = useTransform(
+    heroScroll,
+    [0, HERO_LOGO_TWEAK.moveEnd],
+    [0, HERO_LOGO_TWEAK.xEnd],
+  );
+  const heroLogoY = useTransform(
+    heroScroll,
+    [0, HERO_LOGO_TWEAK.moveEnd],
+    [0, HERO_LOGO_TWEAK.yEnd],
+  );
+  const heroLogoScale = useTransform(
+    heroScroll,
+    [0, HERO_LOGO_TWEAK.moveEnd],
+    [1, HERO_LOGO_TWEAK.scaleEnd],
+  );
+  const heroLogoInlineOpacity = useTransform(
+    heroScroll,
+    [HERO_LOGO_TWEAK.lockStart, HERO_LOGO_TWEAK.lockEnd],
+    [1, 0],
+  );
+  const heroLogoFixedOpacity = useTransform(
+    heroScroll,
+    [HERO_LOGO_TWEAK.lockStart, HERO_LOGO_TWEAK.lockEnd],
+    [0, 1],
+  );
+
   const heroCopyScrollConfig = useMemo(
     () => ({
       start: readRootCssNumber(
@@ -667,6 +706,22 @@ export default function Home() {
           >
             <span className="form-text-inline">FORM</span>
           </motion.div>
+          <motion.img
+            src="/images/logo.png"
+            alt="logo"
+            style={{
+              position: "fixed",
+              left: HERO_LOGO_TWEAK.fixedLeft,
+              top: HERO_LOGO_TWEAK.fixedTop,
+              y: "-50%",
+              width: `${HERO_LOGO_TWEAK.widthRem}rem`,
+              scale: HERO_LOGO_TWEAK.scaleEnd,
+              opacity: heroLogoFixedOpacity,
+              transformOrigin: "left center",
+              willChange: "transform, opacity",
+              zIndex: 22,
+            }}
+          />
         </motion.div>
 
         <div style={styles.headerInner}>
@@ -790,10 +845,16 @@ export default function Home() {
                         initial="hidden"
                         animate="visible"
                         style={{
-                          width: "18rem",
+                          width: `${HERO_LOGO_TWEAK.widthRem}rem`,
                           display: "inline-block",
                           marginLeft: "1rem",
                           verticalAlign: "middle",
+                          x: heroLogoX,
+                          y: heroLogoY,
+                          scale: heroLogoScale,
+                          opacity: heroLogoInlineOpacity,
+                          transformOrigin: "left center",
+                          willChange: "transform, opacity",
                         }}
                       />
                     </motion.div>
