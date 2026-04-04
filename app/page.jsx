@@ -377,11 +377,6 @@ export default function Home() {
     offset: ["start 0.5%", "end start"],
   });
 
-  const { scrollYProgress: heroScrolly } = useScroll({
-    target: heroRef,
-    offset: ["start 0%", "end start"],
-  });
-
   const heroCopyScrollConfig = useMemo(
     () => ({
       start: readRootCssNumber(
@@ -410,16 +405,6 @@ export default function Home() {
       ),
     }),
     [],
-  );
-
-  const logoWidth = useTransform(heroScrolly, [0, 0.05], ["280px", "50px"]);
-
-  const logoY = useTransform(heroScrolly, [0, 0.05], ["370vh", "0px"]);
-
-  const logoLeft = useTransform(
-    heroScrolly,
-    [0, 0.1], // FAST movement
-    ["35rem", "20rem"], // START → END (more left)
   );
 
   // Logo scale from initial size (29rem) to final size (6rem) - ratio: 6/29 ≈ 0.207
@@ -644,31 +629,6 @@ export default function Home() {
           <motion.div
             style={{
               position: "fixed",
-              top: "0px",
-              left: logoLeft,
-              width: logoWidth,
-              y: logoY,
-              zIndex: 50,
-              pointerEvents: "none",
-              overflow: "hidden",
-            }}
-          >
-            <motion.img
-              src="/images/logo.png"
-              alt="Logo"
-              variants={titleLetter}
-              custom={0}
-              initial="hidden"
-              animate="visible"
-              style={{
-                width: "100%",
-                display: "block",
-              }}
-            />
-          </motion.div>
-          <motion.div
-            style={{
-              position: "fixed",
               left: "6rem",
               top: "4%",
               y: "-50%",
@@ -686,6 +646,7 @@ export default function Home() {
             COMMON
           </motion.div>
           <motion.div
+            className="form-with-logo"
             style={{
               position: "fixed",
               left: logoFormX,
@@ -700,9 +661,18 @@ export default function Home() {
               //scale: logoScaleY,
               transformOrigin: "left center",
               whiteSpace: "nowrap",
+              display: "flex",
+              alignItems: "center",
             }}
           >
-            FORM
+            <span className="form-text-inline">
+              FORM
+              <img
+                className="inline-form-logo"
+                src="/images/logo.png"
+                alt="Logo"
+              />
+            </span>
           </motion.div>
         </motion.div>
 
@@ -818,6 +788,20 @@ export default function Home() {
                         word="FORM"
                         className="form-text"
                         startIndex={8}
+                      />
+                      <motion.img
+                        src="/images/logo.png"
+                        alt="logo"
+                        variants={titleLetter} // 🔥 IMPORTANT
+                        custom={7} // delay (adjust if needed)
+                        initial="hidden"
+                        animate="visible"
+                        style={{
+                          width: "6rem",
+                          display: "inline-block",
+                          marginLeft: "1rem",
+                          verticalAlign: "middle",
+                        }}
                       />
                     </motion.div>
                   </motion.div>

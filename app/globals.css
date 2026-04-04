@@ -269,6 +269,35 @@ body {
   will-change: transform, opacity;
 }
 
+.form-with-logo {
+  display: inline-block;
+  --form-logo-gap: 0.08rem;
+  --form-logo-shift-x: 10%;
+  --form-logo-shift-y: 0;
+}
+
+.form-text-inline {
+  position: relative;
+  display: inline-block;
+}
+
+.inline-form-logo {
+  position: absolute;
+  left: calc(100% + var(--form-logo-gap));
+  top: 50%;
+  height: 1.6rem;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  transform: translate(var(--form-logo-shift-x), calc(-50% + var(--form-logo-shift-y)));
+}
+
+@media (max-width: 900px) {
+  .inline-form-logo {
+    height: 1.2rem;
+  }
+}
+
 /* === STICKY SCENE IMAGE === */
 
 .scene-image-wrapper {
