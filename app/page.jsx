@@ -6,7 +6,7 @@ import FalseColorGlitchImage from "@/components/FalseColorGlitchImage";
 import TextScramble from "@/components/TextScramble";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Bold, Variable } from "lucide-react";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import "../styles/chain.css";
 import "../styles/glitch.css";
 import SignalBars from "@/components/SignalBars";
@@ -332,6 +332,8 @@ export default function Home() {
   const heroRef = useRef(null);
   const scene2Ref = useRef(null);
   const scene3Ref = useRef(null);
+  const shopTargetRef = useRef(null);
+  const scrollRafRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -539,6 +541,55 @@ export default function Home() {
     );
   };
 
+  const scrollToShopSection = () => {
+    if (typeof window === "undefined" || !shopTargetRef.current) {
+      return;
+    }
+
+    if (scrollRafRef.current) {
+      cancelAnimationFrame(scrollRafRef.current);
+      scrollRafRef.current = null;
+    }
+
+    const startY = window.scrollY;
+    const targetY = Math.max(
+      shopTargetRef.current.getBoundingClientRect().top + window.scrollY - 20,
+      0,
+    );
+    const distance = targetY - startY;
+
+    if (Math.abs(distance) < 2) {
+      window.scrollTo({ top: targetY });
+      return;
+    }
+
+    const duration = 520;
+    const startTime = performance.now();
+    const easeOutQuint = (t) => 1 - Math.pow(1 - t, 5);
+
+    const step = (now) => {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = easeOutQuint(progress);
+      window.scrollTo(0, startY + distance * eased);
+
+      if (progress < 1) {
+        scrollRafRef.current = requestAnimationFrame(step);
+      } else {
+        scrollRafRef.current = null;
+      }
+    };
+
+    scrollRafRef.current = requestAnimationFrame(step);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (scrollRafRef.current) {
+        cancelAnimationFrame(scrollRafRef.current);
+      }
+    };
+  }, []);
+
   return (
     <>
       <motion.img
@@ -682,6 +733,17 @@ export default function Home() {
                 OUTSIDE THE ORDINARY EXISTS OUTSIDE THE ORDINARY EXISTS OUTSIDE
                 THE ORDINARY EXISTS
               </p>
+            </div>
+          </div>
+          <div className="scene-shop-overlay">
+            <div className="scene-shop-sticky">
+              <button
+                type="button"
+                className="shop-now-btn scene1-shop-btn"
+                onClick={scrollToShopSection}
+              >
+                SHOP NOW
+              </button>
             </div>
           </div>
           <div style={styles.heroSection}>
@@ -847,6 +909,17 @@ export default function Home() {
               </div>
             </div>
           </div>
+          <div className="scene-shop-overlay">
+            <div className="scene-shop-sticky">
+              <button
+                type="button"
+                className="shop-now-btn scene2-shop-btn"
+                onClick={scrollToShopSection}
+              >
+                SHOP NOW
+              </button>
+            </div>
+          </div>
           <div className="scene2-text-container">
             <p className="scene2-line scene2-line-1">FORM VARSITY</p>
 
@@ -933,10 +1006,21 @@ export default function Home() {
             </div>
             <div className="scene3-text">CF-AXIS/01</div>
           </div>
+          <div className="scene-shop-overlay">
+            <div className="scene-shop-sticky">
+              <button
+                type="button"
+                className="shop-now-btn scene3-shop-btn"
+                onClick={scrollToShopSection}
+              >
+                SHOP NOW
+              </button>
+            </div>
+          </div>
         </Scene>
 
         <ScrollScene background="/images/background.jpg" height="140vh">
-          <div style={styles.siteSection}>
+          <div ref={shopTargetRef} style={styles.siteSection}>
             <div style={styles.container}>
               {/* Left - Description */}
               <div style={styles.descriptionSection}>
