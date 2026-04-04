@@ -614,24 +614,6 @@ export default function Home() {
 
   return (
     <>
-      <motion.img
-        src="/images/logo.png"
-        alt="Logo"
-        style={{
-          top: 0,
-          position: "fixed",
-          left: "34rem",
-          top: "0px", // START position (hero area)
-          width: "420px", // BIG size
-          zIndex: 50,
-          y: logoY,
-
-          width: logoWidth,
-          left: logoLeft,
-          pointerEvents: "none",
-        }}
-      />
-
       {/* HEADER */}
       <header style={styles.header}>
         <div style={{ height: "0.5px" }} />
@@ -653,13 +635,37 @@ export default function Home() {
             backgroundColor: "transparent",
             backdropFilter: "none",
             WebkitBackdropFilter: "none",
-            opacity: headerOpacity,
             display: "flex",
             alignItems: "center",
 
             pointerEvents: "none",
           }}
         >
+          <motion.div
+            style={{
+              position: "fixed",
+              top: "0px",
+              left: logoLeft,
+              width: logoWidth,
+              y: logoY,
+              zIndex: 50,
+              pointerEvents: "none",
+              overflow: "hidden",
+            }}
+          >
+            <motion.img
+              src="/images/logo.png"
+              alt="Logo"
+              variants={titleLetter}
+              custom={0}
+              initial="hidden"
+              animate="visible"
+              style={{
+                width: "100%",
+                display: "block",
+              }}
+            />
+          </motion.div>
           <motion.div
             style={{
               position: "fixed",
