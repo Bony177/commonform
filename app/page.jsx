@@ -3,6 +3,7 @@ import ProductCarousel from "@/components/product-carousel";
 import ProductGrid from "@/components/product-grid";
 import AutoRotateModelViewer from "@/components/AutoRotateModelViewer";
 import FalseColorGlitchImage from "@/components/FalseColorGlitchImage";
+import TextScramble from "@/components/TextScramble";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Bold, Variable } from "lucide-react";
 import { useMemo, useRef, useState } from "react";
@@ -903,7 +904,12 @@ export default function Home() {
               />
 
               {/* 🔥 ADD THIS */}
-              <div className="shoe-name">CF-AXIS/01</div>
+              <TextScramble
+                as="div"
+                className="shoe-name"
+                text="CF-AXIS/01"
+                animateOnView
+              />
               <div className="shoename2">CF-GRND</div>
               <div className="shoetxt">
                 CF-AXIS//01 is built as an extension of structure rather than
@@ -913,9 +919,7 @@ export default function Home() {
                 intention, allowing the shoe to feel both grounded and adaptive.
                 There is no excess, no unnecessary noise — only a quiet system
                 of layers working together beneath the surface.The construction
-                prioritizes stability without rigidity, creating a presence that
-                feels firm yet responsive. Textures shift subtly across the
-                upper, moving from tension to softness,
+                prioritizes stability without rigidity,
               </div>
             </div>
 

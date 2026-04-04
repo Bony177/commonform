@@ -600,6 +600,12 @@ body {
   pointer-events: none;
 }
 
+.dud {
+  opacity: 0.55;
+  color: inherit;
+  -webkit-text-stroke: inherit;
+}
+
 
 .scene3-shoe {
   position: absolute;
