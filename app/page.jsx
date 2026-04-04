@@ -334,7 +334,7 @@ export default function Home() {
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
-    offset: ["start start", "end start"],
+    offset: ["start 70%", "end 30%"],
   });
 
   const { scrollYProgress: heroScroll } = useScroll({
@@ -441,10 +441,11 @@ export default function Home() {
     heroCopyScrollConfig.end + heroCopyScrollConfig.stagger * 4,
   ];
 
-  const heroCopyLine1Opacity = useTransform(scrollYProgress, heroCopyLine1Range, [
-    heroCopyScrollConfig.fromOpacity,
-    1,
-  ]);
+  const heroCopyLine1Opacity = useTransform(
+    scrollYProgress,
+    heroCopyLine1Range,
+    [heroCopyScrollConfig.fromOpacity, 1],
+  );
   const heroCopyLine1Y = useTransform(scrollYProgress, heroCopyLine1Range, [
     heroCopyScrollConfig.fromY,
     0,
@@ -454,10 +455,11 @@ export default function Home() {
     1,
   ]);
 
-  const heroCopyLine2Opacity = useTransform(scrollYProgress, heroCopyLine2Range, [
-    heroCopyScrollConfig.fromOpacity,
-    1,
-  ]);
+  const heroCopyLine2Opacity = useTransform(
+    scrollYProgress,
+    heroCopyLine2Range,
+    [heroCopyScrollConfig.fromOpacity, 1],
+  );
   const heroCopyLine2Y = useTransform(scrollYProgress, heroCopyLine2Range, [
     heroCopyScrollConfig.fromY,
     0,
@@ -467,10 +469,11 @@ export default function Home() {
     1,
   ]);
 
-  const heroCopyLine3Opacity = useTransform(scrollYProgress, heroCopyLine3Range, [
-    heroCopyScrollConfig.fromOpacity,
-    1,
-  ]);
+  const heroCopyLine3Opacity = useTransform(
+    scrollYProgress,
+    heroCopyLine3Range,
+    [heroCopyScrollConfig.fromOpacity, 1],
+  );
   const heroCopyLine3Y = useTransform(scrollYProgress, heroCopyLine3Range, [
     heroCopyScrollConfig.fromY,
     0,
@@ -480,10 +483,11 @@ export default function Home() {
     1,
   ]);
 
-  const heroCopyLine4Opacity = useTransform(scrollYProgress, heroCopyLine4Range, [
-    heroCopyScrollConfig.fromOpacity,
-    1,
-  ]);
+  const heroCopyLine4Opacity = useTransform(
+    scrollYProgress,
+    heroCopyLine4Range,
+    [heroCopyScrollConfig.fromOpacity, 1],
+  );
   const heroCopyLine4Y = useTransform(scrollYProgress, heroCopyLine4Range, [
     heroCopyScrollConfig.fromY,
     0,
@@ -697,9 +701,10 @@ export default function Home() {
                   <motion.div>
                     <motion.div
                       style={{
+                        display: "block",
                         scale: logoScalep,
                         transformOrigin: "left center",
-                        marginTop: "-7.5rem",
+                        y: "-5.5rem",
                       }}
                     >
                       <span
@@ -715,9 +720,10 @@ export default function Home() {
                       className="form-wrapper glitch-text textured"
                       data-text="FORM"
                       style={{
+                        display: "block",
                         scale: logoScalep,
                         transformOrigin: "left center",
-                        marginTop: "-8.5rem",
+                        y: "-9.5rem",
                       }}
                     >
                       FORM
@@ -733,6 +739,7 @@ export default function Home() {
                     opacity: heroCopyLine1Opacity,
                     y: heroCopyLine1Y,
                     scale: heroCopyLine1Scale,
+                    transformOrigin: "left center",
                   }}
                 >
                   A STRUCTURE DISGUISED AS CLOTHING
@@ -745,6 +752,7 @@ export default function Home() {
                     opacity: heroCopyLine2Opacity,
                     y: heroCopyLine2Y,
                     scale: heroCopyLine2Scale,
+                    transformOrigin: "left center",
                   }}
                 >
                   COMMON FORM builds beneath IDENTITY — beyond PERFORMANCE,
@@ -759,6 +767,7 @@ export default function Home() {
                     opacity: heroCopyLine3Opacity,
                     y: heroCopyLine3Y,
                     scale: heroCopyLine3Scale,
+                    transformOrigin: "left center",
                   }}
                 >
                   Common Form is built around the human body — how it moves,
@@ -779,6 +788,7 @@ export default function Home() {
                     opacity: heroCopyLine4Opacity,
                     y: heroCopyLine4Y,
                     scale: heroCopyLine4Scale,
+                    transformOrigin: "left center",
                   }}
                 >
                   Quiet cevkjejveonstruction
@@ -794,6 +804,7 @@ export default function Home() {
                     opacity: heroBack1Opacity,
                     y: heroBack1Y,
                     scale: heroBack1Scale,
+                    transformOrigin: "left center",
                   }}
                 />
               </div>

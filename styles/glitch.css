@@ -42,7 +42,7 @@
 /* BASE */
 .glitch-text {
   position: relative;
-  display: inherit;;
+  display: inline-block;
 }
 
 
