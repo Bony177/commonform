@@ -142,7 +142,7 @@ body {
   [style*="color: #ffffff"],
   [style*="color:white"],
   [style*="color: white"],
-  .scene2-line,
+ 
   .ticker-track p,
   .texture-copy
 ):not(.textured):not(.glitch-text) {
@@ -328,14 +328,15 @@ body {
   top: 1%;
   height: 100vh;
   max-height: none;
+  opacity: 0;
   z-index: 2;
 }
 
 .scene-image-2 {
   position: absolute;
-  left: 2%;
-  top: 7%;
-  height: 105vh;
+  right: 0%;
+  top: 79%;
+  height: 20vh;
   max-height: none; 
 }
 .scene-image-3a {
@@ -513,7 +514,7 @@ body {
 
 .scene2-line {
   max-width: 900px;
-  color: #ffffff;
+  color: #cb0a07;
 }
 
 /* EACH LINE STYLE */
@@ -523,7 +524,7 @@ body {
   font-size: 7rem;
   letter-spacing: 0.3rem;
   font-weight: 600;
- 
+  
 
 }
 
@@ -606,7 +607,7 @@ body {
   font-family: panchang;
   font-size: 6rem;
   letter-spacing: 0.2rem;
-  color: #ffffff;
+  color: #cb0a07;
   font-weight: 900;
   margin-right: 4rem;
   white-space: nowrap;
