@@ -947,11 +947,86 @@ export default function Home() {
               <div className="scene2-ticker-sticky">
                 <div className="ticker">
                   <div className="ticker-track">
-                    <p>COMMON FORM</p>
-                    <p>COMMON FORM</p>
-                    <p>COMMON FORM</p>
-                    <p>COMMON FORM</p>
-                    <p>COMMON FORM</p>
+                    <p>
+                      COMMON FORM
+                      <img
+                        src="/images/logo.png"
+                        alt="logo"
+                        className="ticker-logo"
+                      />
+                    </p>
+                    <p>
+                      COMMON FORM
+                      <img
+                        src="/images/logo.png"
+                        alt="logo"
+                        className="ticker-logo"
+                      />
+                    </p>
+                    <p>
+                      COMMON FORM
+                      <img
+                        src="/images/logo.png"
+                        alt="logo"
+                        className="ticker-logo"
+                      />
+                    </p>
+                    <p>
+                      COMMON FORM
+                      <img
+                        src="/images/logo.png"
+                        alt="logo"
+                        className="ticker-logo"
+                      />
+                    </p>
+                    <p>
+                      COMMON FORM
+                      <img
+                        src="/images/logo.png"
+                        alt="logo"
+                        className="ticker-logo"
+                      />
+                    </p>
+                    <p>
+                      COMMON FORM
+                      <img
+                        src="/images/logo.png"
+                        alt="logo"
+                        className="ticker-logo"
+                      />
+                    </p>
+                    <p>
+                      COMMON FORM
+                      <img
+                        src="/images/logo.png"
+                        alt="logo"
+                        className="ticker-logo"
+                      />
+                    </p>
+                    <p>
+                      COMMON FORM
+                      <img
+                        src="/images/logo.png"
+                        alt="logo"
+                        className="ticker-logo"
+                      />
+                    </p>
+                    <p>
+                      COMMON FORM
+                      <img
+                        src="/images/logo.png"
+                        alt="logo"
+                        className="ticker-logo"
+                      />
+                    </p>
+                    <p>
+                      COMMON FORM
+                      <img
+                        src="/images/logo.png"
+                        alt="logo"
+                        className="ticker-logo"
+                      />
+                    </p>
                   </div>
                 </div>
               </div>
@@ -1450,4 +1525,3 @@ const styles = {
     display: "block",
   },
 };
-

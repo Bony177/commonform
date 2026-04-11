@@ -188,7 +188,7 @@ body {
   --scene2-line-4-base-blur: 0.7px;
 
   /* "COMMON FORM" ticker */
-  --scene2-ticker-base-blur: 0.75px;
+  --scene2-ticker-base-blur: 0.8px;
 
   /* "CF-AXIS/01" outlined label */
   --scene3-axis-outline-base-blur: 0.1px;
@@ -249,7 +249,8 @@ body {
     fixed;
   -webkit-background-clip: text;
   background-clip: text;
-  filter: contrast(var(--text-texture-contrast))
+  filter: blur(var(--scene2-ticker-base-blur, 0px))
+    contrast(var(--text-texture-contrast))
     saturate(var(--text-texture-saturate))
     brightness(var(--text-texture-brightness));
 }
@@ -635,7 +636,7 @@ body {
 }
 
 .scene1-shop-btn {
-  left: 6rem;
+  right: 12rem;
   bottom: 9vh;
   border-color: rgba(252, 244, 244, 0.66);
   background: rgba(10, 10, 10, 0.55);
@@ -643,19 +644,19 @@ body {
 }
 
 .scene2-shop-btn {
-  top: 78vh;
-  right: 0;
-  border-color: rgba(158, 186, 255, 0.8);
-  background: rgba(13, 27, 64, 0.52);
+  top: 64vh;
+  left: 23rem;
+  border-color: rgba(198, 223, 246, 0.8);
+  background: #cb2e07;
   color: #d6e4ff;
 }
 
 .scene3-shop-btn {
-  top: 84vh;
-  left: 75%;
-  border-color: rgba(255, 136, 116, 0.85);
-  background: rgba(49, 16, 12, 0.55);
-  color: #ff9f8e;
+  top: 34vh;
+  left: 70%;
+  border-color: rgba(255, 255, 255, 0.85);
+  background: #265ece;
+  color: #ffffff;
 }
 
 @media (max-width: 900px) {
@@ -1013,7 +1014,7 @@ body {
 }
 
 .ticker-track p {
-  font-family: panchang;
+  font-family: humane;
   font-size: 6rem;
   letter-spacing: 0.2rem;
   color: #cb0a07;
@@ -1021,6 +1022,18 @@ body {
   margin-right: 4rem;
   white-space: nowrap;
   filter: blur(var(--scene2-ticker-base-blur));
+  display: inline-flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.ticker-track p .ticker-logo {
+  height: 0.9em;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+  padding-bottom: 0.15em;
+
 }
 
 .scene2-style-note {
