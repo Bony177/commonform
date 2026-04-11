@@ -379,12 +379,12 @@ export default function Home() {
 
   // Hero logo morph settings (tweak these values)
   const HERO_LOGO_TWEAK = {
-    widthRem: 18,
+    widthRem: 24.5,
     moveEnd: 0.34,
     lockStart: 0.34,
     lockEnd: 0.4,
-    xEnd: -205, // px: negative = move left, positive = move right
-    yEnd: -172, // px: negative = move up
+    xEnd: -60, // px: negative = move left, positive = move right
+    yEnd: -140, // px: negative = move up
     scaleEnd: 0.33,
     fixedLeft: "19.2rem",
     fixedTop: "4%",
