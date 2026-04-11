@@ -272,6 +272,13 @@ const HERO_COPY_SCROLL_DEFAULTS = {
   fromScale: 0.9,
 };
 
+const HERO_MANIFESTO_LINE_1 = "A STRUCTURE DISGUISED AS CLOTHING";
+const HERO_MANIFESTO_LINE_2 =
+  "COMMON FORM builds beneath IDENTITY - beyond PERFORMANCE, where SIGNAL fades and STRUCTURE remains. EXCESS removed, DISTORTION silenced - only BALANCE, CLARITY, FORM.";
+const HERO_MANIFESTO_LINE_3 =
+  "Common Form is built around the human body - how it moves, pauses, and exists within space. Clothing is treated as a quiet extension of form rather than a statement, shaped through proportion, weight, and restraint. Each piece follows the natural rhythm of the body, allowing fabric to settle, drape, and respond without force or excess. The focus is not on trend or decoration, but on presence, balance, and longevity, creating garments that feel intentional, lived-in, and quietly timeless.";
+const HERO_MANIFESTO_LINE_4 = "Quiet construction.";
+
 function readRootCssNumber(variableName, fallback) {
   if (typeof window === "undefined") return fallback;
   const rawValue = getComputedStyle(document.documentElement)
@@ -841,7 +848,8 @@ export default function Home() {
                 </motion.h1>
 
                 <motion.p
-                  className="texture-copy"
+                  className="texture-copy hero-manifesto-line hero-manifesto-line-1"
+                  data-text={HERO_MANIFESTO_LINE_1}
                   style={{
                     ...styles.heroLine,
                     color: heroParagraphColor,
@@ -851,10 +859,11 @@ export default function Home() {
                     transformOrigin: "left center",
                   }}
                 >
-                  A STRUCTURE DISGUISED AS CLOTHING
+                  {HERO_MANIFESTO_LINE_1}
                 </motion.p>
                 <motion.p
-                  className="texture-copy"
+                  className="texture-copy hero-manifesto-line hero-manifesto-line-2"
+                  data-text={HERO_MANIFESTO_LINE_2}
                   style={{
                     ...styles.heroLine2,
                     color: heroParagraphColor,
@@ -864,12 +873,11 @@ export default function Home() {
                     transformOrigin: "left center",
                   }}
                 >
-                  COMMON FORM builds beneath IDENTITY — beyond PERFORMANCE,
-                  where SIGNAL fades and STRUCTURE remains. EXCESS removed,
-                  DISTORTION silenced — only BALANCE, CLARITY, FORM.
+                  {HERO_MANIFESTO_LINE_2}
                 </motion.p>
                 <motion.p
-                  className="texture-copy"
+                  className="texture-copy hero-manifesto-line hero-manifesto-line-3"
+                  data-text={HERO_MANIFESTO_LINE_3}
                   style={{
                     ...styles.heroLine3,
                     color: heroParagraphColor,
@@ -879,18 +887,11 @@ export default function Home() {
                     transformOrigin: "left center",
                   }}
                 >
-                  Common Form is built around the human body — how it moves,
-                  pauses, and exists within space. Clothing is treated as a
-                  quiet extension of form rather than a statement, shaped
-                  through proportion, weight, and restraint. Each piece follows
-                  the natural rhythm of the body, allowing fabric to settle,
-                  drape, and respond without force or excess. The focus is not
-                  on trend or decoration, but on presence, balance, and
-                  longevity, creating garments that feel intentional, lived-in,
-                  and quietly timeless.
+                  {HERO_MANIFESTO_LINE_3}
                 </motion.p>
                 <motion.p
-                  className="texture-copy"
+                  className="texture-copy hero-manifesto-line hero-manifesto-line-4"
+                  data-text={HERO_MANIFESTO_LINE_4}
                   style={{
                     ...styles.heroLine,
                     color: heroParagraphColor,
@@ -900,7 +901,7 @@ export default function Home() {
                     transformOrigin: "left center",
                   }}
                 >
-                  Quiet cevkjejveonstruction
+                  {HERO_MANIFESTO_LINE_4}
                 </motion.p>
 
                 <motion.img
@@ -1448,3 +1449,4 @@ const styles = {
     display: "block",
   },
 };
+
