@@ -1052,6 +1052,24 @@ export default function Home() {
             </p>
 
             <p className="scene2-line scene2-line-2">BUILT ON STRUCTURE</p>
+            <p
+              className="scene2-line scene2-line-3"
+              style={{
+                ...styles.heroLine3,
+                color: "#cb2e07",
+              }}
+            >
+              Built for those who move with purpose, FORM VARSITY blends
+              structure with effortless style. Every piece is designed to feel
+              intentional — clean lines, bold presence, and a fit that speaks
+              without saying too much. It’s about confidence that doesn’t need
+              validation, and style that works anywhere, from everyday moments
+              to standout scenes. Inspired by movement, individuality, and
+              modern street culture, this collection balances comfort with
+              identity. FORM VARSITY isn’t just something you wear — it becomes
+              a part of how you carry yourself, how you show up, and how you
+              leave an impression.
+            </p>
 
             <div className="scene2-style-note">
               <img
