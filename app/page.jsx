@@ -410,11 +410,6 @@ export default function Home() {
     [HERO_LOGO_TWEAK.lockStart, HERO_LOGO_TWEAK.lockEnd],
     [1, 0],
   );
-  const heroLogoFixedOpacity = useTransform(
-    heroScroll,
-    [HERO_LOGO_TWEAK.lockStart, HERO_LOGO_TWEAK.lockEnd],
-    [0, 1],
-  );
 
   const heroCopyScrollConfig = useMemo(
     () => ({
@@ -706,22 +701,6 @@ export default function Home() {
           >
             <span className="form-text-inline">FORM</span>
           </motion.div>
-          <motion.img
-            src="/images/logo.png"
-            alt="logo"
-            style={{
-              position: "fixed",
-              left: HERO_LOGO_TWEAK.fixedLeft,
-              top: HERO_LOGO_TWEAK.fixedTop,
-              y: "-50%",
-              width: `${HERO_LOGO_TWEAK.widthRem}rem`,
-              scale: HERO_LOGO_TWEAK.scaleEnd,
-              opacity: heroLogoFixedOpacity,
-              transformOrigin: "left center",
-              willChange: "transform, opacity",
-              zIndex: 22,
-            }}
-          />
         </motion.div>
 
         <div style={styles.headerInner}>
