@@ -134,44 +134,80 @@ body {
   --hero-copy-scroll-from-y: 60;
   --hero-copy-scroll-from-scale: 0.7;
 
-  /* Hero manifesto distortion controls (separate, line-by-line) */
+  /* "A STRUCTURE DISGUISED AS CLOTHING" */
   --hero-line-1-base-blur: 0.9px;
-  --hero-line-1-ghost-blur: 0.00px;
-  --hero-line-1-ghost-opacity: 0.0;
+  --hero-line-1-ghost-blur: 0px;
+  --hero-line-1-ghost-opacity: 0;
   --hero-line-1-ghost-offset-x: 0.45px;
   --hero-line-1-ghost-offset-y: 0.18px;
   --hero-line-1-drift-speed: 2.4s;
 
+  /* "COMMON FORM builds beneath IDENTITY ..." */
   --hero-line-2-base-blur: 0.9px;
-  --hero-line-2-ghost-blur: 0.0px;
-  --hero-line-2-ghost-opacity: 0.0;
+  --hero-line-2-ghost-blur: 0px;
+  --hero-line-2-ghost-opacity: 0;
   --hero-line-2-ghost-offset-x: 0.95px;
   --hero-line-2-ghost-offset-y: 0.34px;
   --hero-line-2-drift-speed: 8.6s;
 
+  /* "Common Form is built around the human body ..." */
   --hero-line-3-base-blur: 0.32px;
-  --hero-line-3-ghost-blur: 0.0px;
-  --hero-line-3-ghost-opacity: 0.0;
+  --hero-line-3-ghost-blur: 0px;
+  --hero-line-3-ghost-opacity: 0;
   --hero-line-3-ghost-offset-x: 1px;
   --hero-line-3-ghost-offset-y: 0.36px;
   --hero-line-3-drift-speed: 5.2s;
 
+  /* "Quiet construction." */
   --hero-line-4-base-blur: 0.95px;
-  --hero-line-4-ghost-blur: 0.0px;
-  --hero-line-4-ghost-opacity: 0.0;
+  --hero-line-4-ghost-blur: 0px;
+  --hero-line-4-ghost-opacity: 0;
   --hero-line-4-ghost-offset-x: 0.2px;
   --hero-line-4-ghost-offset-y: 0.45px;
   --hero-line-4-drift-speed: 4.8s;
 
   /* HEADING */
-  --hero-heading-base-blur: 0.85px;
+  --hero-heading-base-blur: 0.45px;
 
   /* LOGO */
-  --hero-logo-base-blur: 1px;
+  --hero-logo-base-blur: 0.5px;
+
+  /* "EXISTS OUTSIDE THE ORDINARY" (scene 1 bottom lines) */
+  --scene1-bottom-copy-base-blur: 0.85px;
+
+  /* "FORM VARSITY" */
+  --scene2-line-1-base-blur: 0.85px;
+
+  /* "BUILT ON STRUCTURE" */
+  --scene2-line-2-base-blur: 0.95px;
+
+  /* "Structured jackets with defined presence." */
+  --scene2-line-3-base-blur: 0.9px;
+
+  /* "This collection is built on control." */
+  --scene2-line-4-base-blur: 0.7px;
+
+  /* "COMMON FORM" ticker */
+  --scene2-ticker-base-blur: 0.75px;
+
+  /* "CF-AXIS/01" outlined label */
+  --scene3-axis-outline-base-blur: 0.1px;
+
+  /* "CF-AXIS//01" solid label */
+  --scene3-axis-solid-base-blur: 0.4px;
+
+  /* "CF-GRND" */
+  --scene3-grnd-base-blur: 0.75px;
+
+  /* "CF-AXIS//01 is built as an extension ..." */
+  --scene3-copy-base-blur: 0.7px;
+
+  /* "SHOP NOW" buttons */
+  --shop-now-base-blur: 0.0px;
 
   /* Scene 2 varsity edge distortion controls */
   --scene2-varsity-distortion-strength: 0.9;
-  --scene2-varsity-edge-blur: 0.75px;
+  --scene2-varsity-edge-blur: 0.2px;
   --scene2-varsity-spread-x: 1.4px;
   --scene2-varsity-spread-y: 0.5px;
   --scene2-varsity-ghost-opacity: 0.34;
@@ -549,6 +585,7 @@ body {
   white-space: nowrap;
   line-height: 0.8;
   overflow: hidden;
+  filter: blur(var(--scene1-bottom-copy-base-blur));
 }
 
 .scene1-bottom-copy p + p {
@@ -590,6 +627,7 @@ body {
     border-color 0.25s ease,
     background-color 0.25s ease,
     color 0.25s ease;
+  filter: blur(var(--shop-now-base-blur));
 }
 
 .shop-now-btn:hover {
@@ -678,6 +716,7 @@ body {
   font-size: 7rem;
   letter-spacing: 0.3rem;
   font-weight: 600;
+  --scene2-varsity-base-blur-extra: var(--scene2-line-1-base-blur);
 }
 
 .scene2-varsity-distort {
@@ -690,7 +729,8 @@ body {
   filter: blur(
     calc(
       var(--scene2-varsity-edge-blur) *
-        var(--scene2-varsity-distortion-strength)
+        var(--scene2-varsity-distortion-strength) +
+        var(--scene2-varsity-base-blur-extra, 0px)
     )
   );
   text-shadow:
@@ -900,6 +940,7 @@ body {
   letter-spacing: 0.4rem;
  
   opacity: 1;
+  filter: blur(var(--scene2-line-2-base-blur));
 }
 
 .scene2-style-note {
@@ -937,6 +978,7 @@ body {
   line-height: 1.4;
   letter-spacing: 0.15rem;
   opacity: 0.95;
+  filter: blur(var(--scene2-line-3-base-blur));
 }
 
 .scene2-line-4 {
@@ -945,6 +987,7 @@ body {
   line-height: 1;
   letter-spacing: 0.18rem;
   opacity: 0;
+  filter: blur(var(--scene2-line-4-base-blur));
 }
 
 .scene2-ticker-sticky {
@@ -977,6 +1020,7 @@ body {
   font-weight: 900;
   margin-right: 4rem;
   white-space: nowrap;
+  filter: blur(var(--scene2-ticker-base-blur));
 }
 
 .scene2-style-note {
@@ -1035,6 +1079,7 @@ body {
   0px 1px 0px #ffffff;*/
 
   pointer-events: none;
+  filter: blur(var(--scene3-axis-outline-base-blur));
 }
 .shoename2{
     position: absolute;
@@ -1062,6 +1107,7 @@ body {
 
   pointer-events: none;
   white-space: nowrap; 
+  filter: blur(var(--scene3-grnd-base-blur));
 
 }
 
@@ -1094,6 +1140,7 @@ body {
   0px 1px 0px #ffffff;*/
 
   pointer-events: none;
+  filter: blur(var(--scene3-axis-solid-base-blur));
 }
 
 .dud {
@@ -1148,6 +1195,7 @@ body {
   white-space: normal; /* 🔥 FIX (allow wrapping) */
 
   pointer-events: none;
+  filter: blur(var(--scene3-copy-base-blur));
 }
 
 :root {
