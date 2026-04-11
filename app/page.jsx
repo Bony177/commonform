@@ -967,7 +967,12 @@ export default function Home() {
             </div>
           </div>
           <div className="scene2-text-container">
-            <p className="scene2-line scene2-line-1">FORM VARSITY</p>
+            <p
+              className="scene2-line scene2-line-1 scene2-varsity-distort"
+              data-text="FORM VARSITY"
+            >
+              FORM VARSITY
+            </p>
 
             <p className="scene2-line scene2-line-2">BUILT ON STRUCTURE</p>
 

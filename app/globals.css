@@ -133,6 +133,16 @@ body {
   --hero-copy-scroll-from-opacity: 0;
   --hero-copy-scroll-from-y: 60;
   --hero-copy-scroll-from-scale: 0.7;
+
+  /* Scene 2 varsity edge distortion controls */
+  --scene2-varsity-distortion-strength: 0.9;
+  --scene2-varsity-edge-blur: 0.75px;
+  --scene2-varsity-spread-x: 1.4px;
+  --scene2-varsity-spread-y: 0.5px;
+  --scene2-varsity-ghost-opacity: 0.34;
+  --scene2-varsity-glow: 0.22;
+  --scene2-varsity-jitter-speed: 3.1s;
+  --scene2-varsity-base-drift-speed: 5.8s;
 }
 
 .texture-all-text :where(
@@ -525,8 +535,220 @@ body {
   font-size: 7rem;
   letter-spacing: 0.3rem;
   font-weight: 600;
-  
+}
 
+.scene2-varsity-distort {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+  transform-origin: right center;
+  will-change: transform, filter, text-shadow;
+  animation: scene2VarsityBaseDrift var(--scene2-varsity-base-drift-speed) ease-in-out infinite;
+  filter: blur(
+    calc(
+      var(--scene2-varsity-edge-blur) *
+        var(--scene2-varsity-distortion-strength)
+    )
+  );
+  text-shadow:
+    0 0
+      calc(2px * var(--scene2-varsity-distortion-strength))
+      rgba(203, 46, 7, var(--scene2-varsity-glow)),
+    0 0
+      calc(7px * var(--scene2-varsity-distortion-strength))
+      rgba(203, 46, 7, calc(var(--scene2-varsity-glow) * 0.75));
+}
+
+.scene2-varsity-distort::before,
+.scene2-varsity-distort::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  color: inherit;
+  opacity: calc(
+    var(--scene2-varsity-ghost-opacity) * var(--scene2-varsity-distortion-strength)
+  );
+}
+
+.scene2-varsity-distort::before {
+  color: rgba(207, 76, 53, 0.95);
+  transform: translate(
+    calc(
+      var(--scene2-varsity-spread-x) * var(--scene2-varsity-distortion-strength)
+    ),
+    calc(
+      var(--scene2-varsity-spread-y) * var(--scene2-varsity-distortion-strength)
+    )
+  );
+  filter: blur(
+    calc(
+      (var(--scene2-varsity-edge-blur) + 0.45px) *
+        var(--scene2-varsity-distortion-strength)
+    )
+  );
+  animation: scene2VarsityGhostJitter var(--scene2-varsity-jitter-speed) steps(10, end) infinite;
+}
+
+.scene2-varsity-distort::after {
+  color: rgba(148, 22, 6, 0.92);
+  transform: translate(
+    calc(
+      var(--scene2-varsity-spread-x) * -0.9 *
+        var(--scene2-varsity-distortion-strength)
+    ),
+    calc(
+      var(--scene2-varsity-spread-y) * -0.8 *
+        var(--scene2-varsity-distortion-strength)
+    )
+  );
+  filter: blur(
+    calc(
+      (var(--scene2-varsity-edge-blur) + 0.7px) *
+        var(--scene2-varsity-distortion-strength)
+    )
+  );
+  animation: scene2VarsityGhostJitterAlt calc(var(--scene2-varsity-jitter-speed) * 1.12)
+    steps(12, end) infinite;
+}
+
+@keyframes scene2VarsityBaseDrift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  38% {
+    transform: translate3d(
+      calc(-0.45px * var(--scene2-varsity-distortion-strength)),
+      calc(0.3px * var(--scene2-varsity-distortion-strength)),
+      0
+    );
+  }
+
+  66% {
+    transform: translate3d(
+      calc(0.6px * var(--scene2-varsity-distortion-strength)),
+      calc(-0.25px * var(--scene2-varsity-distortion-strength)),
+      0
+    );
+  }
+}
+
+@keyframes scene2VarsityGhostJitter {
+  0%,
+  100% {
+    transform: translate(
+      calc(
+        var(--scene2-varsity-spread-x) * var(--scene2-varsity-distortion-strength)
+      ),
+      calc(
+        var(--scene2-varsity-spread-y) * var(--scene2-varsity-distortion-strength)
+      )
+    );
+  }
+
+  20% {
+    transform: translate(
+      calc(
+        (var(--scene2-varsity-spread-x) + 0.9px) *
+          var(--scene2-varsity-distortion-strength)
+      ),
+      calc(
+        (var(--scene2-varsity-spread-y) - 0.5px) *
+          var(--scene2-varsity-distortion-strength)
+      )
+    );
+  }
+
+  52% {
+    transform: translate(
+      calc(
+        (var(--scene2-varsity-spread-x) - 0.8px) *
+          var(--scene2-varsity-distortion-strength)
+      ),
+      calc(
+        (var(--scene2-varsity-spread-y) + 0.65px) *
+          var(--scene2-varsity-distortion-strength)
+      )
+    );
+  }
+
+  74% {
+    transform: translate(
+      calc(
+        (var(--scene2-varsity-spread-x) + 0.55px) *
+          var(--scene2-varsity-distortion-strength)
+      ),
+      calc(
+        (var(--scene2-varsity-spread-y) - 0.85px) *
+          var(--scene2-varsity-distortion-strength)
+      )
+    );
+  }
+}
+
+@keyframes scene2VarsityGhostJitterAlt {
+  0%,
+  100% {
+    transform: translate(
+      calc(
+        var(--scene2-varsity-spread-x) * -0.9 *
+          var(--scene2-varsity-distortion-strength)
+      ),
+      calc(
+        var(--scene2-varsity-spread-y) * -0.8 *
+          var(--scene2-varsity-distortion-strength)
+      )
+    );
+  }
+
+  28% {
+    transform: translate(
+      calc(
+        (var(--scene2-varsity-spread-x) - 1.05px) * -0.9 *
+          var(--scene2-varsity-distortion-strength)
+      ),
+      calc(
+        (var(--scene2-varsity-spread-y) + 0.45px) * -0.8 *
+          var(--scene2-varsity-distortion-strength)
+      )
+    );
+  }
+
+  61% {
+    transform: translate(
+      calc(
+        (var(--scene2-varsity-spread-x) + 0.8px) * -0.9 *
+          var(--scene2-varsity-distortion-strength)
+      ),
+      calc(
+        (var(--scene2-varsity-spread-y) - 0.7px) * -0.8 *
+          var(--scene2-varsity-distortion-strength)
+      )
+    );
+  }
+
+  85% {
+    transform: translate(
+      calc(
+        (var(--scene2-varsity-spread-x) - 0.5px) * -0.9 *
+          var(--scene2-varsity-distortion-strength)
+      ),
+      calc(
+        (var(--scene2-varsity-spread-y) + 1px) * -0.8 *
+          var(--scene2-varsity-distortion-strength)
+      )
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene2-varsity-distort,
+  .scene2-varsity-distort::before,
+  .scene2-varsity-distort::after {
+    animation: none;
+  }
 }
 
 .scene2-line-2 {
