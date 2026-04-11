@@ -163,6 +163,12 @@ body {
   --hero-line-4-ghost-offset-y: 0.45px;
   --hero-line-4-drift-speed: 4.8s;
 
+  /* HEADING */
+  --hero-heading-base-blur: 0.85px;
+
+  /* LOGO */
+  --hero-logo-base-blur: 1px;
+
   /* Scene 2 varsity edge distortion controls */
   --scene2-varsity-distortion-strength: 0.9;
   --scene2-varsity-edge-blur: 0.75px;
@@ -403,6 +409,17 @@ body {
 .hero-title-letter {
   display: inline-block;
   will-change: transform, opacity;
+}
+
+/* HEADING */
+.common-text,
+.form-text {
+  filter: blur(var(--hero-heading-base-blur));
+}
+
+/* LOGO */
+.hero-heading-logo {
+  filter: blur(var(--hero-logo-base-blur));
 }
 
 .form-with-logo {

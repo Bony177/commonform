@@ -824,6 +824,7 @@ export default function Home() {
                         startIndex={8}
                       />
                       <motion.img
+                        className="hero-heading-logo"
                         src="/images/logo.png"
                         alt="logo"
                         variants={titleLetter} // 🔥 IMPORTANT
