@@ -326,7 +326,7 @@ function ChainOverlay() {
   );
 }
 
-function Scene({ background, height = "200vh", children, sectionRef }) {
+function Scene({ background, height = "200vh", children, sectionRef, overlay }) {
   return (
     <section
       ref={sectionRef}
@@ -338,6 +338,7 @@ function Scene({ background, height = "200vh", children, sectionRef }) {
           backgroundImage: `url('${background}')`,
         }}
       />
+      {overlay}
       <div style={styles.sceneContent}>{children}</div>
     </section>
   );
@@ -933,8 +934,17 @@ export default function Home() {
           sectionRef={scene2Ref}
           background="/images/bg2.jpg"
           height="200vh"
-        >
-          <div className="scene-image-wrapper">
+          overlay={
+            <div className="scene2-clouds-overlay">
+              <div className="scene2-clouds-sticky">
+                <div className="scene2-clouds-track">
+                  <img src="/images/clouds.png" alt="" aria-hidden="true" className="scene2-cloud-img" />
+                  <img src="/images/clouds.png" alt="" aria-hidden="true" className="scene2-cloud-img" />
+                </div>
+              </div>
+            </div>
+          }
+        >          <div className="scene-image-wrapper">
             <div className="scene2-video-background">
               <img
                 className="scene2-video"

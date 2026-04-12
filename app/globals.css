@@ -214,6 +214,20 @@ body {
   --scene2-varsity-glow: 0.0;
   --scene2-varsity-jitter-speed: 3.1s;
   --scene2-varsity-base-drift-speed: 5.8s;
+
+  /* Scene 2 cloud slider controls */
+  --scene2-cloud-speed: 30s;              /* animation duration (lower = faster) */
+  --scene2-cloud-opacity: 0.45;           /* cloud transparency */
+  --scene2-cloud-z: 2;                    /* layer order (text is z:3, bg is z:1) */
+  --scene2-cloud-top: 0;                  /* vertical offset from top */
+  --scene2-cloud-height: 100vh;           /* height of cloud strip */
+  --scene2-cloud-min-width: 100vw;        /* min width per cloud copy */
+  --scene2-cloud-blur: 0px;               /* gaussian blur */
+  --scene2-cloud-brightness: 1;           /* brightness */
+  --scene2-cloud-contrast: 1;             /* contrast */
+  --scene2-cloud-saturate: 1;             /* saturation */
+  --scene2-cloud-scale: 1;                /* scale */
+  --scene2-cloud-direction: normal;       /* normal = right-to-left, reverse = left-to-right */
 }
 
 .texture-all-text :where(
@@ -1032,6 +1046,57 @@ body {
   letter-spacing: 0.18rem;
   opacity: 0;
   filter: blur(var(--scene2-line-4-base-blur));
+}
+
+/* === SCENE 2 CLOUD SLIDER === */
+
+.scene2-clouds-overlay {
+  grid-area: 1 / 1;
+  align-self: start;
+  position: sticky;
+  top: var(--scene2-cloud-top);
+  z-index: var(--scene2-cloud-z);       /* between bg (z:0) and content (z:2) */
+  height: var(--scene2-cloud-height);
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.scene2-clouds-sticky {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.scene2-clouds-track {
+  display: flex;
+  width: max-content;
+  height: 100%;
+  animation: scene2CloudSlide var(--scene2-cloud-speed) linear infinite;
+  animation-direction: var(--scene2-cloud-direction);
+}
+
+.scene2-cloud-img {
+  height: 100%;
+  width: auto;
+  min-width: var(--scene2-cloud-min-width);
+  object-fit: cover;
+  flex-shrink: 0;
+  opacity: var(--scene2-cloud-opacity);
+  transform: scale(var(--scene2-cloud-scale));
+  filter:
+    blur(var(--scene2-cloud-blur))
+    brightness(var(--scene2-cloud-brightness))
+    contrast(var(--scene2-cloud-contrast))
+    saturate(var(--scene2-cloud-saturate));
+}
+
+@keyframes scene2CloudSlide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .scene2-ticker-sticky {
