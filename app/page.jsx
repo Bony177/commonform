@@ -935,14 +935,19 @@ export default function Home() {
           background="/images/bg2.jpg"
           height="200vh"
           overlay={
-            <div className="scene2-clouds-overlay">
-              <div className="scene2-clouds-sticky">
-                <div className="scene2-clouds-track">
-                  <img src="/images/clouds.png" alt="" aria-hidden="true" className="scene2-cloud-img" />
-                  <img src="/images/clouds.png" alt="" aria-hidden="true" className="scene2-cloud-img" />
+            <>
+              <div className="scene2-clouds-overlay">
+                <div className="scene2-clouds-sticky">
+                  <div className="scene2-clouds-track">
+                    <img src="/images/clouds.png" alt="" aria-hidden="true" className="scene2-cloud-img" />
+                    <img src="/images/clouds.png" alt="" aria-hidden="true" className="scene2-cloud-img" />
+                  </div>
                 </div>
               </div>
-            </div>
+              <div className="scene2-nocloud-visible">
+                <img src="/images/nocloud.png" alt="" aria-hidden="true" />
+              </div>
+            </>
           }
         >          <div className="scene-image-wrapper">
             <div className="scene2-video-background">

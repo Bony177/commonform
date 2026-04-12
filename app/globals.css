@@ -1,4 +1,3 @@
-
 html,
 body {
   background-color: #000;
@@ -14,15 +13,16 @@ body {
 @font-face {
   font-family: 'ClashDisplay';
   src: url('/fonts/ClashDisplay-Bold.woff2') format('woff2'),
-       url('/fonts/ClashDisplay-Bold.woff') format('woff');
+    url('/fonts/ClashDisplay-Bold.woff') format('woff');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: 'Panchang';
   src: url('/fonts/Panchang-Bold.woff2') format('woff2'),
-       url('/fonts/Panchang-Bold.woff') format('woff');
+    url('/fonts/Panchang-Bold.woff') format('woff');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -31,7 +31,7 @@ body {
 @font-face {
   font-family: 'Panchang';
   src: url('/fonts/Panchang-Extrabold.woff2') format('woff2'),
-       url('/fonts/Panchang-Extrabold.woff') format('woff');
+    url('/fonts/Panchang-Extrabold.woff') format('woff');
   font-weight: 800;
   font-style: normal;
   font-display: swap;
@@ -216,38 +216,54 @@ body {
   --scene2-varsity-base-drift-speed: 5.8s;
 
   /* Scene 2 cloud slider controls */
-  --scene2-cloud-speed: 30s;              /* animation duration (lower = faster) */
-  --scene2-cloud-opacity: 0.45;           /* cloud transparency */
-  --scene2-cloud-z: 2;                    /* layer order (text is z:3, bg is z:1) */
-  --scene2-cloud-top: 0;                  /* vertical offset from top */
-  --scene2-cloud-height: 100vh;           /* height of cloud strip */
-  --scene2-cloud-min-width: 100vw;        /* min width per cloud copy */
-  --scene2-cloud-blur: 0px;               /* gaussian blur */
-  --scene2-cloud-brightness: 1;           /* brightness */
-  --scene2-cloud-contrast: 1;             /* contrast */
-  --scene2-cloud-saturate: 1;             /* saturation */
-  --scene2-cloud-scale: 1;                /* scale */
-  --scene2-cloud-direction: normal;       /* normal = right-to-left, reverse = left-to-right */
+  --scene2-cloud-speed: 120s;
+  /* animation duration (lower = faster) */
+  --scene2-cloud-opacity: 0.45;
+  /* cloud transparency */
+  --scene2-cloud-z: 2;
+  /* layer order (text is z:3, bg is z:1) */
+  --scene2-cloud-top: 0;
+  /* vertical offset from top */
+  --scene2-cloud-height: 100vh;
+  /* height of cloud strip */
+  --scene2-cloud-min-width: 100vw;
+  /* min width per cloud copy */
+  --scene2-cloud-blur: 0px;
+  /* gaussian blur */
+  --scene2-cloud-brightness: 1;
+  /* brightness */
+  --scene2-cloud-contrast: 1;
+  /* contrast */
+  --scene2-cloud-saturate: 1;
+  /* saturation */
+  --scene2-cloud-scale: 1;
+  /* scale */
+  --scene2-cloud-direction: normal;
+  /* normal = right-to-left, reverse = left-to-right */
+
+  /* Scene 2 nocloud mask controls */
+  --scene2-nocloud-opacity: 0;
+  /* visible element opacity (0 = invisible, raise to see mask area) */
+  --scene2-nocloud-mask-size: cover;
+  /* mask sizing */
+  --scene2-nocloud-mask-position: center;
+  /* mask position */
 }
 
-.texture-all-text :where(
-  [style*="color:#fff"],
+.texture-all-text :where([style*="color:#fff"],
   [style*="color: #fff"],
   [style*="color:#ffffff"],
   [style*="color: #ffffff"],
   [style*="color:white"],
   [style*="color: white"],
- 
+
   .ticker-track p,
-  .texture-copy
-):not(.textured):not(.glitch-text):not(.hero-manifesto-line) {
+  .texture-copy):not(.textured):not(.glitch-text):not(.hero-manifesto-line) {
   color: transparent !important;
   -webkit-text-fill-color: transparent;
   background-image:
-    linear-gradient(
-      rgba(0, 0, 0, calc(1 - var(--text-texture-opacity))),
-      rgba(0, 0, 0, calc(1 - var(--text-texture-opacity)))
-    ),
+    linear-gradient(rgba(0, 0, 0, calc(1 - var(--text-texture-opacity))),
+      rgba(0, 0, 0, calc(1 - var(--text-texture-opacity)))),
     var(--text-texture-image);
   background-size:
     100% 100%,
@@ -263,10 +279,7 @@ body {
     fixed;
   -webkit-background-clip: text;
   background-clip: text;
-  filter: blur(var(--scene2-ticker-base-blur, 0px))
-    contrast(var(--text-texture-contrast))
-    saturate(var(--text-texture-saturate))
-    brightness(var(--text-texture-brightness));
+  filter: blur(var(--scene2-ticker-base-blur, 0px)) contrast(var(--text-texture-contrast)) saturate(var(--text-texture-saturate)) brightness(var(--text-texture-brightness));
 }
 
 
@@ -295,19 +308,15 @@ body {
 
 .hero-manifesto-line::before {
   opacity: var(--hero-line-ghost-opacity, 0.2);
-  transform: translate(
-    var(--hero-line-ghost-offset-x, 0.8px),
-    var(--hero-line-ghost-offset-y, 0.3px)
-  );
+  transform: translate(var(--hero-line-ghost-offset-x, 0.8px),
+      var(--hero-line-ghost-offset-y, 0.3px));
   filter: blur(var(--hero-line-ghost-blur, 1px));
 }
 
 .hero-manifesto-line::after {
   opacity: calc(var(--hero-line-ghost-opacity, 0.2) * 0.72);
-  transform: translate(
-    calc(var(--hero-line-ghost-offset-x, 0.8px) * -1),
-    calc(var(--hero-line-ghost-offset-y, 0.3px) * -0.84)
-  );
+  transform: translate(calc(var(--hero-line-ghost-offset-x, 0.8px) * -1),
+      calc(var(--hero-line-ghost-offset-y, 0.3px) * -0.84));
   filter: blur(calc(var(--hero-line-ghost-blur, 1px) + 0.42px));
 }
 
@@ -352,6 +361,7 @@ body {
 }
 
 @keyframes heroManifestoDrift {
+
   0%,
   100% {
     transform: translate3d(0, 0, 0);
@@ -378,21 +388,15 @@ body {
   left: 0;
   right: 0;
   height: var(--hero-header-band-height);
-  background: linear-gradient(
-    to bottom,
-    var(--hero-header-band-top),
-    var(--hero-header-band-bottom)
-  );
-  backdrop-filter: blur(var(--hero-header-band-blur))
-    saturate(var(--hero-header-band-saturate));
-  -webkit-backdrop-filter: blur(var(--hero-header-band-blur))
-    saturate(var(--hero-header-band-saturate));
+  background: linear-gradient(to bottom,
+      var(--hero-header-band-top),
+      var(--hero-header-band-bottom));
+  backdrop-filter: blur(var(--hero-header-band-blur)) saturate(var(--hero-header-band-saturate));
+  -webkit-backdrop-filter: blur(var(--hero-header-band-blur)) saturate(var(--hero-header-band-saturate));
   border-bottom: 1px solid var(--hero-header-band-border);
   z-index: 15;
   pointer-events: none;
-  opacity: calc(
-    var(--hero-header-band-progress, 0) * var(--hero-header-band-max-opacity)
-  );
+  opacity: calc(var(--hero-header-band-progress, 0) * var(--hero-header-band-max-opacity));
 }
 
 .dark {
@@ -542,8 +546,9 @@ body {
   right: 0%;
   top: 79%;
   height: 20vh;
-  max-height: none; 
+  max-height: none;
 }
+
 .scene2-video-background {
   position: sticky;
   top: 0;
@@ -589,26 +594,35 @@ body {
 
 .scene-image-3a {
   position: absolute;
-  right: 1%;        /* move LEFT/RIGHT */
-  top: -30%;        /* move UP/DOWN */
+  right: 1%;
+  /* move LEFT/RIGHT */
+  top: -30%;
+  /* move UP/DOWN */
 
-  height: 80vh;    /* size control */
+  height: 80vh;
+  /* size control */
 
-  transform: translate(0, 0); /* fine tuning */
+  transform: translate(0, 0);
+  /* fine tuning */
 }
 
 .scene-image-3b {
   position: absolute;
-  left: -12%;       /* move LEFT/RIGHT */
-  top: 30%;        /* move UP/DOWN */
+  left: -12%;
+  /* move LEFT/RIGHT */
+  top: 30%;
+  /* move UP/DOWN */
 
-  height: 120vh;    /* size control */
+  height: 120vh;
+  /* size control */
 
-  transform: translate(0, 0); /* fine tuning */
+  transform: translate(0, 0);
+  /* fine tuning */
 }
 
 .scene1-bottom-copy {
-  --scene1-line-gap: -10rem; /* tweak this value */
+  --scene1-line-gap: -10rem;
+  /* tweak this value */
   position: absolute;
   left: 0;
   bottom: 0;
@@ -618,18 +632,17 @@ body {
   padding: clamp(1.2rem, 2.5vw, 2.4rem) 0;
   display: flex;
   flex-direction: column;
-  gap: -10vh; /* tweak this value */
+  gap: -10vh;
+  /* tweak this value */
   justify-content: flex-end;
   text-align: center;
   color: rgba(246, 246, 246, 0.92);
   font-family: "Geist", "Geist Fallback", sans-serif;
   text-transform: uppercase;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.45) 40%,
-    rgba(0, 0, 0, 0.8) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.45) 40%,
+      rgba(0, 0, 0, 0.8) 100%);
 }
 
 .scene1-bottom-copy p {
@@ -646,8 +659,9 @@ body {
   filter: blur(var(--scene1-bottom-copy-base-blur));
 }
 
-.scene1-bottom-copy p + p {
-  margin-top: var(--scene1-line-gap); /* tweak this value */
+.scene1-bottom-copy p+p {
+  margin-top: var(--scene1-line-gap);
+  /* tweak this value */
 }
 
 .scene-shop-overlay {
@@ -748,18 +762,23 @@ body {
   display: flex;
   flex-direction: column;
 
-  gap: 0.7rem; /* reduce spacing between scene2 text lines */
+  gap: 0.7rem;
+  /* reduce spacing between scene2 text lines */
 
   padding-top: 10vh;
-  padding-right: 3rem; /* push from right */
+  padding-right: 3rem;
+  /* push from right */
 
   width: 100%;
   max-width: 600px;
 
-  margin-left: auto; /* THIS pushes it to right */
+  margin-left: auto;
+  /* THIS pushes it to right */
 
-  align-items: flex-end; /* align content to right */
-  text-align: right; /* text right aligned */
+  align-items: flex-end;
+  /* align content to right */
+  text-align: right;
+  /* text right aligned */
 }
 
 .scene2-line {
@@ -784,20 +803,10 @@ body {
   transform-origin: right center;
   will-change: transform, filter, text-shadow;
   animation: scene2VarsityBaseDrift var(--scene2-varsity-base-drift-speed) ease-in-out infinite;
-  filter: blur(
-    calc(
-      var(--scene2-varsity-edge-blur) *
-        var(--scene2-varsity-distortion-strength) +
-        var(--scene2-varsity-base-blur-extra, 0px)
-    )
-  );
+  filter: blur(calc(var(--scene2-varsity-edge-blur) * var(--scene2-varsity-distortion-strength) + var(--scene2-varsity-base-blur-extra, 0px)));
   text-shadow:
-    0 0
-      calc(2px * var(--scene2-varsity-distortion-strength))
-      rgba(203, 46, 7, var(--scene2-varsity-glow)),
-    0 0
-      calc(7px * var(--scene2-varsity-distortion-strength))
-      rgba(203, 46, 7, calc(var(--scene2-varsity-glow) * 0.75));
+    0 0 calc(2px * var(--scene2-varsity-distortion-strength)) rgba(203, 46, 7, var(--scene2-varsity-glow)),
+    0 0 calc(7px * var(--scene2-varsity-distortion-strength)) rgba(203, 46, 7, calc(var(--scene2-varsity-glow) * 0.75));
 }
 
 .scene2-varsity-distort::before,
@@ -807,184 +816,95 @@ body {
   inset: 0;
   pointer-events: none;
   color: inherit;
-  opacity: calc(
-    var(--scene2-varsity-ghost-opacity) * var(--scene2-varsity-distortion-strength)
-  );
+  opacity: calc(var(--scene2-varsity-ghost-opacity) * var(--scene2-varsity-distortion-strength));
 }
 
 .scene2-varsity-distort::before {
   color: rgba(207, 76, 53, 0.95);
-  transform: translate(
-    calc(
-      var(--scene2-varsity-spread-x) * var(--scene2-varsity-distortion-strength)
-    ),
-    calc(
-      var(--scene2-varsity-spread-y) * var(--scene2-varsity-distortion-strength)
-    )
-  );
-  filter: blur(
-    calc(
-      (var(--scene2-varsity-edge-blur) + 0.45px) *
-        var(--scene2-varsity-distortion-strength)
-    )
-  );
+  transform: translate(calc(var(--scene2-varsity-spread-x) * var(--scene2-varsity-distortion-strength)),
+      calc(var(--scene2-varsity-spread-y) * var(--scene2-varsity-distortion-strength)));
+  filter: blur(calc((var(--scene2-varsity-edge-blur) + 0.45px) * var(--scene2-varsity-distortion-strength)));
   animation: scene2VarsityGhostJitter var(--scene2-varsity-jitter-speed) steps(10, end) infinite;
 }
 
 .scene2-varsity-distort::after {
   color: rgba(148, 22, 6, 0.92);
-  transform: translate(
-    calc(
-      var(--scene2-varsity-spread-x) * -0.9 *
-        var(--scene2-varsity-distortion-strength)
-    ),
-    calc(
-      var(--scene2-varsity-spread-y) * -0.8 *
-        var(--scene2-varsity-distortion-strength)
-    )
-  );
-  filter: blur(
-    calc(
-      (var(--scene2-varsity-edge-blur) + 0.7px) *
-        var(--scene2-varsity-distortion-strength)
-    )
-  );
-  animation: scene2VarsityGhostJitterAlt calc(var(--scene2-varsity-jitter-speed) * 1.12)
-    steps(12, end) infinite;
+  transform: translate(calc(var(--scene2-varsity-spread-x) * -0.9 * var(--scene2-varsity-distortion-strength)),
+      calc(var(--scene2-varsity-spread-y) * -0.8 * var(--scene2-varsity-distortion-strength)));
+  filter: blur(calc((var(--scene2-varsity-edge-blur) + 0.7px) * var(--scene2-varsity-distortion-strength)));
+  animation: scene2VarsityGhostJitterAlt calc(var(--scene2-varsity-jitter-speed) * 1.12) steps(12, end) infinite;
 }
 
 @keyframes scene2VarsityBaseDrift {
+
   0%,
   100% {
     transform: translate3d(0, 0, 0);
   }
 
   38% {
-    transform: translate3d(
-      calc(-0.45px * var(--scene2-varsity-distortion-strength)),
-      calc(0.3px * var(--scene2-varsity-distortion-strength)),
-      0
-    );
+    transform: translate3d(calc(-0.45px * var(--scene2-varsity-distortion-strength)),
+        calc(0.3px * var(--scene2-varsity-distortion-strength)),
+        0);
   }
 
   66% {
-    transform: translate3d(
-      calc(0.6px * var(--scene2-varsity-distortion-strength)),
-      calc(-0.25px * var(--scene2-varsity-distortion-strength)),
-      0
-    );
+    transform: translate3d(calc(0.6px * var(--scene2-varsity-distortion-strength)),
+        calc(-0.25px * var(--scene2-varsity-distortion-strength)),
+        0);
   }
 }
 
 @keyframes scene2VarsityGhostJitter {
+
   0%,
   100% {
-    transform: translate(
-      calc(
-        var(--scene2-varsity-spread-x) * var(--scene2-varsity-distortion-strength)
-      ),
-      calc(
-        var(--scene2-varsity-spread-y) * var(--scene2-varsity-distortion-strength)
-      )
-    );
+    transform: translate(calc(var(--scene2-varsity-spread-x) * var(--scene2-varsity-distortion-strength)),
+        calc(var(--scene2-varsity-spread-y) * var(--scene2-varsity-distortion-strength)));
   }
 
   20% {
-    transform: translate(
-      calc(
-        (var(--scene2-varsity-spread-x) + 0.9px) *
-          var(--scene2-varsity-distortion-strength)
-      ),
-      calc(
-        (var(--scene2-varsity-spread-y) - 0.5px) *
-          var(--scene2-varsity-distortion-strength)
-      )
-    );
+    transform: translate(calc((var(--scene2-varsity-spread-x) + 0.9px) * var(--scene2-varsity-distortion-strength)),
+        calc((var(--scene2-varsity-spread-y) - 0.5px) * var(--scene2-varsity-distortion-strength)));
   }
 
   52% {
-    transform: translate(
-      calc(
-        (var(--scene2-varsity-spread-x) - 0.8px) *
-          var(--scene2-varsity-distortion-strength)
-      ),
-      calc(
-        (var(--scene2-varsity-spread-y) + 0.65px) *
-          var(--scene2-varsity-distortion-strength)
-      )
-    );
+    transform: translate(calc((var(--scene2-varsity-spread-x) - 0.8px) * var(--scene2-varsity-distortion-strength)),
+        calc((var(--scene2-varsity-spread-y) + 0.65px) * var(--scene2-varsity-distortion-strength)));
   }
 
   74% {
-    transform: translate(
-      calc(
-        (var(--scene2-varsity-spread-x) + 0.55px) *
-          var(--scene2-varsity-distortion-strength)
-      ),
-      calc(
-        (var(--scene2-varsity-spread-y) - 0.85px) *
-          var(--scene2-varsity-distortion-strength)
-      )
-    );
+    transform: translate(calc((var(--scene2-varsity-spread-x) + 0.55px) * var(--scene2-varsity-distortion-strength)),
+        calc((var(--scene2-varsity-spread-y) - 0.85px) * var(--scene2-varsity-distortion-strength)));
   }
 }
 
 @keyframes scene2VarsityGhostJitterAlt {
+
   0%,
   100% {
-    transform: translate(
-      calc(
-        var(--scene2-varsity-spread-x) * -0.9 *
-          var(--scene2-varsity-distortion-strength)
-      ),
-      calc(
-        var(--scene2-varsity-spread-y) * -0.8 *
-          var(--scene2-varsity-distortion-strength)
-      )
-    );
+    transform: translate(calc(var(--scene2-varsity-spread-x) * -0.9 * var(--scene2-varsity-distortion-strength)),
+        calc(var(--scene2-varsity-spread-y) * -0.8 * var(--scene2-varsity-distortion-strength)));
   }
 
   28% {
-    transform: translate(
-      calc(
-        (var(--scene2-varsity-spread-x) - 1.05px) * -0.9 *
-          var(--scene2-varsity-distortion-strength)
-      ),
-      calc(
-        (var(--scene2-varsity-spread-y) + 0.45px) * -0.8 *
-          var(--scene2-varsity-distortion-strength)
-      )
-    );
+    transform: translate(calc((var(--scene2-varsity-spread-x) - 1.05px) * -0.9 * var(--scene2-varsity-distortion-strength)),
+        calc((var(--scene2-varsity-spread-y) + 0.45px) * -0.8 * var(--scene2-varsity-distortion-strength)));
   }
 
   61% {
-    transform: translate(
-      calc(
-        (var(--scene2-varsity-spread-x) + 0.8px) * -0.9 *
-          var(--scene2-varsity-distortion-strength)
-      ),
-      calc(
-        (var(--scene2-varsity-spread-y) - 0.7px) * -0.8 *
-          var(--scene2-varsity-distortion-strength)
-      )
-    );
+    transform: translate(calc((var(--scene2-varsity-spread-x) + 0.8px) * -0.9 * var(--scene2-varsity-distortion-strength)),
+        calc((var(--scene2-varsity-spread-y) - 0.7px) * -0.8 * var(--scene2-varsity-distortion-strength)));
   }
 
   85% {
-    transform: translate(
-      calc(
-        (var(--scene2-varsity-spread-x) - 0.5px) * -0.9 *
-          var(--scene2-varsity-distortion-strength)
-      ),
-      calc(
-        (var(--scene2-varsity-spread-y) + 1px) * -0.8 *
-          var(--scene2-varsity-distortion-strength)
-      )
-    );
+    transform: translate(calc((var(--scene2-varsity-spread-x) - 0.5px) * -0.9 * var(--scene2-varsity-distortion-strength)),
+        calc((var(--scene2-varsity-spread-y) + 1px) * -0.8 * var(--scene2-varsity-distortion-strength)));
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .scene2-varsity-distort,
   .scene2-varsity-distort::before,
   .scene2-varsity-distort::after {
@@ -1055,10 +975,43 @@ body {
   align-self: start;
   position: sticky;
   top: var(--scene2-cloud-top);
-  z-index: var(--scene2-cloud-z);       /* between bg (z:0) and content (z:2) */
+  z-index: var(--scene2-cloud-z);
+  /* between bg (z:0) and content (z:2) */
   height: var(--scene2-cloud-height);
   pointer-events: none;
   overflow: hidden;
+
+  /* Mask: black opaque areas = clouds hidden, transparent areas = clouds visible */
+  -webkit-mask-image: url('/images/nocloud.png'), linear-gradient(white, white);
+  -webkit-mask-size: var(--scene2-nocloud-mask-size), cover;
+  -webkit-mask-position: var(--scene2-nocloud-mask-position), center;
+  -webkit-mask-repeat: no-repeat, no-repeat;
+  -webkit-mask-composite: xor;
+  mask-image: url('/images/nocloud.png'), linear-gradient(white, white);
+  mask-size: var(--scene2-nocloud-mask-size), cover;
+  mask-position: var(--scene2-nocloud-mask-position), center;
+  mask-repeat: no-repeat, no-repeat;
+  mask-composite: exclude;
+}
+
+/* Visible nocloud reference (opacity 0 by default, raise to see mask area) */
+.scene2-nocloud-visible {
+  grid-area: 1 / 1;
+  align-self: start;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  height: 100vh;
+  width: 100%;
+  pointer-events: none;
+  opacity: var(--scene2-nocloud-opacity);
+}
+
+.scene2-nocloud-visible img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--scene2-nocloud-mask-position);
 }
 
 .scene2-clouds-sticky {
@@ -1084,16 +1037,14 @@ body {
   opacity: var(--scene2-cloud-opacity);
   transform: scale(var(--scene2-cloud-scale));
   filter:
-    blur(var(--scene2-cloud-blur))
-    brightness(var(--scene2-cloud-brightness))
-    contrast(var(--scene2-cloud-contrast))
-    saturate(var(--scene2-cloud-saturate));
+    blur(var(--scene2-cloud-blur)) brightness(var(--scene2-cloud-brightness)) contrast(var(--scene2-cloud-contrast)) saturate(var(--scene2-cloud-saturate));
 }
 
 @keyframes scene2CloudSlide {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -1110,11 +1061,13 @@ body {
 
 .ticker {
   position: relative;
-  width: 100vw;          /* full viewport width */
-   /* center it */
+  width: 100vw;
+  /* full viewport width */
+  /* center it */
 
   overflow: hidden;
 }
+
 .ticker-track {
   display: flex;
   width: max-content;
@@ -1156,7 +1109,8 @@ body {
 
 .scene2-style-image {
   width: 100%;
-  max-width: 600px; /* adjust based on vibe */
+  max-width: 600px;
+  /* adjust based on vibe */
   height: auto;
   object-fit: contain;
 
@@ -1169,6 +1123,7 @@ body {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -1180,19 +1135,20 @@ body {
   z-index: 10;
 
   /* 🎯 START POSITION (adjust from here) */
-  top:82%;
+  top: 82%;
   left: 35%;
 
   transform: translate(-50%, -50%);
-   transform: translate(-50%, -50%) scaleY(1.2);
+  transform: translate(-50%, -50%) scaleY(1.2);
 
   font-family: "Michroma", sans-serif;
   font-family: panchang;
-    white-space: nowrap; 
+  white-space: nowrap;
   font-size: 6rem;
   letter-spacing: 0.35rem;
 
-  color: transparent; /* 🔥 remove fill */
+  color: transparent;
+  /* 🔥 remove fill */
 
   -webkit-text-stroke: 3px #b74a3c;
   /*text-shadow:
@@ -1205,32 +1161,40 @@ body {
   pointer-events: none;
   filter: blur(var(--scene3-axis-outline-base-blur));
 }
-.shoename2{
-    position: absolute;
+
+.shoename2 {
+  position: absolute;
   z-index: 10;
 
   top: 47%;
-  right: 10%; /* 🔥 push to RIGHT SIDE */
-  left: auto; /* IMPORTANT */
+  right: 10%;
+  /* 🔥 push to RIGHT SIDE */
+  left: auto;
+  /* IMPORTANT */
 
-  transform: translateY(-50%); /* vertical center only */
+  transform: translateY(-50%);
+  /* vertical center only */
 
-  width: 250px; /* 🔥 control text box width */
+  width: 250px;
+  /* 🔥 control text box width */
 
   font-family: panchang, "Michroma", sans-serif;
 
   font-size: 3rem;
-  line-height: 0.9; /* 🔥 VERY IMPORTANT for readability */
+  line-height: 0.9;
+  /* 🔥 VERY IMPORTANT for readability */
   letter-spacing: 0.12rem;
--webkit-text-stroke: 1px #265ece;
+  -webkit-text-stroke: 1px #265ece;
   color: #265ece;
 
-  text-align: right; /* 🔥 aligns text nicely */
+  text-align: right;
+  /* 🔥 aligns text nicely */
 
-  white-space: normal; /* 🔥 FIX (allow wrapping) */
+  white-space: normal;
+  /* 🔥 FIX (allow wrapping) */
 
   pointer-events: none;
-  white-space: nowrap; 
+  white-space: nowrap;
   filter: blur(var(--scene3-grnd-base-blur));
 
 }
@@ -1241,19 +1205,19 @@ body {
   z-index: 10;
 
   /* 🎯 START POSITION (adjust from here) */
-  top:82%;
+  top: 82%;
   left: 35%;
 
   transform: translate(-50%, -50%);
-   transform: translate(-50%, -50%) scaleY(1.2);
+  transform: translate(-50%, -50%) scaleY(1.2);
 
   font-family: "Michroma", sans-serif;
   font-family: panchang;
-    white-space: nowrap; 
+  white-space: nowrap;
   font-size: 6rem;
   letter-spacing: 0.35rem;
   -webkit-text-stroke: 3px #a72e1f;
- 
+
 
   color: #a72e1f;
   /*text-shadow:
@@ -1286,7 +1250,8 @@ body {
 
 
 .shoebackimage {
-  width: 600px; /* 🔥 control size */
+  width: 600px;
+  /* 🔥 control size */
   height: auto;
 
   opacity: 1;
@@ -1299,24 +1264,31 @@ body {
   z-index: 10;
 
   top: 71%;
-  right: 3%; /* 🔥 push to RIGHT SIDE */
-  left: auto; /* IMPORTANT */
+  right: 3%;
+  /* 🔥 push to RIGHT SIDE */
+  left: auto;
+  /* IMPORTANT */
 
-  transform: translateY(-50%); /* vertical center only */
+  transform: translateY(-50%);
+  /* vertical center only */
 
-  width: 250px; /* 🔥 control text box width */
+  width: 250px;
+  /* 🔥 control text box width */
 
   font-family: panchang, "Michroma", sans-serif;
 
   font-size: 0.65rem;
-  line-height: 0.9; /* 🔥 VERY IMPORTANT for readability */
+  line-height: 0.9;
+  /* 🔥 VERY IMPORTANT for readability */
   letter-spacing: 0.12rem;
 
   color: #265ece;
 
-  text-align: right; /* 🔥 aligns text nicely */
+  text-align: right;
+  /* 🔥 aligns text nicely */
 
-  white-space: normal; /* 🔥 FIX (allow wrapping) */
+  white-space: normal;
+  /* 🔥 FIX (allow wrapping) */
 
   pointer-events: none;
   filter: blur(var(--scene3-copy-base-blur));
