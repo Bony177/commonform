@@ -935,6 +935,14 @@ export default function Home() {
           height="200vh"
         >
           <div className="scene-image-wrapper">
+            <div className="scene2-video-background">
+              <img
+                className="scene2-video"
+                src="/images/butter.png"
+                alt=""
+                aria-hidden="true"
+              />
+            </div>
             <div className="scene-image-sticky">
               <FalseColorGlitchImage
                 src="/images/scene2.png"
