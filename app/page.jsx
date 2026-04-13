@@ -4,6 +4,8 @@ import ProductGrid from "@/components/product-grid";
 import AutoRotateModelViewer from "@/components/AutoRotateModelViewer";
 import FalseColorGlitchImage from "@/components/FalseColorGlitchImage";
 import TextScramble from "@/components/TextScramble";
+import FireflyLayer from "@/components/FireFlyLayout";
+import LightLayer from "@/components/LightLayer";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Bold, Variable } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -745,6 +747,21 @@ export default function Home() {
           sectionRef={heroRef}
           background="/images/background.jpg"
           height="200vh"
+          overlay={
+            <div style={{
+              gridArea: "1 / 1",
+              alignSelf: "start",
+              position: "sticky",
+              top: 0,
+              zIndex: 1,
+              height: "100vh",
+              width: "100%",
+              pointerEvents: "none"
+            }}>
+              <FireflyLayer />
+              <LightLayer />
+            </div>
+          }
         >
           <div className="scene-image-wrapper">
             <div className="scene-image-sticky">
