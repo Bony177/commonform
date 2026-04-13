@@ -51,15 +51,15 @@ const products = [
     media: [
       {
         type: "image",
-        src: "/images/cap-1.png",
+        src: "/images/black varsity jacket 1.png",
       },
       {
         type: "image",
-        src: "/images/cap-2.png",
+        src: "/images/black varsity jacket 2.png",
       },
       {
         type: "image",
-        src: "/images/cap-3.png",
+        src: "/images/black varsity jacket 3.png",
       },
     ],
   },
@@ -73,15 +73,15 @@ const products = [
     media: [
       {
         type: "image",
-        src: "/images/shirt-1.jpg",
+        src: "/images/jacket red 1.png",
       },
       {
         type: "image",
-        src: "/images/shirt-2.jpg",
+        src: "/images/jacketred2.png",
       },
       {
         type: "image",
-        src: "/images/shirt-3.jpg",
+        src: "/images/jacketred3.png",
       },
     ],
   },
@@ -95,15 +95,15 @@ const products = [
     media: [
       {
         type: "image",
-        src: "/images/jacket-1.jpg",
+        src: "/images/leather racing jacket 1.png",
       },
       {
         type: "image",
-        src: "/images/jacket-2.jpg",
+        src: "/images/leather racing jacket 2.png",
       },
       {
         type: "image",
-        src: "/images/jacket-3.jpg",
+        src: "/images/leather racing jacket 3.png",
       },
     ],
   },
@@ -117,15 +117,15 @@ const products = [
     media: [
       {
         type: "image",
-        src: "/images/tshirt-01-1.jpg",
+        src: "/images/leather racing jacket 1.png",
       },
       {
         type: "image",
-        src: "/images/tshirt-01-2.jpg",
+        src: "/images/leather racing jacket 2.png",
       },
       {
         type: "image",
-        src: "/images/tshirt-01-3.jpg",
+        src: "/images/leather racing jacket 3.png",
       },
     ],
   },
@@ -139,15 +139,15 @@ const products = [
     media: [
       {
         type: "image",
-        src: "/images/tshirt-02-1.jpg",
+        src: "/images/black sneakers 1.png",
       },
       {
         type: "image",
-        src: "/images/tshirt-02-2.jpg",
+        src: "/images/black sneakers 2.png",
       },
       {
         type: "image",
-        src: "/images/tshirt-02-3.jpg",
+        src: "/images/black sneakers 3.png",
       },
     ],
   },
@@ -161,15 +161,15 @@ const products = [
     media: [
       {
         type: "image",
-        src: "/images/tshirt-03-1.jpg",
+        src: "/images/combat boot 1.png",
       },
       {
         type: "image",
-        src: "/images/tshirt-03-2.jpg",
+        src: "/images/combat boot 2.png",
       },
       {
         type: "image",
-        src: "/images/tshirt-03-3.jpg",
+        src: "/images/combat boot 3.png",
       },
     ],
   },
