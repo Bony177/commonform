@@ -8,15 +8,17 @@ export default function FireflyLayer() {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
 
-    let w = canvas.width = window.innerWidth;
-    let h = canvas.height = window.innerHeight;
+    // Anchor to the background image aspect ratio (5200x2444)
+    // We use half-resolution for better performance while preserving the exact 5200:2444 aspect ratio
+    let w = canvas.width = 2600;
+    let h = canvas.height = 1222;
 
     /* 🎯 CONTROL PANEL — tweak these! */
     const CONFIG = {
       count: 100,            // number of fireflies
-      speed: 0.4,           // movement speed
-      sizeMin: 0.3,         // smallest firefly radius (px)
-      sizeMax: 1.2,         // largest firefly radius (px)
+      speed: 0.8,           // adjusted speed for fixed resolution
+      sizeMin: 0.6,         // adjusted size for fixed resolution
+      sizeMax: 2.4,         // adjusted size for fixed resolution
       glowRadius: 3,        // glow halo multiplier (higher = bigger glow)
       screenTop: 50,        // fireflies start here (% from top, 0=top, 100=bottom)
       screenBottom: 100,    // fireflies end here   (% from top, 0=top, 100=bottom)
@@ -107,11 +109,9 @@ export default function FireflyLayer() {
 
     animate();
 
-    window.addEventListener("resize", () => {
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight;
-      AREA = calcArea();
-    });
+    // Removed the window resize listener.
+    // The canvas resolution now stays perfectly fixed to the aspect ratio of the background image.
+    // We use CSS `object-fit: cover` to dynamically scale it to match the background exactly.
 
   }, []);
 

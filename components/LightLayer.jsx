@@ -86,22 +86,28 @@ export default function LightLayer() {
   ];
 
   return (
-    <div className="light-layer">
-      {lights.map((light) => (
-        <div
-          key={light.id}
-          className="light"
-          style={{
-            top: light.top,
-            left: light.left,
-          }}
-        >
-          <div
-            className="light-cone"
-            style={{
-              width: `${light.width}px`,
-              height: `${light.height}px`,
-              filter: `blur(${light.blur}px) brightness(${light.intensity})`,
+    <svg 
+      className="light-layer"
+      viewBox="0 0 5200 2444" 
+      preserveAspectRatio="xMidYMid slice" 
+    >
+      <foreignObject x="0" y="0" width="5200" height="2444">
+        <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+          {lights.map((light) => (
+            <div
+              key={light.id}
+              className="light"
+              style={{
+                top: light.top,
+                left: light.left,
+              }}
+            >
+              <div
+                className="light-cone"
+                style={{
+                  width: `${light.width * 2.2}px`,
+                  height: `${light.height * 2.2}px`,
+                  filter: `blur(${light.blur * 2.2}px) brightness(${light.intensity})`,
               opacity: light.opacity,
               transform: `translateX(-50%) rotate(${light.rotate}deg)`,
               '--light-color': hexToRGB(light.color),
@@ -111,8 +117,10 @@ export default function LightLayer() {
               '--flicker-strength': light.flickerStrength ?? 0.7
             }}
           />
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
+      </foreignObject>
+    </svg>
   );
 }
