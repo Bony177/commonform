@@ -1205,7 +1205,7 @@ export default function Home() {
           </div>
         </Scene>
 
-        <ScrollScene background="/images/background.jpg" height="140vh">
+        <ScrollScene background="/images/backgrounds.jpg" height="140vh">
           <div ref={shopTargetRef} style={styles.siteSection}>
             <div style={styles.container}>
               {/* Left - Description */}
