@@ -21,17 +21,19 @@ export default function ProductGrid({ products, activeProduct, onSelect }) {
                 backgroundColor: isActive ? "#3a3a3a" : "#2d2d2d",
               }}
             >
-              {/* placeholder thumbnail */}
-              <svg
+              {/* product thumbnail */}
+              <img
+                src={product.media?.find((m) => m.type === "image")?.src || ""}
+                alt={`${product.name} thumbnail`}
                 style={{
-                  ...styles.gridItemIcon,
-                  color: isActive ? "#fbbf24" : "#525252",
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain",
+                  padding: "4px",
+                  opacity: isActive ? 1 : 0.6,
+                  transition: "opacity 0.3s ease",
                 }}
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M7 2h10v2H7V2zm0 4h10v12H7V6zm-2 2v10h2V8H5zm12 0v10h2V8h-2z" />
-              </svg>
+              />
             </div>
           </div>
         );
