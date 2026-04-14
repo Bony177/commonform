@@ -1151,6 +1151,19 @@ export default function Home() {
         >
           <div className="scene-image-wrapper">
             <div className="scene-image-sticky">
+              <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none" }}>
+                <img
+                  src="/images/b1.png"
+                  className="scene-image scene3-b1"
+                  alt=""
+                />
+                <img
+                  src="/images/b2.png"
+                  className="scene-image scene3-b2"
+                  alt=""
+                />
+              </div>
+
               <FalseColorGlitchImage
                 src="/images/scene3a.png"
                 alt=""
