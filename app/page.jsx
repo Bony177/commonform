@@ -7,6 +7,7 @@ import TextScramble from "@/components/TextScramble";
 import FireflyLayer from "@/components/FireFlyLayout";
 import LightLayer from "@/components/LightLayer";
 import LiquidBackground from "@/components/LiquidBackround";
+import LiquidBackgroundRed from "@/components/LiquidBackgroundRed";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Bold, Variable } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -1170,6 +1171,20 @@ export default function Home() {
           sectionRef={scene3Ref}
           background="/images/bg3.jpg"
           height="200vh"
+          overlay={
+            <div style={{
+              gridArea: "1 / 1",
+              alignSelf: "start",
+              position: "sticky",
+              top: 0,
+              zIndex: 1,
+              height: "100vh",
+              width: "100%",
+              pointerEvents: "none"
+            }}>
+              <LiquidBackgroundRed />
+            </div>
+          }
         >
           <div className="scene-image-wrapper">
             <div className="scene-image-sticky">
@@ -1209,6 +1224,10 @@ export default function Home() {
             </div>
 
             {/* 🔥 SCROLLABLE TEXT (ADD HERE) */}
+            <div className="shoetxt-left">
+              CF-AXIS/01 is built on the idea that structure should not compete with expression, but quietly enable it. Every element exists with intent—nothing added for decoration, nothing removed for effect—resulting in a form that feels grounded, precise, and deliberate. The design draws from the tension between rigidity and movement, where sharp lines meet adaptive flexibility, allowing the piece to respond naturally to the body while maintaining a defined silhouette. Materials are selected not just for durability, but for how they age, how they react to light, and how they carry the identity of the wearer over time. Each panel, seam, and layer works in balance, creating a system where function and aesthetic are inseparable. CF-AXIS/01 does not aim to stand out through excess; instead, it establishes presence through clarity—through proportion, restraint, and confidence. It is designed for motion, for everyday transitions, and for moments where identity is expressed not loudly, but unmistakably. In a space crowded by noise and overstatement, CF-AXIS/01 remains focused, offering a refined interpretation of contemporary form where stability meets evolution, and where design becomes an extension of how you move, exist, and leave a lasting impression.
+            </div>
+            
             <div className="scene3-shoe">
               <img
                 src="/images/shoeback.png"

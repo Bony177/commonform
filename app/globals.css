@@ -1294,6 +1294,38 @@ body {
   filter: blur(var(--scene3-copy-base-blur));
 }
 
+.shoetxt-left {
+  position: absolute;
+  z-index: 10;
+
+  top: 15%;
+  /* Positioned above shoeback.png */
+  left: 5%;
+  /* Aligned to left side */
+
+  transform: translateY(-50%);
+
+  width: 800px;
+  /* Wider text box */
+
+  font-family: panchang, "Michroma", sans-serif;
+
+  font-size: 0.75rem;
+  line-height: 1.1;
+  letter-spacing: 0.12rem;
+
+  color: #a72e1f;
+  /* Red color */
+
+  text-align: left;
+  /* Aligned to left side */
+
+  white-space: normal;
+
+  pointer-events: none;
+  filter: blur(var(--scene3-copy-base-blur));
+}
+
 :root {
   --cf-model-fit-padding: 0.73;
   --cf-model-viewer-height: 500px;

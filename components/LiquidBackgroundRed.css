@@ -1,0 +1,9 @@
+.liquid-bg-blue {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+
+    /* 🔥 CONTROL OPACITY HERE */
+    opacity: 0.1;
+}
