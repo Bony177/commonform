@@ -3,6 +3,7 @@ import ProductCarousel from "@/components/product-carousel";
 import ProductGrid from "@/components/product-grid";
 import AutoRotateModelViewer from "@/components/AutoRotateModelViewer";
 import FalseColorGlitchImage from "@/components/FalseColorGlitchImage";
+import ThermalGlitchImage from "@/components/ThermalGlitchImage";
 import TextScramble from "@/components/TextScramble";
 import FireflyLayer from "@/components/FireFlyLayout";
 import LightLayer from "@/components/LightLayer";
@@ -1173,10 +1174,16 @@ export default function Home() {
                 jitterMs={1100}
               />
 
-              <img
+              <ThermalGlitchImage
                 src="/images/scene3b.png"
                 className="scene-image scene-image-3b"
-                alt=""
+                speed="var(--scene3b-glitch-speed, 180ms)"
+                intensityX="var(--scene3b-glitch-x, 1px)"
+                intensityY="var(--scene3b-glitch-y, 1px)"
+                opacity="var(--scene3b-glitch-opacity, 1)"
+                intervalMs={4000}
+                durationMs={600}
+                jitterMs={1100}
               />
 
               {/* 🔥 ADD THIS */}

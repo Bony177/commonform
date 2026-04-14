@@ -248,6 +248,12 @@ body {
   /* mask sizing */
   --scene2-nocloud-mask-position: center;
   /* mask position */
+
+  /* Scene 3B Thermal Glitch Controls */
+  --scene3b-glitch-speed: 220ms;
+  --scene3b-glitch-x: 1.5px;
+  --scene3b-glitch-y: 1px;
+  --scene3b-glitch-opacity: 1;
 }
 
 .texture-all-text :where([style*="color:#fff"],
@@ -751,8 +757,8 @@ body {
 }
 
 .scene3-shop-btn {
-  top: 34vh;
-  left: 70%;
+  top: 88%;
+  left: 85%;
   border-color: rgba(255, 255, 255, 0.85);
   background: #265ece;
   color: #ffffff;
