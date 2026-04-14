@@ -437,7 +437,15 @@ export default function Home() {
     lockEnd: 0.4,
     xEnd: -60, // px: negative = move left, positive = move right
     yEnd: -150, // px: negative = move up
-    yOffset: -2.5, // 👈 Adjust this to move the logo up or down statically
+    yOffset: -2.5, // 👈 Logo vertical height relative to FORM
+    logoX: 1, // 👈 Logo horizontal gap from FORM (rem)
+    commonY: -5.5, // 👈 "COMMON" vertical height (rem)
+    formY: -9.5, // 👈 "FORM" vertical height (rem)
+    
+    // MASTER GROUP POSITION (Moves EVERYTHING together)
+    groupY: 0, // 👈 Move the whole group UP/DOWN (rem)
+    groupX: 0, // 👈 Move the whole group LEFT/RIGHT (rem)
+
     scaleEnd: 0.33,
     fixedLeft: "19.2rem",
     fixedTop: "4%",
@@ -854,13 +862,18 @@ export default function Home() {
                   initial="hidden"
                   animate="visible"
                 >
-                  <motion.div>
+                  <motion.div
+                    style={{
+                      y: `${HERO_LOGO_TWEAK.groupY}rem`,
+                      x: `${HERO_LOGO_TWEAK.groupX}rem`,
+                    }}
+                  >
                     <motion.div
                       style={{
                         display: "block",
                         scale: logoScalep,
                         transformOrigin: "left center",
-                        y: "-5.5rem",
+                        y: `${HERO_LOGO_TWEAK.commonY}rem`,
                       }}
                     >
                       <StaggeredHeadingWord
@@ -875,7 +888,7 @@ export default function Home() {
                         display: "block",
                         scale: logoScalep,
                         transformOrigin: "left center",
-                        y: "-9.5rem",
+                        y: `${HERO_LOGO_TWEAK.formY}rem`,
                       }}
                     >
                       <StaggeredHeadingWord
@@ -894,7 +907,7 @@ export default function Home() {
                         style={{
                           width: `${HERO_LOGO_TWEAK.widthRem}rem`,
                           display: "inline-block",
-                          marginLeft: "1rem",
+                          marginLeft: `${HERO_LOGO_TWEAK.logoX}rem`,
                           verticalAlign: "middle",
                           marginTop: `${HERO_LOGO_TWEAK.yOffset}rem`,
                           transformOrigin: "left center",
