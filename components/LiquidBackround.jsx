@@ -49,41 +49,50 @@ export default function LiquidBackground() {
           gl_Position = vec4(position,1.0);
         }
       `,
-      fragmentShader: `
-        uniform float uTime;
-        uniform vec3 uColor1;
-        uniform vec3 uColor2;
-        uniform vec3 uColor3;
-        uniform vec3 uColor4;
-        uniform float uSpeed;
-        uniform float uIntensity;
+     fragmentShader: `
+uniform float uTime;
+uniform vec3 uColor1;
+uniform vec3 uColor2;
+uniform vec3 uColor3;
+uniform vec3 uColor4;
+uniform float uSpeed;
+uniform float uIntensity;
 
-        varying vec2 vUv;
+varying vec2 vUv;
 
-        float noise(vec2 p){
-          return sin(p.x)*sin(p.y);
-        }
+/* 🔥 CLEAN PATTERN (NO GRAIN) */
+float pattern(vec2 uv, float t) {
+  float n = 0.0;
 
-        void main(){
-          vec2 uv = vUv;
+  n += sin(uv.x * 3.5 + t) * 0.5;
+  n += sin(uv.y * 5.0 - t * 1.2) * 0.5;
+  n += sin((uv.x + uv.y) * 4.5 + t * 0.6) * 0.5;
 
-          float t = uTime * uSpeed;
+  return n / 1.5;
+}
 
-          float n1 = noise(uv * 3.0 + t);
-          float n2 = noise(uv * 5.0 - t * 1.2);
-          float n3 = noise(uv * 8.0 + t * 0.5);
+void main(){
+  vec2 uv = vUv;
 
-          float mixVal = (n1 + n2 + n3) / 3.0;
+  float t = uTime * uSpeed;
 
-          vec3 color = mix(uColor1, uColor2, mixVal);
-          color = mix(color, uColor3, smoothstep(0.2,0.7,mixVal));
-          color = mix(color, uColor4, smoothstep(0.6,1.0,mixVal));
+  float p = pattern(uv, t);
 
-          color *= uIntensity;
+  /* 🔥 SHARPER TRANSITIONS */
+  p = smoothstep(-0.3, 0.7, p);
 
-          gl_FragColor = vec4(color,1.0);
-        }
-      `
+  vec3 color = mix(uColor1, uColor2, p);
+  color = mix(color, uColor3, smoothstep(0.25,0.7,p));
+  color = mix(color, uColor4, smoothstep(0.65,1.0,p));
+
+  /* 🔥 SLIGHT CONTRAST BOOST (CLEAN LOOK) */
+  color = pow(color, vec3(0.9));
+
+  color *= uIntensity;
+
+  gl_FragColor = vec4(color,1.0);
+}
+`
     });
 
     const mesh = new THREE.Mesh(geometry, material);
