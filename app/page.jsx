@@ -501,15 +501,11 @@ export default function Home() {
     }),
     [],
   );
-
   // Logo scale from initial size (29rem) to final size (6rem) - ratio: 6/29 ≈ 0.207
   // Scales from 1 (full size) to 6/29 (final size) as you scroll
   const logoScale = useTransform(heroScroll, [0, 0.25], [1, 4.5 / 7]);
-  const logoOpacity = useTransform(heroScroll, [0.2, 0.25], [0, 0.9]);
-
-  //const logoScaleY = useTransform(formScroll, [0, 0.22], [1, 6 / 29]);
-  const logoOpacityy = useTransform(heroScroll, [0, 0.42], [0, 1]);
-  const logoFormX = useTransform(formScroll, [0, 0.22], ["10rem", "14.5rem"]);
+  const logoOpacity = useTransform(heroScroll, [0.38, 0.48], [0, 1]);
+  const headerLogoX = useTransform(heroScroll, [0.38, 0.55], ["-8rem", "6rem"]);
 
   // Header opacity control
   const headerOpacity = useTransform(
@@ -724,43 +720,33 @@ export default function Home() {
           <motion.div
             style={{
               position: "fixed",
-              left: "6rem",
+              left: 0,
+              x: headerLogoX,
               top: "4%",
               y: "-50%",
               fontFamily: "Galgo",
-              fontSize: "4rem",
-              letterSpacing: "0.26rem",
+              fontSize: "3.2rem",
+              letterSpacing: "0.22rem",
               color: "#fcf4f4",
               fontWeight: 600,
               opacity: logoOpacity,
-              scale: logoScale,
-              transformOrigin: "left center",
-              whiteSpace: "nowrap",
-            }}
-          >
-            COMMON
-          </motion.div>
-          <motion.div
-            className="form-with-logo"
-            style={{
-              position: "fixed",
-              left: logoFormX,
-              top: "4%",
-              y: "-50%",
-              fontFamily: "Galgo",
-              fontSize: "2.6rem",
-              letterSpacing: "0.18rem",
-              color: "#fcf4f4",
-              opacity: logoOpacityy,
-              fontWeight: 700,
-              //scale: logoScaleY,
               transformOrigin: "left center",
               whiteSpace: "nowrap",
               display: "flex",
               alignItems: "center",
+              gap: "1rem",
             }}
           >
-            <span className="form-text-inline">FORM</span>
+            <span>COMMON FORM</span>
+            <img 
+              src="/images/logo.png" 
+              alt="logo" 
+              style={{ 
+                height: "2.4rem", 
+                width: "auto",
+                filter: "brightness(0) invert(1)" 
+              }} 
+            />
           </motion.div>
         </motion.div>
 
@@ -1343,7 +1329,7 @@ const styles = {
   },
   header: {
     borderBottom: "none",
-    padding: "0.25rem 1.5rem",
+    padding: "0.5rem 2rem",
     backgroundColor: "transparent",
   },
   headerInner: {
@@ -1359,10 +1345,10 @@ const styles = {
     alignItems: "center",
   },
   headerBrand: {
-    fontSize: "0.7rem",
+    fontSize: "1.1rem",
     letterSpacing: "0.35em",
     color: "#ffffff",
-    opacity: 0.85,
+    opacity: 0.9,
   },
   headerNav: {
     display: "flex",
@@ -1370,7 +1356,7 @@ const styles = {
     justifyContent: "center",
   },
   headerLink: {
-    fontSize: "0.65rem",
+    fontSize: "0.9rem",
     letterSpacing: "0.2em",
     textTransform: "uppercase",
     color: "#ffffff",
@@ -1382,9 +1368,9 @@ const styles = {
     justifyContent: "flex-end",
   },
   headerMeta: {
-    fontSize: "0.6rem",
+    fontSize: "0.85rem",
     letterSpacing: "0.15em",
-    color: "#6b6b6b",
+    color: "#888888",
   },
   container: {
     maxWidth: "80rem",
