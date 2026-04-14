@@ -443,7 +443,7 @@ export default function Home() {
     formY: -9.5, // 👈 "FORM" vertical height (rem)
     
     // MASTER GROUP POSITION (Moves EVERYTHING together)
-    groupY: 0, // 👈 Move the whole group UP/DOWN (rem)
+    groupY: 3.6, // 👈 Move the whole group UP/DOWN (rem)
     groupX: 0, // 👈 Move the whole group LEFT/RIGHT (rem)
 
     scaleEnd: 0.33,
