@@ -368,6 +368,39 @@ function ScrollScene({ background, height = "140vh", children, overlay }) {
   );
 }
 
+const HoverWordText = ({ text }) => {
+  const [hoveredWordIndex, setHoveredWordIndex] = useState(null);
+
+  if (!text) return null;
+  
+  let wordCounter = 0;
+  return text.split(/(\s+)/).map((part, i) => {
+    if (/\s+/.test(part)) return <span key={i}>{part}</span>;
+    
+    const currentIndex = wordCounter++;
+    let distanceClass = "";
+    
+    if (hoveredWordIndex !== null) {
+      const dist = Math.abs(hoveredWordIndex - currentIndex);
+      if (dist === 0) distanceClass = "hover-dist-0";
+      else if (dist === 1) distanceClass = "hover-dist-1";
+      else if (dist === 2) distanceClass = "hover-dist-2";
+      else if (dist === 3) distanceClass = "hover-dist-3";
+    }
+
+    return (
+      <span
+        key={i}
+        className={`hover-word ${distanceClass}`}
+        onMouseEnter={() => setHoveredWordIndex(currentIndex)}
+        onMouseLeave={() => setHoveredWordIndex(null)}
+      >
+        {part}
+      </span>
+    );
+  });
+};
+
 export default function Home() {
   const heroRef = useRef(null);
   const scene2Ref = useRef(null);
@@ -1212,20 +1245,13 @@ export default function Home() {
               />
               <div className="shoename2">CF-GRND</div>
               <div className="shoetxt">
-                CF-AXIS//01 is built as an extension of structure rather than
-                decoration — a form that exists in balance with movement,
-                weight, and space. The silhouette follows a controlled geometry,
-                where each panel, seam, and material transition is placed with
-                intention, allowing the shoe to feel both grounded and adaptive.
-                There is no excess, no unnecessary noise — only a quiet system
-                of layers working together beneath the surface.The construction
-                prioritizes stability without rigidity,
+                <HoverWordText text={`CF-AXIS//01 is built as an extension of structure rather than decoration — a form that exists in balance with movement, weight, and space. The silhouette follows a controlled geometry, where each panel, seam, and material transition is placed with intention, allowing the shoe to feel both grounded and adaptive. There is no excess, no unnecessary noise — only a quiet system of layers working together beneath the surface.The construction prioritizes stability without rigidity,`} />
               </div>
             </div>
 
             {/* 🔥 SCROLLABLE TEXT (ADD HERE) */}
             <div className="shoetxt-left">
-              CF-AXIS/01 is built on the idea that structure should not compete with expression, but quietly enable it. Every element exists with intent—nothing added for decoration, nothing removed for effect—resulting in a form that feels grounded, precise, and deliberate. The design draws from the tension between rigidity and movement, where sharp lines meet adaptive flexibility, allowing the piece to respond naturally to the body while maintaining a defined silhouette. Materials are selected not just for durability, but for how they age, how they react to light, and how they carry the identity of the wearer over time. Each panel, seam, and layer works in balance, creating a system where function and aesthetic are inseparable. CF-AXIS/01 does not aim to stand out through excess; instead, it establishes presence through clarity—through proportion, restraint, and confidence. It is designed for motion, for everyday transitions, and for moments where identity is expressed not loudly, but unmistakably. In a space crowded by noise and overstatement, CF-AXIS/01 remains focused, offering a refined interpretation of contemporary form where stability meets evolution, and where design becomes an extension of how you move, exist, and leave a lasting impression.
+              <HoverWordText text={`CF-AXIS/01 is built on the idea that structure should not compete with expression, but quietly enable it. Every element exists with intent—nothing added for decoration, nothing removed for effect—resulting in a form that feels grounded, precise, and deliberate. The design draws from the tension between rigidity and movement, where sharp lines meet adaptive flexibility, allowing the piece to respond naturally to the body while maintaining a defined silhouette. Materials are selected not just for durability, but for how they age, how they react to light, and how they carry the identity of the wearer over time. Each panel, seam, and layer works in balance, creating a system where function and aesthetic are inseparable. CF-AXIS/01 does not aim to stand out through excess; instead, it establishes presence through clarity—through proportion, restraint, and confidence. It is designed for motion, for everyday transitions, and for moments where identity is expressed not loudly, but unmistakably. In a space crowded by noise and overstatement, CF-AXIS/01 remains focused, offering a refined interpretation of contemporary form where stability meets evolution, and where design becomes an extension of how you move, exist, and leave a lasting impression.`} />
             </div>
             
             <div className="scene3-shoe">

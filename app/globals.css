@@ -1321,10 +1321,27 @@ body {
   /* Aligned to left side */
 
   white-space: normal;
-
-  pointer-events: none;
+  pointer-events: auto; /* enable hover events since they have pointer-events:none on wrapper in some cases */
   filter: blur(var(--scene3-copy-base-blur));
 }
+
+/* Base effect class for the words */
+.hover-word {
+  transition: color 0.15s ease, text-shadow 0.15s ease;
+  pointer-events: auto; /* Required because the parent has pointer-events: none */
+}
+
+/* For .shoetxt (blue by default), hovering creates a red radius */
+.shoetxt .hover-dist-0 { color: #a72e1f; }
+.shoetxt .hover-dist-1 { color: color-mix(in srgb, #a72e1f 70%, #265ece); }
+.shoetxt .hover-dist-2 { color: color-mix(in srgb, #a72e1f 40%, #265ece); }
+.shoetxt .hover-dist-3 { color: color-mix(in srgb, #a72e1f 15%, #265ece); }
+
+/* For .shoetxt-left (red by default), hovering creates a blue radius */
+.shoetxt-left .hover-dist-0 { color: #265ece; }
+.shoetxt-left .hover-dist-1 { color: color-mix(in srgb, #265ece 70%, #a72e1f); }
+.shoetxt-left .hover-dist-2 { color: color-mix(in srgb, #265ece 40%, #a72e1f); }
+.shoetxt-left .hover-dist-3 { color: color-mix(in srgb, #265ece 15%, #a72e1f); }
 
 :root {
   --cf-model-fit-padding: 0.73;
