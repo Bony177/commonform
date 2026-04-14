@@ -6,11 +6,13 @@ import FalseColorGlitchImage from "@/components/FalseColorGlitchImage";
 import TextScramble from "@/components/TextScramble";
 import FireflyLayer from "@/components/FireFlyLayout";
 import LightLayer from "@/components/LightLayer";
+import LiquidBackground from "@/components/LiquidBackround";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Bold, Variable } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import "../styles/chain.css";
 import "../styles/glitch.css";
+import "@/components/LiquidBckground.css";
 import SignalBars from "@/components/SignalBars";
 import {
   Sora,
@@ -271,7 +273,7 @@ const HERO_COPY_SCROLL_DEFAULTS = {
   stagger: 0.09,
   fromOpacity: 0,
   fromY: 60,
-  fromScale: 0.9,
+  fromScale: 0.5,
 };
 
 const HERO_MANIFESTO_LINE_1 = "A STRUCTURE DISGUISED AS CLOTHING";
@@ -346,7 +348,7 @@ function Scene({ background, height = "200vh", children, sectionRef, overlay }) 
   );
 }
 
-function ScrollScene({ background, height = "140vh", children }) {
+function ScrollScene({ background, height = "140vh", children, overlay }) {
   return (
     <section
       style={{
@@ -355,6 +357,11 @@ function ScrollScene({ background, height = "140vh", children }) {
         backgroundImage: `url('${background}')`,
       }}
     >
+      {overlay && (
+        <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, pointerEvents: "none", zIndex: 0 }}>
+          {overlay}
+        </div>
+      )}
       <div style={styles.scrollSceneContent}>{children}</div>
     </section>
   );
@@ -827,7 +834,6 @@ export default function Home() {
                     </motion.div>
 
                     <motion.div
-                      div
                       className="form-wrapper"
                       style={{
                         display: "block",
@@ -866,62 +872,82 @@ export default function Home() {
                   </motion.div>
                 </motion.h1>
 
-                <motion.p
-                  className="texture-copy hero-manifesto-line hero-manifesto-line-1"
-                  data-text={HERO_MANIFESTO_LINE_1}
+                <motion.div
                   style={{
-                    ...styles.heroLine,
-                    color: heroParagraphColor,
                     opacity: heroCopyLine1Opacity,
                     y: heroCopyLine1Y,
                     scale: heroCopyLine1Scale,
                     transformOrigin: "left center",
                   }}
                 >
-                  {HERO_MANIFESTO_LINE_1}
-                </motion.p>
-                <motion.p
-                  className="texture-copy hero-manifesto-line hero-manifesto-line-2"
-                  data-text={HERO_MANIFESTO_LINE_2}
+                  <motion.p
+                    className="texture-copy hero-manifesto-line hero-manifesto-line-1"
+                    data-text={HERO_MANIFESTO_LINE_1}
+                    style={{
+                      ...styles.heroLine,
+                      color: heroParagraphColor,
+                    }}
+                  >
+                    {HERO_MANIFESTO_LINE_1}
+                  </motion.p>
+                </motion.div>
+                <motion.div
                   style={{
-                    ...styles.heroLine2,
-                    color: heroParagraphColor,
                     opacity: heroCopyLine2Opacity,
                     y: heroCopyLine2Y,
                     scale: heroCopyLine2Scale,
                     transformOrigin: "left center",
                   }}
                 >
-                  {HERO_MANIFESTO_LINE_2}
-                </motion.p>
-                <motion.p
-                  className="texture-copy hero-manifesto-line hero-manifesto-line-3"
-                  data-text={HERO_MANIFESTO_LINE_3}
+                  <motion.p
+                    className="texture-copy hero-manifesto-line hero-manifesto-line-2"
+                    data-text={HERO_MANIFESTO_LINE_2}
+                    style={{
+                      ...styles.heroLine2,
+                      color: heroParagraphColor,
+                    }}
+                  >
+                    {HERO_MANIFESTO_LINE_2}
+                  </motion.p>
+                </motion.div>
+                <motion.div
                   style={{
-                    ...styles.heroLine3,
-                    color: heroParagraphColor,
                     opacity: heroCopyLine3Opacity,
                     y: heroCopyLine3Y,
                     scale: heroCopyLine3Scale,
                     transformOrigin: "left center",
                   }}
                 >
-                  {HERO_MANIFESTO_LINE_3}
-                </motion.p>
-                <motion.p
-                  className="texture-copy hero-manifesto-line hero-manifesto-line-4"
-                  data-text={HERO_MANIFESTO_LINE_4}
+                  <motion.p
+                    className="texture-copy hero-manifesto-line hero-manifesto-line-3"
+                    data-text={HERO_MANIFESTO_LINE_3}
+                    style={{
+                      ...styles.heroLine3,
+                      color: heroParagraphColor,
+                    }}
+                  >
+                    {HERO_MANIFESTO_LINE_3}
+                  </motion.p>
+                </motion.div>
+                <motion.div
                   style={{
-                    ...styles.heroLine,
-                    color: heroParagraphColor,
                     opacity: heroCopyLine4Opacity,
                     y: heroCopyLine4Y,
                     scale: heroCopyLine4Scale,
                     transformOrigin: "left center",
                   }}
                 >
-                  {HERO_MANIFESTO_LINE_4}
-                </motion.p>
+                  <motion.p
+                    className="texture-copy hero-manifesto-line hero-manifesto-line-4"
+                    data-text={HERO_MANIFESTO_LINE_4}
+                    style={{
+                      ...styles.heroLine,
+                      color: heroParagraphColor,
+                    }}
+                  >
+                    {HERO_MANIFESTO_LINE_4}
+                  </motion.p>
+                </motion.div>
 
                 <motion.img
                   src="/images/back1.png"
@@ -1205,7 +1231,15 @@ export default function Home() {
           </div>
         </Scene>
 
-        <ScrollScene background="/images/backgrounds.jpg" height="140vh">
+        <ScrollScene 
+          background="/images/backgrounds.jpg" 
+          height="140vh"
+          overlay={
+            <div style={{ position: "sticky", top: 0, height: "100vh", width: "100%", overflow: "hidden" }}>
+              <LiquidBackground />
+            </div>
+          }
+        >
           <div ref={shopTargetRef} style={styles.siteSection}>
             <div style={styles.container}>
               {/* Left - Description */}
@@ -1479,6 +1513,7 @@ const styles = {
     position: "relative",
     width: "100%",
     minHeight: "100%",
+    zIndex: 1,
   },
   heroSection: {
     paddingTop: "0rem",

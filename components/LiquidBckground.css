@@ -1,0 +1,9 @@
+.liquid-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    /* behind everything */
+    pointer-events: none;
+    opacity: 0.6;
+    /* VERY IMPORTANT → subtle */
+}

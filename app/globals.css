@@ -132,7 +132,7 @@ body {
   --hero-copy-scroll-stagger: 0.09;
   --hero-copy-scroll-from-opacity: 0;
   --hero-copy-scroll-from-y: 60;
-  --hero-copy-scroll-from-scale: 0.7;
+  --hero-copy-scroll-from-scale: 0.5;
 
   /* "A STRUCTURE DISGUISED AS CLOTHING" */
   --hero-line-1-base-blur: 0.9px;
