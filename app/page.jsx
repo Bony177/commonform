@@ -431,12 +431,13 @@ export default function Home() {
 
   // Hero logo morph settings (tweak these values)
   const HERO_LOGO_TWEAK = {
-    widthRem: 24.5,
+    widthRem: 18.5,
     moveEnd: 0.34,
     lockStart: 0.34,
     lockEnd: 0.4,
     xEnd: -60, // px: negative = move left, positive = move right
-    yEnd: -140, // px: negative = move up
+    yEnd: -150, // px: negative = move up
+    yOffset: -2.5, // 👈 Adjust this to move the logo up or down statically
     scaleEnd: 0.33,
     fixedLeft: "19.2rem",
     fixedTop: "4%",
@@ -895,10 +896,7 @@ export default function Home() {
                           display: "inline-block",
                           marginLeft: "1rem",
                           verticalAlign: "middle",
-                          x: heroLogoX,
-                          y: heroLogoY,
-                          scale: heroLogoScale,
-                          opacity: heroLogoInlineOpacity,
+                          marginTop: `${HERO_LOGO_TWEAK.yOffset}rem`,
                           transformOrigin: "left center",
                           willChange: "transform, opacity",
                         }}
