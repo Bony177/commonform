@@ -1054,7 +1054,8 @@ body {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 0vh;
+  bottom: 1vh;
+  /* Increase this value to push the banner further up */
   z-index: 4;
   pointer-events: none;
 }
@@ -1062,9 +1063,13 @@ body {
 .ticker {
   position: relative;
   width: 100vw;
+
   /* full viewport width */
   /* center it */
-
+  background-color: #ffffff;
+  /* White banner */
+  padding: 0.1rem 0;
+  /* Add padding to make the banner visible */
   overflow: hidden;
 }
 
@@ -1079,8 +1084,8 @@ body {
   font-size: 3rem;
   padding-bottom: 0.3rem;
   letter-spacing: 0.2rem;
-  color: #265ece !important;
-  -webkit-text-fill-color: #ffffff !important;
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
   background-image: none !important;
   font-weight: 100;
   margin-right: 1rem;
@@ -1097,7 +1102,8 @@ body {
   display: inline-block;
   vertical-align: middle;
   padding-bottom: 0.15em;
-
+  filter: brightness(0);
+  /* Makes the logo black */
 }
 
 .scene2-style-note {
@@ -1321,27 +1327,51 @@ body {
   /* Aligned to left side */
 
   white-space: normal;
-  pointer-events: auto; /* enable hover events since they have pointer-events:none on wrapper in some cases */
+  pointer-events: auto;
+  /* enable hover events since they have pointer-events:none on wrapper in some cases */
   filter: blur(var(--scene3-copy-base-blur));
 }
 
 /* Base effect class for the words */
 .hover-word {
   transition: color 0.15s ease, text-shadow 0.15s ease;
-  pointer-events: auto; /* Required because the parent has pointer-events: none */
+  pointer-events: auto;
+  /* Required because the parent has pointer-events: none */
 }
 
 /* For .shoetxt (blue by default), hovering creates a red radius */
-.shoetxt .hover-dist-0 { color: #a72e1f; }
-.shoetxt .hover-dist-1 { color: color-mix(in srgb, #a72e1f 70%, #265ece); }
-.shoetxt .hover-dist-2 { color: color-mix(in srgb, #a72e1f 40%, #265ece); }
-.shoetxt .hover-dist-3 { color: color-mix(in srgb, #a72e1f 15%, #265ece); }
+.shoetxt .hover-dist-0 {
+  color: #a72e1f;
+}
+
+.shoetxt .hover-dist-1 {
+  color: color-mix(in srgb, #a72e1f 70%, #265ece);
+}
+
+.shoetxt .hover-dist-2 {
+  color: color-mix(in srgb, #a72e1f 40%, #265ece);
+}
+
+.shoetxt .hover-dist-3 {
+  color: color-mix(in srgb, #a72e1f 15%, #265ece);
+}
 
 /* For .shoetxt-left (red by default), hovering creates a blue radius */
-.shoetxt-left .hover-dist-0 { color: #265ece; }
-.shoetxt-left .hover-dist-1 { color: color-mix(in srgb, #265ece 70%, #a72e1f); }
-.shoetxt-left .hover-dist-2 { color: color-mix(in srgb, #265ece 40%, #a72e1f); }
-.shoetxt-left .hover-dist-3 { color: color-mix(in srgb, #265ece 15%, #a72e1f); }
+.shoetxt-left .hover-dist-0 {
+  color: #265ece;
+}
+
+.shoetxt-left .hover-dist-1 {
+  color: color-mix(in srgb, #265ece 70%, #a72e1f);
+}
+
+.shoetxt-left .hover-dist-2 {
+  color: color-mix(in srgb, #265ece 40%, #a72e1f);
+}
+
+.shoetxt-left .hover-dist-3 {
+  color: color-mix(in srgb, #265ece 15%, #a72e1f);
+}
 
 :root {
   --cf-model-fit-padding: 0.73;
