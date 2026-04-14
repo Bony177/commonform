@@ -1032,9 +1032,9 @@ export default function Home() {
               <ThermalGlitchImage
                 src="/images/butter.png"
                 className="scene2-video"
-                intervalMs={2800}
-                durationMs={520}
-                jitterMs={1200}
+                intervalMs={3200}
+                durationMs={1800}
+                jitterMs={800}
                 speed="var(--butter-glitch-speed, 180ms)"
                 intensityX="var(--butter-glitch-x, 1.5px)"
                 intensityY="var(--butter-glitch-y, 1.2px)"

@@ -256,7 +256,7 @@ body {
   --scene3b-glitch-opacity: 1;
 
   /* Butter Thermal Glitch Controls */
-  --butter-glitch-speed: 6000ms;
+  --butter-glitch-speed: 200ms;
   --butter-glitch-x: 1.5px;
   --butter-glitch-y: 1.2px;
   --butter-glitch-opacity: 0.95;
