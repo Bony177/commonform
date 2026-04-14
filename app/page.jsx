@@ -1029,11 +1029,20 @@ export default function Home() {
           }
         >          <div className="scene-image-wrapper">
             <div className="scene2-video-background">
-              <img
-                className="scene2-video"
+              <ThermalGlitchImage
                 src="/images/butter.png"
-                alt=""
-                aria-hidden="true"
+                className="scene2-video"
+                intervalMs={2800}
+                durationMs={520}
+                jitterMs={1200}
+                speed="var(--butter-glitch-speed, 180ms)"
+                intensityX="var(--butter-glitch-x, 1.5px)"
+                intensityY="var(--butter-glitch-y, 1.2px)"
+                opacity="var(--butter-glitch-opacity, 0.95)"
+                thermalSaturate="var(--butter-thermal-saturate, 3200%)"
+                negativeSaturate="var(--butter-negative-saturate, 230%)"
+                brightness="var(--butter-glitch-brightness, 1.25)"
+                contrast="var(--butter-glitch-contrast, 1.2)"
               />
             </div>
             <div className="scene-image-sticky">

@@ -254,6 +254,16 @@ body {
   --scene3b-glitch-x: 1.5px;
   --scene3b-glitch-y: 1px;
   --scene3b-glitch-opacity: 1;
+
+  /* Butter Thermal Glitch Controls */
+  --butter-glitch-speed: 6000ms;
+  --butter-glitch-x: 1.5px;
+  --butter-glitch-y: 1.2px;
+  --butter-glitch-opacity: 0.95;
+  --butter-thermal-saturate: 3200%;
+  --butter-negative-saturate: 230%;
+  --butter-glitch-brightness: 1.25;
+  --butter-glitch-contrast: 1.2;
 }
 
 .texture-all-text :where([style*="color:#fff"],
