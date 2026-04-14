@@ -30,14 +30,16 @@ const uniforms = {
     value: new THREE.Vector2(window.innerWidth, window.innerHeight)
   },
 
-  /* 🔥 LIGHT MODE PALETTE */
-  uColor1: { value: new THREE.Vector3(1.0, 1.0, 1.0) },   // white base
-  uColor2: { value: new THREE.Vector3(0.3, 0.4, 0.9) },  // light blue tint
-  uColor3: { value: new THREE.Vector3(1.0, 0.85, 0.9) },  // soft red tint
-  uColor4: { value: new THREE.Vector3(0.6, 0.2, 0.3) },   // red accent
+  /* 🔥 CLEAN LIGHT BASE */
+  uColor1: { value: new THREE.Vector3(0.96, 0.96, 0.98) },
 
-  uSpeed: { value: 0.1 },
-  uIntensity: { value: 1.0 }
+  /* 🔵 BLUE */
+  uColor2: { value: new THREE.Vector3(0.2, 0.4, 0.9) },
+
+  /* 🔴 RED */
+  uColor3: { value: new THREE.Vector3(0.85, 0.2, 0.3) },
+
+  uSpeed: { value: 0.08 } // slow = premium
 };
     /* 🧠 GEOMETRY */
     const geometry = new THREE.PlaneGeometry(2, 2);
@@ -52,48 +54,54 @@ const uniforms = {
           gl_Position = vec4(position,1.0);
         }
       `,
-  fragmentShader: `
+ fragmentShader: `
 uniform float uTime;
-uniform vec3 uColor1;
-uniform vec3 uColor2;
-uniform vec3 uColor3;
-uniform vec3 uColor4;
+uniform vec2 uResolution;
+uniform vec3 uColor1; // base (light)
+uniform vec3 uColor2; // blue
+uniform vec3 uColor3; // red
 uniform float uSpeed;
-uniform float uIntensity;
 
 varying vec2 vUv;
 
-/* 🔥 CLEAN PATTERN (NO GRAIN) */
-float pattern(vec2 uv, float t) {
-  float n = 0.0;
-
-  n += sin(uv.x * 3.5 + t) * 0.5;
-  n += sin(uv.y * 5.0 - t * 1.2) * 0.5;
-  n += sin((uv.x + uv.y) * 4.5 + t * 0.6) * 0.5;
-
-  return n / 1.5;
-}
-
 void main(){
+  // Center coordinates and adjust for aspect ratio
   vec2 uv = vUv;
+  float aspect = uResolution.x / uResolution.y;
+  uv.x *= aspect;
+  
+  // Use a slightly faster time factor for visible movement and fading
+  float t = uTime * (uSpeed * 12.0); 
 
-  float t = uTime * uSpeed;
+  vec2 center = vec2(0.5 * aspect, 0.5);
 
-  float p = pattern(uv, t);
+  // Position for Blue Sphere - moving in an organic pattern
+  vec2 posBlue = center + vec2(sin(t * 0.7), cos(t * 0.5)) * 0.35;
+  float distBlue = length(uv - posBlue);
 
-  /* 🔥 SHARPER TRANSITIONS */
-  p = smoothstep(-0.3, 0.7, p);
+  // Position for Red Sphere - moving in an opposite organic pattern
+  vec2 posRed = center + vec2(cos(t * 0.6), sin(t * 0.8)) * 0.35;
+  float distRed = length(uv - posRed);
 
-  vec3 color = mix(uColor1, uColor2, p);
-  color = mix(color, uColor3, smoothstep(0.25,0.7,p));
-  color = mix(color, uColor4, smoothstep(0.65,1.0,p));
+  // Opacity fading (vanishes and reappears)
+  // Maps sine wave from [-1, 1] to a smooth [0, 1] fade
+  float alphaBlue = smoothstep(-0.5, 0.8, sin(t * 0.9)); 
+  float alphaRed  = smoothstep(-0.5, 0.8, cos(t * 1.1));
 
-  /* 🔥 SLIGHT CONTRAST BOOST (CLEAN LOOK) */
-  color = pow(color, vec3(0.9));
+  // Sphere shaping (Soft glowing edges like volumetric orbs)
+  float radius = 0.6; // Large soft orbs
+  float glowBlue = smoothstep(radius, 0.0, distBlue) * alphaBlue;
+  float glowRed  = smoothstep(radius, 0.0, distRed) * alphaRed;
 
-  color *= uIntensity;
+  // Base background color
+  vec3 color = uColor1; 
+  
+  // Blend the spheres over the background (Additive mix but using alpha to retain lightness)
+  // Since we are mixing on a light background, mix() works beautifully
+  color = mix(color, uColor2, glowBlue * 0.85);
+  color = mix(color, uColor3, glowRed * 0.85);
 
-  gl_FragColor = vec4(color,1.0);
+  gl_FragColor = vec4(color, 1.0);
 }
 `
     });
