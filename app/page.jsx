@@ -1283,7 +1283,7 @@ export default function Home() {
 
         <ScrollScene
           background="/images/backgrounds.jpg"
-          height="140vh"
+          height="100vh"
           overlay={
             <div
               style={{
