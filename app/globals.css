@@ -205,6 +205,11 @@ body {
   /* "SHOP NOW" buttons */
   --shop-now-base-blur: 0.0px;
 
+  /* Product copy base blurs */
+  --product-heading-base-blur: 0.7px;
+  --product-description-base-blur: 0.7px;
+  --product-price-base-blur: 0.7px;
+
   /* Scene 2 varsity edge distortion controls */
   --scene2-varsity-distortion-strength: 0.9;
   --scene2-varsity-edge-blur: 0.0px;
@@ -812,6 +817,7 @@ body {
   letter-spacing: var(--product-heading-letter-spacing, 0.08em);
   line-height: 0.9;
   color: #ffffff;
+  filter: blur(var(--product-heading-base-blur, 0px));
 }
 
 .product-copy-description {
@@ -823,6 +829,7 @@ body {
   word-spacing: 0.25em;
   color: #d1d5db;
   max-width: var(--product-description-width, 95%);
+  filter: blur(var(--product-description-base-blur, 0px));
 }
 
 .product-copy-price {
@@ -831,6 +838,7 @@ body {
   letter-spacing: var(--product-price-letter-spacing, 0.05em);
   font-weight: 600;
   color: #ffffff;
+  filter: blur(var(--product-price-base-blur, 0px));
 }
 
 .product-buy-now-btn {
