@@ -262,7 +262,7 @@ function StaggeredHeadingWord({ word, className, startIndex = 0 }) {
           aria-hidden="true"
         >
           <motion.span
-            className="hero-title-letter glitch-text textured"
+            className="hero-title-letter glitch-text"
             data-text={char}
             variants={titleLetter}
             custom={startIndex + index}
