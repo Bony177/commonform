@@ -10,6 +10,7 @@ import LightLayer from "@/components/LightLayer";
 import LiquidBackground from "@/components/LiquidBackround";
 import LiquidBackgroundRed from "@/components/LiquidBackgroundRed";
 import HalftoneFilter from "@/components/HalftoneFilter";
+import Scene2CompositeEffect from "@/components/Scene2CompositeEffect";
 
 
 
@@ -1044,6 +1045,7 @@ export default function Home() {
           overlay={
             <>
               <HalftoneFilter />
+              <Scene2CompositeEffect />
               <div className="scene2-clouds-overlay">
                 <div className="scene2-clouds-sticky">
                   <div className="scene2-clouds-track">
