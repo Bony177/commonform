@@ -369,7 +369,13 @@ function Scene({
   );
 }
 
-function ScrollScene({ background, height = "140vh", children, overlay }) {
+function ScrollScene({
+  background,
+  height = "140vh",
+  children,
+  overlay,
+  topOverlay,
+}) {
   return (
     <section
       style={{
@@ -394,6 +400,31 @@ function ScrollScene({ background, height = "140vh", children, overlay }) {
         </div>
       )}
       <div style={styles.scrollSceneContent}>{children}</div>
+      {topOverlay && (
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            pointerEvents: "none",
+            zIndex: 10,
+          }}
+        >
+          <div
+            style={{
+              position: "sticky",
+              top: 0,
+              height: "100vh",
+              width: "100%",
+              overflow: "hidden",
+            }}
+          >
+            {topOverlay}
+          </div>
+        </div>
+      )}
     </section>
   );
 }
@@ -1306,10 +1337,14 @@ export default function Home() {
                 overflow: "hidden",
               }}
             >
-              <HalftoneFilter opacity={0.4} />
-              <Scene2CompositeEffect opacity={0.25} />
               <LiquidBackground />
             </div>
+          }
+          topOverlay={
+            <>
+              <HalftoneFilter opacity={0.05} />
+              <Scene2CompositeEffect opacity={0.1} />
+            </>
           }
         >
           <div ref={shopTargetRef} style={styles.siteSection}>
