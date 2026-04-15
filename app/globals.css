@@ -810,14 +810,16 @@ body {
   font-family: panchang, "Geist", sans-serif;
   font-size: var(--product-heading-size, 240%);
   letter-spacing: var(--product-heading-letter-spacing, 0.08em);
-  line-height: 1.05;
+  line-height: 0.9;
   color: #ffffff;
 }
 
 .product-copy-description {
   margin-top: var(--product-description-gap, 4%);
+  font-family: humane;;
+  
   font-size: var(--product-description-size, 105%);
-  line-height: 1.65;
+  line-height: 1.25;
   color: #d1d5db;
   max-width: var(--product-description-width, 95%);
 }

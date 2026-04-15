@@ -48,10 +48,10 @@ const modelPaths = [
 const products = [
   {
     id: "cap",
-    name: "Cap",
+    name: "VELOCITY FORM JACKET-RED",
     price: "$59",
     description:
-      "A structured cap with clean paneling and subtle detailing. Designed to feel understated and functional.",
+      "Built around motion and intent, the Velocity Form Jacket is not just a garment but a statement of forward energy. Defined by sharp paneling and high-contrast detailing, it carries a sense of speed even at rest.Crafted using a blend of high-density synthetic leather and reinforced textile panels, the jacket balances durability with flexibility.",
 
     media: [
       {
@@ -71,10 +71,10 @@ const products = [
 
   {
     id: "shirt",
-    name: "Shirt",
+    name: "FORM PULSE-BLACK",
     price: "$74",
     description:
-      "A relaxed-fit shirt built around minimal form. Quiet, neutral, and designed for everyday wear.",
+      "FORM PULSE: Pulse exists in stillness, yet carries an underlying intensity. Rooted in minimalism, it strips away distraction and focuses on balance, proportion, and quiet presence. The design language is restrained — dark tones, subtle text, and structured geometry — creating a piece that feels grounded and deliberate.Constructed from premium-grade composite fabric with a soft internal lining, the jacket offers both comfort and resilience. The exterior maintains a clean, uninterrupted surface, while the inner layers provide insulation and breathability. Reinforced seams and panel joins are engineered to maintain shape over time, ensuring the garment ages without distortion.",
 
     media: [
       {
@@ -94,10 +94,10 @@ const products = [
 
   {
     id: "jacket",
-    name: "Jacket",
+    name: "VELOCITY FORM JACKET-GREEN",
     price: "$129",
     description:
-      "A lightweight jacket with sharp structure and a muted silhouette. Built for layering and longevity.",
+      "Built around motion and intent, the Velocity Form Jacket is not just a garment but a statement of forward energy. Defined by sharp paneling and high-contrast detailing, it carries a sense of speed even at rest.Crafted using a blend of high-density synthetic leather and reinforced textile panels, the jacket balances durability with flexibility. The surface is treated to achieve a subtle matte finish, allowing light to glide rather than reflect harshly. Precision stitching runs across stress points, ensuring longevity while enhancing the visual structure.",
 
     media: [
       {
@@ -117,10 +117,10 @@ const products = [
 
   {
     id: "tshirt-01",
-    name: "T-Shirt 01",
+    name: "FORM GRIDLINE ORANGE",
     price: "$49",
     description:
-      "An oversized T-shirt featuring a composed graphic. Designed to feel like a visual reference rather than a statement.",
+      "FORM GRIDLINE: Gridline is built on structure — a visual and conceptual mapping of order within chaos. The design takes inspiration from grids, coordinates, and controlled systems, translating them into layered panels and segmented detailing. The contrast of tones and directional elements creates a sense of movement guided by logic The jacket is constructed using a hybrid of performance fabric and coated material, designed for both durability and adaptability. Each section serves a purpose — breathable zones for comfort, reinforced areas for strength, and flexible panels for mobility. The color application is carefully calibrated, ensuring depth without overpowering the structure. The finish is slightly textured,",
 
     media: [
       {
@@ -140,10 +140,10 @@ const products = [
 
   {
     id: "tshirt-02",
-    name: "T-Shirt 02",
+    name: "CF-AXIS/01",
     price: "$52",
     description:
-      "A soft cotton T-shirt with subtle contrast detailing. Minimal, calm, and intentionally understated.",
+      "CF-AXIS/01 is built on the idea that structure should not compete with expression, but quietly enable it.",
 
     media: [
       {
@@ -163,10 +163,10 @@ const products = [
 
   {
     id: "tshirt-03",
-    name: "T-Shirt 03",
+    name: "CF-GRND",
     price: "$54",
     description:
-      "A heavyweight T-shirt with a clean silhouette. Designed to sit outside fast trends.",
+      "CF-GRND is built as an extension of structure rather than decoration — a form that exists in balance with movement, weight, and space. The silhouette follows a controlled geometry, where each panel, seam, and material transition is placed with intention, allowing the shoe to feel both grounded and adaptive. There is no excess, no unnecessary noise — only a quiet system of layers working together beneath the surface.The construction prioritizes stability without rigidityY",
 
     media: [
       {
@@ -338,7 +338,13 @@ function ChainOverlay() {
   );
 }
 
-function Scene({ background, height = "200vh", children, sectionRef, overlay }) {
+function Scene({
+  background,
+  height = "200vh",
+  children,
+  sectionRef,
+  overlay,
+}) {
   return (
     <section
       ref={sectionRef}
@@ -366,7 +372,17 @@ function ScrollScene({ background, height = "140vh", children, overlay }) {
       }}
     >
       {overlay && (
-        <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, pointerEvents: "none", zIndex: 0 }}>
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            pointerEvents: "none",
+            zIndex: 0,
+          }}
+        >
           {overlay}
         </div>
       )}
@@ -379,14 +395,14 @@ const HoverWordText = ({ text }) => {
   const [hoveredWordIndex, setHoveredWordIndex] = useState(null);
 
   if (!text) return null;
-  
+
   let wordCounter = 0;
   return text.split(/(\s+)/).map((part, i) => {
     if (/\s+/.test(part)) return <span key={i}>{part}</span>;
-    
+
     const currentIndex = wordCounter++;
     let distanceClass = "";
-    
+
     if (hoveredWordIndex !== null) {
       const dist = Math.abs(hoveredWordIndex - currentIndex);
       if (dist === 0) distanceClass = "hover-dist-0";
@@ -447,7 +463,7 @@ export default function Home() {
     logoX: 1, // 👈 Logo horizontal gap from FORM (rem)
     commonY: -5.5, // 👈 "COMMON" vertical height (rem)
     formY: -9.5, // 👈 "FORM" vertical height (rem)
-    
+
     // MASTER GROUP POSITION (Moves EVERYTHING together)
     groupY: 3.6, // 👈 Move the whole group UP/DOWN (rem)
     groupX: 0, // 👈 Move the whole group LEFT/RIGHT (rem)
@@ -744,14 +760,14 @@ export default function Home() {
             }}
           >
             <span>COMMON FORM</span>
-            <img 
-              src="/images/logo.png" 
-              alt="logo" 
-              style={{ 
-                height: "2.4rem", 
+            <img
+              src="/images/logo.png"
+              alt="logo"
+              style={{
+                height: "2.4rem",
                 width: "auto",
-                filter: "brightness(0) invert(1)" 
-              }} 
+                filter: "brightness(0) invert(1)",
+              }}
             />
           </motion.div>
         </motion.div>
@@ -791,16 +807,18 @@ export default function Home() {
           background="/images/background.jpg"
           height="200vh"
           overlay={
-            <div style={{
-              gridArea: "1 / 1",
-              alignSelf: "start",
-              position: "sticky",
-              top: 0,
-              zIndex: 1,
-              height: "100vh",
-              width: "100%",
-              pointerEvents: "none"
-            }}>
+            <div
+              style={{
+                gridArea: "1 / 1",
+                alignSelf: "start",
+                position: "sticky",
+                top: 0,
+                zIndex: 1,
+                height: "100vh",
+                width: "100%",
+                pointerEvents: "none",
+              }}
+            >
               <FireflyLayer />
               <LightLayer />
             </div>
@@ -1020,8 +1038,18 @@ export default function Home() {
               <div className="scene2-clouds-overlay">
                 <div className="scene2-clouds-sticky">
                   <div className="scene2-clouds-track">
-                    <img src="/images/clouds.png" alt="" aria-hidden="true" className="scene2-cloud-img" />
-                    <img src="/images/clouds.png" alt="" aria-hidden="true" className="scene2-cloud-img" />
+                    <img
+                      src="/images/clouds.png"
+                      alt=""
+                      aria-hidden="true"
+                      className="scene2-cloud-img"
+                    />
+                    <img
+                      src="/images/clouds.png"
+                      alt=""
+                      aria-hidden="true"
+                      className="scene2-cloud-img"
+                    />
                   </div>
                 </div>
               </div>
@@ -1030,7 +1058,9 @@ export default function Home() {
               </div>
             </>
           }
-        >          <div className="scene-image-wrapper">
+        >
+          {" "}
+          <div className="scene-image-wrapper">
             <div className="scene2-video-background">
               <ThermalGlitchImage
                 src="/images/butter.png"
@@ -1148,23 +1178,32 @@ export default function Home() {
           background="/images/bg3.jpg"
           height="200vh"
           overlay={
-            <div style={{
-              gridArea: "1 / 1",
-              alignSelf: "start",
-              position: "sticky",
-              top: 0,
-              zIndex: 1,
-              height: "100vh",
-              width: "100%",
-              pointerEvents: "none"
-            }}>
+            <div
+              style={{
+                gridArea: "1 / 1",
+                alignSelf: "start",
+                position: "sticky",
+                top: 0,
+                zIndex: 1,
+                height: "100vh",
+                width: "100%",
+                pointerEvents: "none",
+              }}
+            >
               <LiquidBackgroundRed />
             </div>
           }
         >
           <div className="scene-image-wrapper">
             <div className="scene-image-sticky">
-              <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none" }}>
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  overflow: "hidden",
+                  pointerEvents: "none",
+                }}
+              >
                 <img
                   src="/images/b1.png"
                   className="scene-image scene3-b1"
@@ -1207,15 +1246,19 @@ export default function Home() {
               />
               <div className="shoename2">CF-GRND</div>
               <div className="shoetxt">
-                <HoverWordText text={`CF-AXIS//01 is built as an extension of structure rather than decoration — a form that exists in balance with movement, weight, and space. The silhouette follows a controlled geometry, where each panel, seam, and material transition is placed with intention, allowing the shoe to feel both grounded and adaptive. There is no excess, no unnecessary noise — only a quiet system of layers working together beneath the surface.The construction prioritizes stability without rigidity,`} />
+                <HoverWordText
+                  text={`CF-GRND is built as an extension of structure rather than decoration — a form that exists in balance with movement, weight, and space. The silhouette follows a controlled geometry, where each panel, seam, and material transition is placed with intention, allowing the shoe to feel both grounded and adaptive. There is no excess, no unnecessary noise — only a quiet system of layers working together beneath the surface.The construction prioritizes stability without rigidity,`}
+                />
               </div>
             </div>
 
             {/* 🔥 SCROLLABLE TEXT (ADD HERE) */}
             <div className="shoetxt-left">
-              <HoverWordText text={`CF-AXIS/01 is built on the idea that structure should not compete with expression, but quietly enable it. Every element exists with intent—nothing added for decoration, nothing removed for effect—resulting in a form that feels grounded, precise, and deliberate. The design draws from the tension between rigidity and movement, where sharp lines meet adaptive flexibility, allowing the piece to respond naturally to the body while maintaining a defined silhouette. Materials are selected not just for durability, but for how they age, how they react to light, and how they carry the identity of the wearer over time. Each panel, seam, and layer works in balance, creating a system where function and aesthetic are inseparable. CF-AXIS/01 does not aim to stand out through excess; instead, it establishes presence through clarity—through proportion, restraint, and confidence. It is designed for motion, for everyday transitions, and for moments where identity is expressed not loudly, but unmistakably. In a space crowded by noise and overstatement, CF-AXIS/01 remains focused, offering a refined interpretation of contemporary form where stability meets evolution, and where design becomes an extension of how you move, exist, and leave a lasting impression.`} />
+              <HoverWordText
+                text={`CF-AXIS/01 is built on the idea that structure should not compete with expression, but quietly enable it. Every element exists with intent—nothing added for decoration, nothing removed for effect—resulting in a form that feels grounded, precise, and deliberate. The design draws from the tension between rigidity and movement, where sharp lines meet adaptive flexibility, allowing the piece to respond naturally to the body while maintaining a defined silhouette. Materials are selected not just for durability, but for how they age, how they react to light, and how they carry the identity of the wearer over time. Each panel, seam, and layer works in balance, creating a system where function and aesthetic are inseparable. CF-AXIS/01 does not aim to stand out through excess; instead, it establishes presence through clarity—through proportion, restraint, and confidence. It is designed for motion, for everyday transitions, and for moments where identity is expressed not loudly, but unmistakably. In a space crowded by noise and overstatement, CF-AXIS/01 remains focused, offering a refined interpretation of contemporary form where stability meets evolution, and where design becomes an extension of how you move, exist, and leave a lasting impression.`}
+              />
             </div>
-            
+
             <div className="scene3-shoe">
               <img
                 src="/images/shoeback.png"
@@ -1238,11 +1281,19 @@ export default function Home() {
           </div>
         </Scene>
 
-        <ScrollScene 
-          background="/images/backgrounds.jpg" 
+        <ScrollScene
+          background="/images/backgrounds.jpg"
           height="140vh"
           overlay={
-            <div style={{ position: "sticky", top: 0, height: "100vh", width: "100%", overflow: "hidden" }}>
+            <div
+              style={{
+                position: "sticky",
+                top: 0,
+                height: "100vh",
+                width: "100%",
+                overflow: "hidden",
+              }}
+            >
               <LiquidBackground />
             </div>
           }
