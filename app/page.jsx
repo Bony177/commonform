@@ -564,8 +564,8 @@ export default function Home() {
   // Logo scale from initial size (29rem) to final size (6rem) - ratio: 6/29 ≈ 0.207
   // Scales from 1 (full size) to 6/29 (final size) as you scroll
   const logoScale = useTransform(heroScroll, [0, 0.25], [1, 4.5 / 7]);
-  const logoOpacity = useTransform(heroScroll, [0.38, 0.48], [0, 1]);
-  const headerLogoX = useTransform(heroScroll, [0.38, 0.55], ["-8rem", "6rem"]);
+  const logoOpacity = useTransform(heroScroll, [0.18, 0.28], [0, 1]);
+  const headerLogoX = "6.5rem"; // Fixed final position
 
   // Header opacity control
   const headerOpacity = useTransform(
@@ -782,7 +782,7 @@ export default function Home() {
               position: "fixed",
               left: 0,
               x: headerLogoX,
-              top: "4%",
+              top: "4.5%",
               y: "-50%",
               fontFamily: "Galgo",
               fontSize: "3.2rem",
