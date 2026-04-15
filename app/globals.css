@@ -12,9 +12,9 @@ body {
 
 @font-face {
   font-family: 'ClashDisplay';
-  src: url('/fonts/ClashDisplay-Bold.woff2') format('woff2'),
-    url('/fonts/ClashDisplay-Bold.woff') format('woff');
-  font-weight: 700;
+  src: url('/fonts/ClashDisplay-Regular.woff2') format('woff2'),
+    url('/fonts/ClashDisplay-Regular.woff') format('woff');
+  font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
@@ -815,17 +815,18 @@ body {
 }
 
 .product-copy-description {
-  margin-top: var(--product-description-gap, 4%);
-  font-family: humane;;
-  
-  font-size: var(--product-description-size, 105%);
-  line-height: 1.25;
+  margin-top: var(--product-description-gap, 2%);
+  font-family: clashdisplay, "Geist", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 200;
+  line-height: 0.8;
+  word-spacing: 0.25em;
   color: #d1d5db;
   max-width: var(--product-description-width, 95%);
 }
 
 .product-copy-price {
-  margin-top: var(--product-price-gap, 6%);
+  margin-top: var(--product-price-gap, 1%);
   font-size: var(--product-price-size, 180%);
   letter-spacing: var(--product-price-letter-spacing, 0.05em);
   font-weight: 600;

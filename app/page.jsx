@@ -74,7 +74,7 @@ const products = [
     name: "FORM PULSE-BLACK",
     price: "$74",
     description:
-      "FORM PULSE: Pulse exists in stillness, yet carries an underlying intensity. Rooted in minimalism, it strips away distraction and focuses on balance, proportion, and quiet presence. The design language is restrained — dark tones, subtle text, and structured geometry — creating a piece that feels grounded and deliberate.Constructed from premium-grade composite fabric with a soft internal lining, the jacket offers both comfort and resilience. The exterior maintains a clean, uninterrupted surface, while the inner layers provide insulation and breathability. Reinforced seams and panel joins are engineered to maintain shape over time, ensuring the garment ages without distortion.",
+      "FORM PULSE: Pulse exists in stillness, yet carries an underlying intensity. Rooted in minimalism, it strips away distraction and focuses on balance, proportion, and quiet presence. The design language is restrained — dark tones, subtle text, and structured geometry — creating a piece that feels grounded and deliberate.Constructed from premium-grade composite fabric with a soft internal lining,",
 
     media: [
       {
@@ -97,7 +97,7 @@ const products = [
     name: "VELOCITY FORM JACKET-GREEN",
     price: "$129",
     description:
-      "Built around motion and intent, the Velocity Form Jacket is not just a garment but a statement of forward energy. Defined by sharp paneling and high-contrast detailing, it carries a sense of speed even at rest.Crafted using a blend of high-density synthetic leather and reinforced textile panels, the jacket balances durability with flexibility. The surface is treated to achieve a subtle matte finish, allowing light to glide rather than reflect harshly. Precision stitching runs across stress points, ensuring longevity while enhancing the visual structure.",
+      "Built around motion and intent, the Velocity Form Jacket is not just a garment but a statement of forward energy. Defined by sharp paneling and high-contrast detailing, it carries a sense of speed even at rest.Crafted using a blend of high-density synthetic leather and reinforced textile panels, the jacket balances durability with flexibility.",
 
     media: [
       {
@@ -120,7 +120,7 @@ const products = [
     name: "FORM GRIDLINE ORANGE",
     price: "$49",
     description:
-      "FORM GRIDLINE: Gridline is built on structure — a visual and conceptual mapping of order within chaos. The design takes inspiration from grids, coordinates, and controlled systems, translating them into layered panels and segmented detailing. The contrast of tones and directional elements creates a sense of movement guided by logic The jacket is constructed using a hybrid of performance fabric and coated material, designed for both durability and adaptability. Each section serves a purpose — breathable zones for comfort, reinforced areas for strength, and flexible panels for mobility. The color application is carefully calibrated, ensuring depth without overpowering the structure. The finish is slightly textured,",
+      "FORM GRIDLINE: Gridline is built on structure — a visual and conceptual mapping of order within chaos. The design takes inspiration from grids, coordinates, and controlled systems, translating them into layered panels and segmented detailing. The contrast of tones and directional elements creates a sense of movement guided by logic The jacket is constructed using a hybrid of performance fabric and coated material,",
 
     media: [
       {
@@ -166,7 +166,7 @@ const products = [
     name: "CF-GRND",
     price: "$54",
     description:
-      "CF-GRND is built as an extension of structure rather than decoration — a form that exists in balance with movement, weight, and space. The silhouette follows a controlled geometry, where each panel, seam, and material transition is placed with intention, allowing the shoe to feel both grounded and adaptive. There is no excess, no unnecessary noise — only a quiet system of layers working together beneath the surface.The construction prioritizes stability without rigidityY",
+      "CF-GRND is built as an extension of structure rather than decoration — a form that exists in balance with movement, weight, and space. The silhouette follows a controlled geometry, where each panel, seam, and material transition is placed with intention, allowing the shoe to feel both grounded and adaptive. There is no excess, no unnecessary noise",
 
     media: [
       {
