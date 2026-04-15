@@ -8,7 +8,6 @@
   z-index: 10005;
   overflow: hidden;
   mix-blend-mode: var(--halftone-blend-mode, multiply);
-  opacity: var(--halftone-opacity, 0.85);
   
   /* Internal defaults if not set globally */
   --ht-size: var(--halftone-size, 6px);

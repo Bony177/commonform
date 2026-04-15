@@ -5,7 +5,8 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 10002; /* Higher than the images and glitch layers */
+  z-index: 10002;
+  /* Higher than the images and glitch layers */
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -40,8 +41,17 @@
 
 /* Premium subtle drift for the halftone dots */
 @keyframes halftoneDrift {
-  0%, 100% { --halftone-scatter: 0.12; --halftone-radius: 3.2; }
-  50% { --halftone-scatter: 0.18; --halftone-radius: 2.8; }
+
+  0%,
+  100% {
+    --halftone-scatter: 0.12;
+    --halftone-radius: 3.2;
+  }
+
+  50% {
+    --halftone-scatter: 0.18;
+    --halftone-radius: 2.8;
+  }
 }
 
 .scene2-halftone-overlay {
@@ -52,8 +62,7 @@
   aspect-ratio: auto;
   position: absolute;
   display: block;
-  opacity: 0.85;
+  opacity: 0.95;
   mix-blend-mode: screen;
   animation: halftoneDrift 8s ease-in-out infinite;
 }
-

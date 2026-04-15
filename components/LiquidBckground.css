@@ -4,6 +4,6 @@
     z-index: 0;
     /* behind everything */
     pointer-events: none;
-    opacity: 0.3;
+    opacity: 0.1;
     /* VERY IMPORTANT → subtle */
 }

@@ -13,7 +13,7 @@ export default function Scene2CompositeEffect({
   nIntensity = 0.5,
   sIntensity = 0.15,
   sCount = 1024,
-  opacity = 0.3,
+  opacity = 0.2,
   grayscale = false
 }) {
   const mountRef = useRef(null);

@@ -409,7 +409,7 @@ function ScrollScene({
             right: 0,
             bottom: 0,
             pointerEvents: "none",
-            zIndex: 10,
+            zIndex: 100,
           }}
         >
           <div
@@ -1343,7 +1343,7 @@ export default function Home() {
           topOverlay={
             <>
               <HalftoneFilter opacity={0.05} />
-              <Scene2CompositeEffect opacity={0.1} />
+              <Scene2CompositeEffect opacity={0.3} />
             </>
           }
         >

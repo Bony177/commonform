@@ -8,11 +8,11 @@ import styles from "./HalftoneFilter.module.css";
  * using CSS patterns and blending modes. This approach ensures that the underlying
  * DOM layout and element positions are never affected.
  */
-export default function HalftoneFilter({ opacity = 0.85 }) {
+export default function HalftoneFilter({ opacity = 0.35 }) {
   return (
     <div 
       className={styles.container} 
-      style={{ "--halftone-opacity": opacity }}
+      style={{ opacity: opacity }}
       aria-hidden="true"
     >
       {/* Cyan Layer */}
