@@ -49,6 +49,7 @@ const products = [
   {
     id: "cap",
     name: "Cap",
+    price: "$59",
     description:
       "A structured cap with clean paneling and subtle detailing. Designed to feel understated and functional.",
 
@@ -71,6 +72,7 @@ const products = [
   {
     id: "shirt",
     name: "Shirt",
+    price: "$74",
     description:
       "A relaxed-fit shirt built around minimal form. Quiet, neutral, and designed for everyday wear.",
 
@@ -93,6 +95,7 @@ const products = [
   {
     id: "jacket",
     name: "Jacket",
+    price: "$129",
     description:
       "A lightweight jacket with sharp structure and a muted silhouette. Built for layering and longevity.",
 
@@ -115,6 +118,7 @@ const products = [
   {
     id: "tshirt-01",
     name: "T-Shirt 01",
+    price: "$49",
     description:
       "An oversized T-shirt featuring a composed graphic. Designed to feel like a visual reference rather than a statement.",
 
@@ -137,6 +141,7 @@ const products = [
   {
     id: "tshirt-02",
     name: "T-Shirt 02",
+    price: "$52",
     description:
       "A soft cotton T-shirt with subtle contrast detailing. Minimal, calm, and intentionally understated.",
 
@@ -159,6 +164,7 @@ const products = [
   {
     id: "tshirt-03",
     name: "T-Shirt 03",
+    price: "$54",
     description:
       "A heavyweight T-shirt with a clean silhouette. Designed to sit outside fast trends.",
 
@@ -1243,9 +1249,20 @@ export default function Home() {
         >
           <div ref={shopTargetRef} style={styles.siteSection}>
             <div style={styles.container}>
-              {/* Left - Description */}
+              {/* Left - Product Info */}
               <div style={styles.descriptionSection}>
-                <p style={styles.description}>{activeProduct.description}</p>
+                <h3 className="product-copy-common product-copy-heading">
+                  {activeProduct.name}
+                </h3>
+                <p className="product-copy-common product-copy-description">
+                  {activeProduct.description}
+                </p>
+                <p className="product-copy-common product-copy-price">
+                  {activeProduct.price}
+                </p>
+                <button type="button" className="product-buy-now-btn">
+                  BUY NOW
+                </button>
               </div>
 
               {/* Center - Product media */}
@@ -1385,13 +1402,18 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     gap: "1.5rem",
-    textAlign: "center",
-  },
-  description: {
-    fontSize: "0.95rem",
-    lineHeight: "1.6",
-    color: "#d1d5db",
-    margin: 0,
+    textAlign: "left",
+    alignItems: "flex-start",
+    position: "relative",
+    left: "0%",
+    top: "0%",
+    "--product-copy-left": "0%",
+    "--product-copy-top": "0%",
+    "--product-buy-btn-left": "0%",
+    "--product-buy-btn-top": "0%",
+    "--product-heading-size": "240%",
+    "--product-description-size": "105%",
+    "--product-price-size": "180%",
   },
   carouselSection: {
     display: "flex",

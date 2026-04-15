@@ -797,6 +797,88 @@ body {
   }
 }
 
+/* Product info panel controls */
+.product-copy-common {
+  position: relative;
+  left: var(--product-copy-left, 0%);
+  top: var(--product-copy-top, 0%);
+  text-align: left;
+  margin: 0;
+}
+
+.product-copy-heading {
+  font-family: panchang, "Geist", sans-serif;
+  font-size: var(--product-heading-size, 240%);
+  letter-spacing: var(--product-heading-letter-spacing, 0.08em);
+  line-height: 1.05;
+  color: #ffffff;
+}
+
+.product-copy-description {
+  margin-top: var(--product-description-gap, 4%);
+  font-size: var(--product-description-size, 105%);
+  line-height: 1.65;
+  color: #d1d5db;
+  max-width: var(--product-description-width, 95%);
+}
+
+.product-copy-price {
+  margin-top: var(--product-price-gap, 6%);
+  font-size: var(--product-price-size, 180%);
+  letter-spacing: var(--product-price-letter-spacing, 0.05em);
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.product-buy-now-btn {
+  position: relative;
+  left: var(--product-buy-btn-left, 0%);
+  top: var(--product-buy-btn-top, 0%);
+  margin-top: var(--product-buy-btn-gap, 6%);
+  appearance: none;
+  border: 1px solid #111111;
+  background: #ffffff;
+  color: #111111;
+  font-family: panchang, "Geist", sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.24rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding: 0.85rem 1.25rem;
+  cursor: pointer;
+  transition:
+    transform 0.25s ease,
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.product-buy-now-btn:hover {
+  transform: translateY(-2px);
+  background: #f2f2f2;
+}
+
+@media (max-width: 900px) {
+  .product-copy-heading {
+    font-size: var(--product-heading-size-mobile, 180%);
+  }
+
+  .product-copy-description {
+    font-size: var(--product-description-size-mobile, 96%);
+    max-width: 100%;
+  }
+
+  .product-copy-price {
+    font-size: var(--product-price-size-mobile, 145%);
+  }
+
+  .product-buy-now-btn {
+    font-size: 0.64rem;
+    letter-spacing: 0.16rem;
+    padding: 0.62rem 0.9rem;
+  }
+}
+
 
 /* blue screen lines*/
 .scene2-text-container {
