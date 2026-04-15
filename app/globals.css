@@ -10,6 +10,19 @@ body {
   box-sizing: border-box;
 }
 
+:root {
+  /* Halftone Effect Controls */
+  --halftone-opacity: 0.4;
+  /* Overall visibility (0 to 1) */
+  --halftone-size: 3px;
+  /* Distance between dots (smaller = more circles) */
+  --halftone-dot-radius: 0.4px;
+  /* Size of individual dots */
+  --halftone-blend-mode: multiply;
+  /* Try 'screen' or 'overlay' for different looks */
+}
+
+
 @font-face {
   font-family: 'ClashDisplay';
   src: url('/fonts/ClashDisplay-Regular.woff2') format('woff2'),

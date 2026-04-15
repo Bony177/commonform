@@ -9,6 +9,12 @@ import FireflyLayer from "@/components/FireFlyLayout";
 import LightLayer from "@/components/LightLayer";
 import LiquidBackground from "@/components/LiquidBackround";
 import LiquidBackgroundRed from "@/components/LiquidBackgroundRed";
+import HalftoneFilter from "@/components/HalftoneFilter";
+
+
+
+
+
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Bold, Variable } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -1033,8 +1039,11 @@ export default function Home() {
           sectionRef={scene2Ref}
           background="/images/bg2.jpg"
           height="200vh"
+
+
           overlay={
             <>
+              <HalftoneFilter />
               <div className="scene2-clouds-overlay">
                 <div className="scene2-clouds-sticky">
                   <div className="scene2-clouds-track">
@@ -1058,8 +1067,8 @@ export default function Home() {
               </div>
             </>
           }
+
         >
-          {" "}
           <div className="scene-image-wrapper">
             <div className="scene2-video-background">
               <ThermalGlitchImage
@@ -1105,6 +1114,8 @@ export default function Home() {
               </div>
             </div>
           </div>
+
+
           <div className="scene-shop-overlay">
             <div className="scene-shop-sticky">
               <button

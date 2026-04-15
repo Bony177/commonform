@@ -1,0 +1,67 @@
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10005;
+  overflow: hidden;
+  mix-blend-mode: var(--halftone-blend-mode, multiply);
+  opacity: var(--halftone-opacity, 0.85);
+  
+  /* Internal defaults if not set globally */
+  --ht-size: var(--halftone-size, 6px);
+  --ht-dot: var(--halftone-dot-radius, 1.2px);
+  --ht-gap: calc(var(--ht-dot) + 0.3px);
+}
+
+.layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: var(--ht-size) var(--ht-size);
+  background-repeat: repeat;
+}
+
+.cyan {
+  background-image: radial-gradient(circle, #00ffff var(--ht-dot), transparent var(--ht-gap));
+  background-position: 0 0;
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+}
+
+.magenta {
+  background-image: radial-gradient(circle, #ff00ff var(--ht-dot), transparent var(--ht-gap));
+  background-position: calc(var(--ht-size) / 3) calc(var(--ht-size) / 3);
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+}
+
+.yellow {
+  background-image: radial-gradient(circle, #ffff00 var(--ht-dot), transparent var(--ht-gap));
+  background-position: calc(var(--ht-size) / 1.5) calc(var(--ht-size) / 6);
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+}
+
+.black {
+  background-image: radial-gradient(circle, #000000 calc(var(--ht-dot) * 0.7), transparent calc(var(--ht-gap) * 0.8));
+  background-position: calc(var(--ht-size) / 6) calc(var(--ht-size) / 1.5);
+  mix-blend-mode: multiply;
+  opacity: 0.4;
+}
+
+
+/* Premium subtle drift to keep it alive */
+@keyframes patternDrift {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(1px, 1px); }
+  100% { transform: translate(0, 0); }
+}
+
+.container:hover .layer {
+  animation: patternDrift 8s ease-in-out infinite;
+}

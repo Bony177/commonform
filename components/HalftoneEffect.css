@@ -1,0 +1,59 @@
+.halftone-canvas-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10002; /* Higher than the images and glitch layers */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Specific overlay for Scene 2 to match scene-image-2 positioning */
+.scene2-halftone-overlay {
+  right: 0%;
+  top: 79%;
+  height: 20vh;
+  width: auto;
+  aspect-ratio: auto;
+  position: absolute;
+  display: block;
+}
+
+.scene2-halftone-overlay canvas {
+  height: 100% !important;
+  width: auto !important;
+}
+
+
+:root {
+  --halftone-radius: 4;
+  --halftone-scatter: 0.15;
+  --halftone-blend: 1;
+  --halftone-rotate-r: 15;
+  --halftone-rotate-g: 75;
+  --halftone-rotate-b: 0;
+}
+
+/* Premium subtle drift for the halftone dots */
+@keyframes halftoneDrift {
+  0%, 100% { --halftone-scatter: 0.12; --halftone-radius: 3.2; }
+  50% { --halftone-scatter: 0.18; --halftone-radius: 2.8; }
+}
+
+.scene2-halftone-overlay {
+  right: 0%;
+  top: 79%;
+  height: 20vh;
+  width: auto;
+  aspect-ratio: auto;
+  position: absolute;
+  display: block;
+  opacity: 0.85;
+  mix-blend-mode: screen;
+  animation: halftoneDrift 8s ease-in-out infinite;
+}
+
