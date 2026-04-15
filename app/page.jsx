@@ -788,7 +788,7 @@ export default function Home() {
               fontSize: "3.2rem",
               letterSpacing: "0.22rem",
               color: "#fcf4f4",
-              fontWeight: 600,
+              fontWeight: 300,
               opacity: logoOpacity,
               transformOrigin: "left center",
               whiteSpace: "nowrap",
@@ -1450,7 +1450,7 @@ const styles = {
     backgroundColor: "transparent",
   },
   headerInner: {
-    padding: "0.1rem 3rem",
+    padding: "0.1rem 4.5rem",
     display: "grid",
     gridTemplateColumns: "1fr auto 1fr",
     alignItems: "center",
@@ -1504,6 +1504,7 @@ const styles = {
     gap: "1.5rem",
     textAlign: "left",
     alignItems: "flex-start",
+    marginLeft: "-2.1rem",
     position: "relative",
     left: "0%",
     top: "0%",
@@ -1527,6 +1528,7 @@ const styles = {
     gap: "1.5rem",
   },
   dropTitle: {
+    fontFamily: "panchang",
     fontSize: "1.5rem",
     fontWeight: "bold",
     margin: 0,
