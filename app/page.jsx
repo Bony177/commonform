@@ -1069,7 +1069,6 @@ export default function Home() {
               </div>
             </>
           }
-
         >
           <div className="scene-image-wrapper">
             <div className="scene2-video-background">
@@ -1307,6 +1306,8 @@ export default function Home() {
                 overflow: "hidden",
               }}
             >
+              <HalftoneFilter opacity={0.4} />
+              <Scene2CompositeEffect opacity={0.25} />
               <LiquidBackground />
             </div>
           }
