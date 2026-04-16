@@ -717,7 +717,7 @@ export default function Home() {
 
     const startY = window.scrollY;
     const targetY = Math.max(
-      shopTargetRef.current.getBoundingClientRect().top + window.scrollY - 20,
+      shopTargetRef.current.getBoundingClientRect().top + window.scrollY,
       0,
     );
     const distance = targetY - startY;
@@ -1775,7 +1775,7 @@ const styles = {
   },
 
   siteSection: {
-    paddingTop: "6rem",
+    paddingTop: "0rem",
   },
 
   commonText: {
