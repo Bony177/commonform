@@ -773,19 +773,21 @@ export default function Home() {
             WebkitBackdropFilter: "none",
             display: "flex",
             alignItems: "center",
-            justifyContent: "center",
+            justifyContent: "flex-end",
+            paddingRight: "3.9rem",
             pointerEvents: "none",
           }}
         >
           {/* HANDSHAKE OVERLAY */}
-          <div
+          <motion.div
             style={{
               display: "flex",
               alignItems: "center",
-              justifyContent: "center",
-              opacity: 0.7, // Adjust opacity here
+              justifyContent: "flex-end",
+              opacity: logoOpacity,
               width: "auto",
               height: "100%",
+              paddingRight: "6rem", // Padding to adjust position
               transform: "translateX(0px)", // Adjust position here
             }}
           >
@@ -808,7 +810,7 @@ export default function Home() {
             >
               <source src="/images/handshake.webm" type="video/webm" />
             </video>
-          </div>
+          </motion.div>
 
           <motion.div
             style={{
