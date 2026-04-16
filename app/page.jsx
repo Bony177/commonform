@@ -489,6 +489,11 @@ export default function Home() {
     offset: ["start 0.5%", "end start"],
   });
 
+  const { scrollYProgress: shopScroll } = useScroll({
+    target: shopTargetRef,
+    offset: ["start end", "start 0.5%"],
+  });
+
   // Hero logo morph settings (tweak these values)
   const HERO_LOGO_TWEAK = {
     widthRem: 18.5,
@@ -565,6 +570,7 @@ export default function Home() {
   // Scales from 1 (full size) to 6/29 (final size) as you scroll
   const logoScale = useTransform(heroScroll, [0, 0.25], [1, 4.5 / 7]);
   const logoOpacity = useTransform(heroScroll, [0.18, 0.28], [0, 1]);
+  const handshakeVideoOpacity = useTransform(shopScroll, [0, 1], [0, 0.75]); // Added for shop section restriction
   const headerLogoX = "6.5rem"; // Fixed final position
 
   // Header opacity control
@@ -784,7 +790,7 @@ export default function Home() {
               display: "flex",
               alignItems: "center",
               justifyContent: "flex-end",
-              opacity: logoOpacity,
+              opacity: handshakeVideoOpacity,
               width: "auto",
               height: "100%",
               paddingRight: "6rem", // Padding to adjust position
