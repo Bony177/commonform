@@ -47,7 +47,7 @@ const modelPaths = [
   "/3d/jacket red.glb",
   "/3d/black varsity jacket 3d model (1).glb",
   "/3d/racing jacket 3d model.glb",
-  "/3d/racing jacket 3d model.glb",
+  "/3d/orange.glb",
   "/3d/black sneaker 3d model.glb",
   "/3d/combat boot 3d model.glb",
 ];
@@ -132,15 +132,15 @@ const products = [
     media: [
       {
         type: "image",
-        src: "/images/leather racing jacket 1.png",
+        src: "/images/orange1.png",
       },
       {
         type: "image",
-        src: "/images/leather racing jacket 2.png",
+        src: "/images/orange2.png",
       },
       {
         type: "image",
-        src: "/images/leather racing jacket 3.png",
+        src: "/images/orange3.png",
       },
     ],
   },
@@ -793,7 +793,7 @@ export default function Home() {
               opacity: handshakeVideoOpacity,
               width: "auto",
               height: "100%",
-              paddingRight: "6.2rem", // Padding to adjust position
+              paddingRight: "5.4rem", // Padding to adjust position
               transform: "translateX(0px)", // Adjust position here
             }}
           >
