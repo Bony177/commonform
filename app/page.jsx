@@ -797,6 +797,7 @@ export default function Home() {
               transform: "translateX(0px)", // Adjust position here
             }}
           >
+            <span className="handshake-archive-text">ARCHIVE</span>
             <video
               autoPlay
               loop
