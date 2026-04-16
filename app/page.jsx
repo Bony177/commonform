@@ -894,7 +894,7 @@ export default function Home() {
                 alignSelf: "start",
                 position: "sticky",
                 top: 0,
-                zIndex: 1,
+                zIndex: 10,
                 height: "100vh",
                 width: "100%",
                 pointerEvents: "none",
