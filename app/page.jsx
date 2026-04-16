@@ -795,13 +795,15 @@ export default function Home() {
               muted
               playsInline
               style={{
-                height: "4.2rem", // Adjust size here
-                width: "auto",
-                mixBlendMode: "lighten", // Cinematic blend
-                filter: "brightness(1.8) contrast(1.1)", // Adjust look here
+                height: "4.2rem", // Base height
+                width: "auto", // Keep auto or set specific width to stretch
+                transform: "scaleX(1.4) scaleY(1.0)", // STRETCH CONTROLS: Adjust scaleX/scaleY here
+                mixBlendMode: "lighten",
+                filter: "brightness(1.8) contrast(1.1)",
+                objectFit: "cover", // Ensures video fills the specified scale properly
               }}
               onLoadedMetadata={(e) => {
-                e.target.playbackRate = 0.8; // Adjust speed here (default 1.0)
+                e.target.playbackRate = 0.8;
               }}
             >
               <source src="/images/handshake.webm" type="video/webm" />
