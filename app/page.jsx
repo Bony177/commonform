@@ -570,7 +570,7 @@ export default function Home() {
   // Scales from 1 (full size) to 6/29 (final size) as you scroll
   const logoScale = useTransform(heroScroll, [0, 0.25], [1, 4.5 / 7]);
   const logoOpacity = useTransform(heroScroll, [0.18, 0.28], [0, 1]);
-  const handshakeVideoOpacity = useTransform(shopScroll, [0, 1], [0, 0.75]); // Added for shop section restriction
+  const handshakeVideoOpacity = useTransform(shopScroll, [0.9, 1], [0, 1]); // Added for shop section restriction
   const headerLogoX = "6.5rem"; // Fixed final position
 
   // Header opacity control
@@ -793,7 +793,7 @@ export default function Home() {
               opacity: handshakeVideoOpacity,
               width: "auto",
               height: "100%",
-              paddingRight: "6rem", // Padding to adjust position
+              paddingRight: "6.2rem", // Padding to adjust position
               transform: "translateX(0px)", // Adjust position here
             }}
           >
@@ -804,9 +804,10 @@ export default function Home() {
               muted
               playsInline
               style={{
+                paddingRight: "0.6rem",
                 height: "4.2rem", // Base height
                 width: "auto", // Keep auto or set specific width to stretch
-                transform: "scaleX(1.4) scaleY(1.0)", // STRETCH CONTROLS: Adjust scaleX/scaleY here
+                transform: "scaleX(1.3) scaleY(1.0)", // STRETCH CONTROLS: Adjust scaleX/scaleY here
                 mixBlendMode: "lighten",
                 filter: "brightness(1.8) contrast(1.1)",
                 objectFit: "cover", // Ensures video fills the specified scale properly

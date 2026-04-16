@@ -26,7 +26,7 @@ body {
   --handshake-archive-letter-spacing: 0.1rem;
   --handshake-archive-font-family: 'clashdisplay';
   --handshake-archive-color: #ffffff;
-  --handshake-archive-margin: 0 2rem;
+  --handshake-archive-margin: 0 2.0rem;
   --handshake-archive-opacity: 1;
   --handshake-archive-font-weight: 800;
 }
