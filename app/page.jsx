@@ -44,9 +44,9 @@ const michroma = Michroma({
   weight: "400", // only one weight available
 });
 const modelPaths = [
-  "/3d/black varsity jacket 3d model (1).glb",
-  "/3d/leather racing jacket 3d model.glb",
   "/3d/jacket red.glb",
+  "/3d/black varsity jacket 3d model (1).glb",
+  "/3d/racing jacket 3d model.glb",
   "/3d/racing jacket 3d model.glb",
   "/3d/black sneaker 3d model.glb",
   "/3d/combat boot 3d model.glb",
@@ -63,15 +63,15 @@ const products = [
     media: [
       {
         type: "image",
-        src: "/images/black varsity jacket 1.png",
+        src: "/images/jacket red 1.png",
       },
       {
         type: "image",
-        src: "/images/black varsity jacket 2.png",
+        src: "/images/jacketred2.png",
       },
       {
         type: "image",
-        src: "/images/black varsity jacket 3.png",
+        src: "/images/jacketred3.png",
       },
     ],
   },
@@ -86,15 +86,15 @@ const products = [
     media: [
       {
         type: "image",
-        src: "/images/jacket red 1.png",
+        src: "/images/black varsity jacket 1.png",
       },
       {
         type: "image",
-        src: "/images/jacketred2.png",
+        src: "/images/black varsity jacket 2.png",
       },
       {
         type: "image",
-        src: "/images/jacketred3.png",
+        src: "/images/black varsity jacket 3.png",
       },
     ],
   },
