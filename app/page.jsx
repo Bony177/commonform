@@ -1381,6 +1381,7 @@ export default function Home() {
               }}
             >
               <LiquidBackground />
+              <div className="shop-light-source" />
             </div>
           }
           topOverlay={

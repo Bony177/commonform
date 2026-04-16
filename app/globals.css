@@ -291,6 +291,15 @@ body {
   --butter-negative-saturate: 230%;
   --butter-glitch-brightness: 1.25;
   --butter-glitch-contrast: 1.2;
+
+  /* Shop Light Source Controls */
+  --shop-light-color: rgba(255, 255, 255, 0.45);
+  --shop-light-size: 400px;
+  --shop-light-opacity: 0.5;
+  --shop-light-blur: 80px;
+  --shop-light-top: 45%;
+  --shop-light-left: 50%;
+  --shop-light-z-index: 1;
 }
 
 .texture-all-text :where([style*="color:#fff"],
@@ -771,6 +780,21 @@ body {
     background-color 0.25s ease,
     color 0.25s ease;
   filter: blur(var(--shop-now-base-blur));
+}
+
+.shop-light-source {
+  position: absolute;
+  top: var(--shop-light-top);
+  left: var(--shop-light-left);
+  transform: translate(-50%, -50%);
+  width: var(--shop-light-size);
+  height: var(--shop-light-size);
+  background: radial-gradient(circle, var(--shop-light-color) 0%, transparent 70%);
+  filter: blur(var(--shop-light-blur));
+  opacity: var(--shop-light-opacity);
+  pointer-events: none;
+  z-index: var(--shop-light-z-index);
+  will-change: transform, opacity;
 }
 
 .shop-now-btn:hover {
