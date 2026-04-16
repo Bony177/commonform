@@ -773,10 +773,41 @@ export default function Home() {
             WebkitBackdropFilter: "none",
             display: "flex",
             alignItems: "center",
-
+            justifyContent: "center",
             pointerEvents: "none",
           }}
         >
+          {/* HANDSHAKE OVERLAY */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              opacity: 0.7, // Adjust opacity here
+              width: "auto",
+              height: "100%",
+              transform: "translateX(0px)", // Adjust position here
+            }}
+          >
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              style={{
+                height: "4.2rem", // Adjust size here
+                width: "auto",
+                mixBlendMode: "lighten", // Cinematic blend
+                filter: "brightness(1.8) contrast(1.1)", // Adjust look here
+              }}
+              onLoadedMetadata={(e) => {
+                e.target.playbackRate = 0.8; // Adjust speed here (default 1.0)
+              }}
+            >
+              <source src="/images/handshake.webm" type="video/webm" />
+            </video>
+          </div>
+
           <motion.div
             style={{
               position: "fixed",
