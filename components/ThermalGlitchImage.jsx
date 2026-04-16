@@ -25,6 +25,8 @@ export default function ThermalGlitchImage({
   negativeSaturate = "230%",
   brightness = 1.25,
   contrast = 1.2,
+  showThermal = true,
+  showNegative = true,
 }) {
   const [isActive, setIsActive] = useState(false);
 
@@ -81,20 +83,24 @@ export default function ThermalGlitchImage({
         className={`${className}`.trim()}
         style={dynamicStyles}
       />
-      <img
-        src={src}
-        alt=""
-        aria-hidden="true"
-        className={`${className} ${styles.imageLayer} ${styles.thermal} ${activeClass}`.trim()}
-        style={dynamicStyles}
-      />
-      <img
-        src={src}
-        alt=""
-        aria-hidden="true"
-        className={`${className} ${styles.imageLayer} ${styles.negative} ${activeClass}`.trim()}
-        style={dynamicStyles}
-      />
+      {showThermal && (
+        <img
+          src={src}
+          alt=""
+          aria-hidden="true"
+          className={`${className} ${styles.imageLayer} ${styles.thermal} ${activeClass}`.trim()}
+          style={dynamicStyles}
+        />
+      )}
+      {showNegative && (
+        <img
+          src={src}
+          alt=""
+          aria-hidden="true"
+          className={`${className} ${styles.imageLayer} ${styles.negative} ${activeClass}`.trim()}
+          style={dynamicStyles}
+        />
+      )}
     </>
   );
 }

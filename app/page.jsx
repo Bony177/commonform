@@ -1160,6 +1160,8 @@ export default function Home() {
                 negativeSaturate="var(--butter-negative-saturate, 230%)"
                 brightness="var(--butter-glitch-brightness, 1.25)"
                 contrast="var(--butter-glitch-contrast, 1.2)"
+                showThermal={false}
+                showNegative={false}
               />
             </div>
             <div className="scene-image-sticky">
