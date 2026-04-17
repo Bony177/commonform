@@ -1295,7 +1295,8 @@ export default function Home() {
               data-text={"FORM\nVARSITY"}
               variants={titleContainer}
               initial="hidden"
-              animate="visible"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
             >
               <span className="scene2-varsity-word-line">
                 <StaggeredHeadingWord
