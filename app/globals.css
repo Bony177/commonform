@@ -1003,6 +1003,27 @@ body {
   text-shadow:
     0 0 calc(2px * var(--scene2-varsity-distortion-strength)) rgba(203, 46, 7, var(--scene2-varsity-glow)),
     0 0 calc(7px * var(--scene2-varsity-distortion-strength)) rgba(203, 46, 7, calc(var(--scene2-varsity-glow) * 0.75));
+  white-space: pre-line;
+}
+
+.scene2-varsity-word-line {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.scene2-varsity-word {
+  display: inline-block;
+}
+
+.scene2-varsity-word .glitch-text {
+  animation: none !important;
+  filter: none !important;
+}
+
+.scene2-varsity-word .glitch-text::after {
+  animation: none !important;
+  opacity: 0 !important;
+  filter: none !important;
 }
 
 .scene2-varsity-distort::before,

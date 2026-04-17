@@ -235,7 +235,9 @@ const manrope = Manrope({
 const titleContainer = {
   hidden: {},
   visible: {
-    transition: {},
+    transition: {
+      staggerChildren: 0.04,
+    },
   },
 };
 
@@ -248,8 +250,8 @@ const titleLetter = {
     y: "0%",
     opacity: 1,
     transition: {
-      duration: 1,
-      delay: 0.12 + index * 0.04,
+      duration: 2,
+      delay: 0.12 + index * 0.08,
       ease: [0.22, 1, 0.36, 1], // luxury easing
     },
   }),
@@ -295,7 +297,6 @@ const SCENE2_ANIMATION_CONFIG = {
   fromX: 60, // Distance from right
   fromScale: 0.75,
 };
-
 
 const HERO_MANIFESTO_LINE_1 = "A STRUCTURE DISGUISED AS CLOTHING";
 
@@ -1289,12 +1290,29 @@ export default function Home() {
             </div>
           </div>
           <div className="scene2-text-container">
-            <p
+            <motion.p
               className="scene2-line scene2-line-1 scene2-varsity-distort"
-              data-text="FORM VARSITY"
+              data-text={"FORM\nVARSITY"}
+              variants={titleContainer}
+              initial="hidden"
+              animate="visible"
             >
-              FORM VARSITY
-            </p>
+              <span className="scene2-varsity-word-line">
+                <StaggeredHeadingWord
+                  word="FORM"
+                  className="scene2-varsity-word"
+                  startIndex={0}
+                />
+              </span>
+              <br />
+              <span className="scene2-varsity-word-line">
+                <StaggeredHeadingWord
+                  word="VARSITY"
+                  className="scene2-varsity-word"
+                  startIndex={4}
+                />
+              </span>
+            </motion.p>
 
             <motion.p
               className="scene2-line scene2-line-2"
