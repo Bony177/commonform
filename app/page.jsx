@@ -1528,7 +1528,10 @@ export default function Home() {
             <div style={styles.container}>
               {/* Left - Product Info */}
               <div style={styles.descriptionSection}>
-                <h3 className="product-copy-common product-copy-heading">
+                <h3
+                  key={`product-heading-${activeProduct.id}`}
+                  className="product-copy-common product-copy-heading"
+                >
                   {activeProduct.name}
                 </h3>
                 <p className="product-copy-common product-copy-description">

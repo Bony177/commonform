@@ -877,6 +877,18 @@ body {
   line-height: 0.9;
   color: #ffffff;
   filter: blur(var(--product-heading-base-blur, 0px));
+  animation: productHeadingPullUp 0.5s ease forwards;
+}
+
+@keyframes productHeadingPullUp {
+  0% {
+    opacity: 0.6;
+    transform: translateY(0.5rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .product-copy-description {
