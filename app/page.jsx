@@ -288,6 +288,16 @@ const HERO_COPY_SCROLL_DEFAULTS = {
   fromScale: 0.5,
 };
 
+const SCENE2_ANIMATION_CONFIG = {
+  start: 0.05, // Start of scrub within section
+  end: 0.45, // End of scrub
+  stagger: 0.14, // Delay between lines
+  fromOpacity: 1,
+  fromX: 60, // Distance from right
+  fromScale: 0.85,
+};
+
+
 const HERO_MANIFESTO_LINE_1 = "A STRUCTURE DISGUISED AS CLOTHING";
 
 const HERO_MANIFESTO_LINE_3 =
@@ -488,6 +498,11 @@ export default function Home() {
   const { scrollYProgress: shopScroll } = useScroll({
     target: shopTargetRef,
     offset: ["start end", "start 0.5%"],
+  });
+
+  const { scrollYProgress: scene2Scroll } = useScroll({
+    target: scene2Ref,
+    offset: ["start 0.9", "end 0.2"],
   });
 
   // Hero logo morph settings (tweak these values)
@@ -699,6 +714,78 @@ export default function Home() {
 
   const heroLogoOpacity = useTransform(heroScrolle, [0, 0.22], [1, 0]);
   const logoScalep = useTransform(heroScroll, [0, 0.35], [1, 20 / 29]);
+
+  // Scene 2 Scroll Animation Transforms
+  const s2Line1Range = [
+    SCENE2_ANIMATION_CONFIG.start,
+    SCENE2_ANIMATION_CONFIG.end,
+  ];
+  const s2Line2Range = [
+    SCENE2_ANIMATION_CONFIG.start + SCENE2_ANIMATION_CONFIG.stagger,
+    SCENE2_ANIMATION_CONFIG.end + SCENE2_ANIMATION_CONFIG.stagger,
+  ];
+  const s2ImageRange = [
+    SCENE2_ANIMATION_CONFIG.start + SCENE2_ANIMATION_CONFIG.stagger * 2,
+    SCENE2_ANIMATION_CONFIG.end + SCENE2_ANIMATION_CONFIG.stagger * 2,
+  ];
+  const s2Line3Range = [
+    SCENE2_ANIMATION_CONFIG.start + SCENE2_ANIMATION_CONFIG.stagger * 3,
+    SCENE2_ANIMATION_CONFIG.end + SCENE2_ANIMATION_CONFIG.stagger * 3,
+  ];
+  const s2Line4Range = [
+    SCENE2_ANIMATION_CONFIG.start + SCENE2_ANIMATION_CONFIG.stagger * 4,
+    SCENE2_ANIMATION_CONFIG.end + SCENE2_ANIMATION_CONFIG.stagger * 4,
+  ];
+
+  const s2Line1X = useTransform(scene2Scroll, s2Line1Range, [
+    SCENE2_ANIMATION_CONFIG.fromX,
+    0,
+  ]);
+  const s2Line1Op = useTransform(scene2Scroll, s2Line1Range, [0, 1]);
+  const s2Line1Sc = useTransform(scene2Scroll, s2Line1Range, [
+    SCENE2_ANIMATION_CONFIG.fromScale,
+    1,
+  ]);
+
+  const s2Line2X = useTransform(scene2Scroll, s2Line2Range, [
+    SCENE2_ANIMATION_CONFIG.fromX,
+    0,
+  ]);
+  const s2Line2Op = useTransform(scene2Scroll, s2Line2Range, [0, 1]);
+  const s2Line2Sc = useTransform(scene2Scroll, s2Line2Range, [
+    SCENE2_ANIMATION_CONFIG.fromScale,
+    1,
+  ]);
+
+  const s2ImageX = useTransform(scene2Scroll, s2ImageRange, [
+    SCENE2_ANIMATION_CONFIG.fromX,
+    0,
+  ]);
+  const s2ImageOp = useTransform(scene2Scroll, s2ImageRange, [0, 1]);
+  const s2ImageSc = useTransform(scene2Scroll, s2ImageRange, [
+    SCENE2_ANIMATION_CONFIG.fromScale,
+    1,
+  ]);
+
+  const s2Line3X = useTransform(scene2Scroll, s2Line3Range, [
+    SCENE2_ANIMATION_CONFIG.fromX,
+    0,
+  ]);
+  const s2Line3Op = useTransform(scene2Scroll, s2Line3Range, [0, 1]);
+  const s2Line3Sc = useTransform(scene2Scroll, s2Line3Range, [
+    SCENE2_ANIMATION_CONFIG.fromScale,
+    1,
+  ]);
+
+  const s2Line4X = useTransform(scene2Scroll, s2Line4Range, [
+    SCENE2_ANIMATION_CONFIG.fromX,
+    0,
+  ]);
+  const s2Line4Op = useTransform(scene2Scroll, s2Line4Range, [0, 1]);
+  const s2Line4Sc = useTransform(scene2Scroll, s2Line4Range, [
+    SCENE2_ANIMATION_CONFIG.fromScale,
+    1,
+  ]);
 
   const scale = useTransform(scrollYProgress, [0, 0.25], [1.35, 1]);
   const y = useTransform(scrollYProgress, [0, 0.25], [140, 0]);
@@ -1215,12 +1302,24 @@ export default function Home() {
               FORM VARSITY
             </p>
 
-            <p className="scene2-line scene2-line-2">BUILT ON STRUCTURE</p>
-            <p
+            <motion.p
+              className="scene2-line scene2-line-2"
+              style={{
+                x: s2Line1X,
+                opacity: s2Line1Op,
+                scale: s2Line1Sc,
+              }}
+            >
+              BUILT ON STRUCTURE
+            </motion.p>
+            <motion.p
               className="scene2-line scene2-line-3"
               style={{
                 ...styles.heroLine3,
                 color: "#cb2e07",
+                x: s2Line2X,
+                opacity: s2Line2Op,
+                scale: s2Line2Sc,
               }}
             >
               Built for those who move with purpose, FORM VARSITY blends
@@ -1233,25 +1332,46 @@ export default function Home() {
               identity. FORM VARSITY isn’t just something you wear — it becomes
               a part of how you carry yourself, how you show up, and how you
               leave an impression.
-            </p>
+            </motion.p>
 
-            <div className="scene2-style-note">
+            <motion.div
+              className="scene2-style-note"
+              style={{
+                x: s2ImageX,
+                opacity: s2ImageOp,
+                scale: s2ImageSc,
+              }}
+            >
               <img
                 src="/images/scene2back.png"
                 alt="style visual"
                 className="scene2-style-image"
               />
-            </div>
+            </motion.div>
 
-            <p className="scene2-line scene2-line-3">
+            <motion.p
+              className="scene2-line scene2-line-3"
+              style={{
+                x: s2Line3X,
+                opacity: s2Line3Op,
+                scale: s2Line3Sc,
+              }}
+            >
               Structured jackets with defined presence.
               <br />
               Relaxed trousers with controlled fall.
               <br />
               Designed to move naturally — without losing form.
-            </p>
+            </motion.p>
 
-            <p className="scene2-line scene2-line-4">
+            <motion.p
+              className="scene2-line scene2-line-4"
+              style={{
+                x: s2Line4X,
+                opacity: s2Line4Op,
+                scale: s2Line4Sc,
+              }}
+            >
               This collection is built on control.
               <br />
               Defined silhouettes, measured weight, and intentional
@@ -1260,7 +1380,7 @@ export default function Home() {
               Varsity jackets bring presence. Trousers bring flow.
               <br />
               Together, they create a uniform that feels effortless but precise.
-            </p>
+            </motion.p>
           </div>
         </Scene>
 
