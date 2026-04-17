@@ -292,9 +292,8 @@ const SCENE2_ANIMATION_CONFIG = {
   start: 0.05, // Start of scrub within section
   end: 0.45, // End of scrub
   stagger: 0.14, // Delay between lines
-  fromOpacity: 1,
   fromX: 60, // Distance from right
-  fromScale: 0.85,
+  fromScale: 0.75,
 };
 
 
@@ -741,7 +740,6 @@ export default function Home() {
     SCENE2_ANIMATION_CONFIG.fromX,
     0,
   ]);
-  const s2Line1Op = useTransform(scene2Scroll, s2Line1Range, [0, 1]);
   const s2Line1Sc = useTransform(scene2Scroll, s2Line1Range, [
     SCENE2_ANIMATION_CONFIG.fromScale,
     1,
@@ -751,7 +749,6 @@ export default function Home() {
     SCENE2_ANIMATION_CONFIG.fromX,
     0,
   ]);
-  const s2Line2Op = useTransform(scene2Scroll, s2Line2Range, [0, 1]);
   const s2Line2Sc = useTransform(scene2Scroll, s2Line2Range, [
     SCENE2_ANIMATION_CONFIG.fromScale,
     1,
@@ -761,7 +758,6 @@ export default function Home() {
     SCENE2_ANIMATION_CONFIG.fromX,
     0,
   ]);
-  const s2ImageOp = useTransform(scene2Scroll, s2ImageRange, [0, 1]);
   const s2ImageSc = useTransform(scene2Scroll, s2ImageRange, [
     SCENE2_ANIMATION_CONFIG.fromScale,
     1,
@@ -771,7 +767,6 @@ export default function Home() {
     SCENE2_ANIMATION_CONFIG.fromX,
     0,
   ]);
-  const s2Line3Op = useTransform(scene2Scroll, s2Line3Range, [0, 1]);
   const s2Line3Sc = useTransform(scene2Scroll, s2Line3Range, [
     SCENE2_ANIMATION_CONFIG.fromScale,
     1,
@@ -781,7 +776,6 @@ export default function Home() {
     SCENE2_ANIMATION_CONFIG.fromX,
     0,
   ]);
-  const s2Line4Op = useTransform(scene2Scroll, s2Line4Range, [0, 1]);
   const s2Line4Sc = useTransform(scene2Scroll, s2Line4Range, [
     SCENE2_ANIMATION_CONFIG.fromScale,
     1,
@@ -1306,7 +1300,6 @@ export default function Home() {
               className="scene2-line scene2-line-2"
               style={{
                 x: s2Line1X,
-                opacity: s2Line1Op,
                 scale: s2Line1Sc,
               }}
             >
@@ -1318,7 +1311,6 @@ export default function Home() {
                 ...styles.heroLine3,
                 color: "#cb2e07",
                 x: s2Line2X,
-                opacity: s2Line2Op,
                 scale: s2Line2Sc,
               }}
             >
@@ -1338,7 +1330,6 @@ export default function Home() {
               className="scene2-style-note"
               style={{
                 x: s2ImageX,
-                opacity: s2ImageOp,
                 scale: s2ImageSc,
               }}
             >
@@ -1353,7 +1344,6 @@ export default function Home() {
               className="scene2-line scene2-line-3"
               style={{
                 x: s2Line3X,
-                opacity: s2Line3Op,
                 scale: s2Line3Sc,
               }}
             >
@@ -1368,7 +1358,6 @@ export default function Home() {
               className="scene2-line scene2-line-4"
               style={{
                 x: s2Line4X,
-                opacity: s2Line4Op,
                 scale: s2Line4Sc,
               }}
             >
