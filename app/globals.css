@@ -212,6 +212,9 @@ body {
   /* "COMMON FORM" ticker */
   --scene2-ticker-base-blur: 0.2px;
 
+  /* "Common Form is built around the human body..." (Manifesto Line 3) */
+  --hero-manifesto-line-3-base-blur: 0.72px;
+
   /* "CF-AXIS/01" outlined label */
   --scene3-axis-outline-base-blur: 0.1px;
 
@@ -522,6 +525,16 @@ body {
 .common-text,
 .form-text {
   filter: blur(var(--hero-heading-base-blur));
+}
+
+.hero-manifesto-line-3 {
+  /* You can edit these styles below */
+  font-family: 'panchang';
+  font-size: 0.75rem !important;
+  line-height: 1.5 !important;
+  letter-spacing: 0.12rem !important;
+  color: #ffffff;
+  filter: blur(var(--hero-manifesto-line-3-base-blur));
 }
 
 /* LOGO */
@@ -1481,6 +1494,15 @@ body {
 
   pointer-events: none;
   filter: blur(var(--scene3-copy-base-blur));
+}
+
+.heroline34 {
+  font-family: panchang;
+  font-size: 0.75rem;
+  line-height: 1.1;
+  letter-spacing: 0.12rem;
+
+  color: #ffffff;
 }
 
 .shoetxt-left {

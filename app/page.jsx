@@ -284,12 +284,12 @@ const HERO_COPY_SCROLL_DEFAULTS = {
   stagger: 0.09,
   fromOpacity: 0,
   fromY: 60,
+  fromX: 50,
   fromScale: 0.5,
 };
 
 const HERO_MANIFESTO_LINE_1 = "A STRUCTURE DISGUISED AS CLOTHING";
-const HERO_MANIFESTO_LINE_2 =
-  "COMMON FORM builds beneath IDENTITY - beyond PERFORMANCE, where SIGNAL fades and STRUCTURE remains. EXCESS removed, DISTORTION silenced - only BALANCE, CLARITY, FORM.";
+
 const HERO_MANIFESTO_LINE_3 =
   "Common Form is built around the human body - how it moves, pauses, and exists within space. Clothing is treated as a quiet extension of form rather than a statement, shaped through proportion, weight, and restraint. Each piece follows the natural rhythm of the body, allowing fabric to settle, drape, and respond without force or excess. The focus is not on trend or decoration, but on presence, balance, and longevity, creating garments that feel intentional, lived-in, and quietly timeless.";
 const HERO_MANIFESTO_LINE_4 = "Quiet construction.";
@@ -555,6 +555,10 @@ export default function Home() {
         "--hero-copy-scroll-from-y",
         HERO_COPY_SCROLL_DEFAULTS.fromY,
       ),
+      fromX: readRootCssNumber(
+        "--hero-copy-scroll-from-x",
+        HERO_COPY_SCROLL_DEFAULTS.fromX,
+      ),
       fromScale: readRootCssNumber(
         "--hero-copy-scroll-from-scale",
         HERO_COPY_SCROLL_DEFAULTS.fromScale,
@@ -613,6 +617,10 @@ export default function Home() {
     heroCopyScrollConfig.fromY,
     0,
   ]);
+  const heroCopyLine1X = useTransform(scrollYProgress, heroCopyLine1Range, [
+    heroCopyScrollConfig.fromX,
+    0,
+  ]);
   const heroCopyLine1Scale = useTransform(scrollYProgress, heroCopyLine1Range, [
     heroCopyScrollConfig.fromScale,
     1,
@@ -625,6 +633,10 @@ export default function Home() {
   );
   const heroCopyLine2Y = useTransform(scrollYProgress, heroCopyLine2Range, [
     heroCopyScrollConfig.fromY,
+    0,
+  ]);
+  const heroCopyLine2X = useTransform(scrollYProgress, heroCopyLine2Range, [
+    heroCopyScrollConfig.fromX,
     0,
   ]);
   const heroCopyLine2Scale = useTransform(scrollYProgress, heroCopyLine2Range, [
@@ -641,6 +653,10 @@ export default function Home() {
     heroCopyScrollConfig.fromY,
     0,
   ]);
+  const heroCopyLine3X = useTransform(scrollYProgress, heroCopyLine3Range, [
+    heroCopyScrollConfig.fromX,
+    0,
+  ]);
   const heroCopyLine3Scale = useTransform(scrollYProgress, heroCopyLine3Range, [
     heroCopyScrollConfig.fromScale,
     1,
@@ -655,6 +671,10 @@ export default function Home() {
     heroCopyScrollConfig.fromY,
     0,
   ]);
+  const heroCopyLine4X = useTransform(scrollYProgress, heroCopyLine4Range, [
+    heroCopyScrollConfig.fromX,
+    0,
+  ]);
   const heroCopyLine4Scale = useTransform(scrollYProgress, heroCopyLine4Range, [
     heroCopyScrollConfig.fromScale,
     1,
@@ -666,6 +686,10 @@ export default function Home() {
   ]);
   const heroBack1Y = useTransform(scrollYProgress, heroBack1Range, [
     heroCopyScrollConfig.fromY,
+    0,
+  ]);
+  const heroBack1X = useTransform(scrollYProgress, heroBack1Range, [
+    heroCopyScrollConfig.fromX,
     0,
   ]);
   const heroBack1Scale = useTransform(scrollYProgress, heroBack1Range, [
@@ -1010,6 +1034,7 @@ export default function Home() {
                   style={{
                     opacity: heroCopyLine1Opacity,
                     y: heroCopyLine1Y,
+                    x: heroCopyLine1X,
                     scale: heroCopyLine1Scale,
                     transformOrigin: "left center",
                   }}
@@ -1029,45 +1054,8 @@ export default function Home() {
                   style={{
                     opacity: heroCopyLine2Opacity,
                     y: heroCopyLine2Y,
+                    x: heroCopyLine2X,
                     scale: heroCopyLine2Scale,
-                    transformOrigin: "left center",
-                  }}
-                >
-                  <motion.p
-                    className="texture-copy hero-manifesto-line hero-manifesto-line-2"
-                    data-text={HERO_MANIFESTO_LINE_2}
-                    style={{
-                      ...styles.heroLine2,
-                      color: heroParagraphColor,
-                    }}
-                  >
-                    {HERO_MANIFESTO_LINE_2}
-                  </motion.p>
-                </motion.div>
-                <motion.div
-                  style={{
-                    opacity: heroCopyLine3Opacity,
-                    y: heroCopyLine3Y,
-                    scale: heroCopyLine3Scale,
-                    transformOrigin: "left center",
-                  }}
-                >
-                  <motion.p
-                    className="texture-copy hero-manifesto-line hero-manifesto-line-3"
-                    data-text={HERO_MANIFESTO_LINE_3}
-                    style={{
-                      ...styles.heroLine3,
-                      color: heroParagraphColor,
-                    }}
-                  >
-                    {HERO_MANIFESTO_LINE_3}
-                  </motion.p>
-                </motion.div>
-                <motion.div
-                  style={{
-                    opacity: heroCopyLine4Opacity,
-                    y: heroCopyLine4Y,
-                    scale: heroCopyLine4Scale,
                     transformOrigin: "left center",
                   }}
                 >
@@ -1082,6 +1070,26 @@ export default function Home() {
                     {HERO_MANIFESTO_LINE_4}
                   </motion.p>
                 </motion.div>
+                <motion.div
+                  style={{
+                    opacity: heroCopyLine4Opacity,
+                    y: heroCopyLine4Y,
+                    x: heroCopyLine4X,
+                    scale: heroCopyLine4Scale,
+                    transformOrigin: "left center",
+                  }}
+                >
+                  <motion.p
+                    className="texture-copy hero-manifesto-line hero-manifesto-line-3"
+                    data-text={HERO_MANIFESTO_LINE_3}
+                    style={{
+                      ...styles.heroLine34,
+                      color: heroParagraphColor,
+                    }}
+                  >
+                    {HERO_MANIFESTO_LINE_3}
+                  </motion.p>
+                </motion.div>
 
                 <motion.img
                   src="/images/back1.png"
@@ -1092,6 +1100,7 @@ export default function Home() {
                     marginTop: "1rem",
                     opacity: heroBack1Opacity,
                     y: heroBack1Y,
+                    x: heroBack1X,
                     scale: heroBack1Scale,
                     transformOrigin: "left center",
                   }}
@@ -1765,15 +1774,9 @@ const styles = {
     lineHeight: "1",
     color: "#cfcfcf",
   },
-  heroLine3: {
-    fontFamily: bebas.style.fontFamily,
+  heroLine34: {
     paddingLeft: "6rem",
-    fontWeight: 100,
-    fontSize: "0.77rem",
-    letterSpacing: "0.2rem",
     maxWidth: "1090px",
-    lineHeight: "1",
-    color: "#cfcfcf",
   },
 
   siteSection: {
