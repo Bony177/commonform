@@ -504,8 +504,8 @@ export default function Home() {
     formY: -9.5, // 👈 "FORM" vertical height (rem)
 
     // MASTER GROUP POSITION (Moves EVERYTHING together)
-    groupY: 3.6, // 👈 Move the whole group UP/DOWN (rem)
-    groupX: 0, // 👈 Move the whole group LEFT/RIGHT (rem)
+    groupY: "3%", // 👈 Move the whole group UP/DOWN (percentage)
+    groupX: "0%", // 👈 Move the whole group LEFT/RIGHT (percentage)
 
     scaleEnd: 0.33,
     fixedLeft: "19.2rem",
@@ -950,9 +950,10 @@ export default function Home() {
                   animate="visible"
                 >
                   <motion.div
+                    className="hero-logo-group"
                     style={{
-                      y: `${HERO_LOGO_TWEAK.groupY}rem`,
-                      x: `${HERO_LOGO_TWEAK.groupX}rem`,
+                      y: HERO_LOGO_TWEAK.groupY,
+                      x: HERO_LOGO_TWEAK.groupX,
                     }}
                   >
                     <motion.div
