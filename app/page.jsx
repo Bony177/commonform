@@ -292,7 +292,7 @@ const HERO_COPY_SCROLL_DEFAULTS = {
 
 const SCENE2_ANIMATION_CONFIG = {
   start: 0.05, // Start of scrub within section
-  end: 0.45, // End of scrub
+  end: 0.25, // End of scrub
   stagger: 0.14, // Delay between lines
   fromX: 60, // Distance from right
   fromScale: 0.75,
