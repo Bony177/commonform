@@ -12,10 +12,6 @@ import LiquidBackgroundRed from "@/components/LiquidBackgroundRed";
 import HalftoneFilter from "@/components/HalftoneFilter";
 import Scene2CompositeEffect from "@/components/Scene2CompositeEffect";
 
-
-
-
-
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Bold, Variable } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -1114,8 +1110,6 @@ export default function Home() {
           sectionRef={scene2Ref}
           background="/images/bg2.jpg"
           height="200vh"
-
-
           overlay={
             <>
               <HalftoneFilter />
@@ -1191,7 +1185,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-
 
           <div className="scene-shop-overlay">
             <div className="scene-shop-sticky">
@@ -1501,14 +1494,15 @@ const styles = {
     gridTemplateColumns: "1fr auto 1fr",
     alignItems: "center",
     backgroundColor: "transparent",
-    lineHeight: "1rem",
+    lineHeight: "3rem",
   },
   headerLeft: {
     display: "flex",
     alignItems: "center",
   },
   headerBrand: {
-    fontSize: "1.1rem",
+    fontFamily: "panchang",
+    fontSize: "0.8rem",
     letterSpacing: "0.35em",
     color: "#ffffff",
     opacity: 0.9,
@@ -1519,7 +1513,8 @@ const styles = {
     justifyContent: "center",
   },
   headerLink: {
-    fontSize: "0.9rem",
+    fontFamily: "panchang",
+    fontSize: "0.8rem",
     letterSpacing: "0.2em",
     textTransform: "uppercase",
     color: "#ffffff",
@@ -1531,6 +1526,7 @@ const styles = {
     justifyContent: "flex-end",
   },
   headerMeta: {
+    fontFamily: "panchang",
     fontSize: "0.85rem",
     letterSpacing: "0.15em",
     color: "#888888",
