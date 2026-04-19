@@ -12,12 +12,12 @@ const poppins = Poppins({
 const humane = localFont({
   src: [
     {
-      path: "../public/fonts/HUMANE-Regular.woff2",
+      path: "../public/fonts/Humane-Regular.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../public/fonts/HUMANE-Bold.woff2",
+      path: "../public/fonts/Humane-Bold.woff2",
       weight: "700",
       style: "normal",
     },
