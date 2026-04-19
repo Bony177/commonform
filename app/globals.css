@@ -505,7 +505,7 @@ body {
 
 @font-face {
   font-family: 'Galgo';
-  src: url('/fonts/galgo.woff') format('opentype');
+  src: url('/fonts/galgo.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
