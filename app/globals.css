@@ -524,11 +524,11 @@ body {
 /* HEADING */
 .common-text,
 .form-text {
-  font-family: 'Galgo';
+  font-family: 'humane';
   filter: blur(var(--hero-heading-base-blur));
 }
 .hero-manifesto-line-3 {
-  /* You can edit these styles below */
+  /* You can edit these styles below cccc*/
   font-family: 'panchang';
   font-size: 0.75rem !important;
   line-height: 1.5 !important;
