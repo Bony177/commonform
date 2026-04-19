@@ -1009,14 +1009,7 @@ export default function Home() {
         >
           <div className="scene-image-wrapper">
             <div className="scene-image-sticky">
-              <FalseColorGlitchImage
-                src="/images/scene1.png"
-                alt=""
-                imageClassName="scene-image scene-image-1"
-                intervalMs={5000}
-                durationMs={500}
-                jitterMs={1100}
-              />
+              {/* Image removed: /images/scene1.png */}
             </div>
             <div className="scene1-bottom-copy" aria-hidden="true">
               <p>
@@ -1191,7 +1184,7 @@ export default function Home() {
 
               {/* RIGHT IMAGE */}
               <div style={styles.heroImageWrapper}>
-                <img src="/images/hero.png" alt="Hero" style={styles.heroImg} />
+                {/* Image removed: /images/hero.png */}
               </div>
             </div>
           </div>
@@ -1251,14 +1244,7 @@ export default function Home() {
               />
             </div>
             <div className="scene-image-sticky">
-              <FalseColorGlitchImage
-                src="/images/scene2.png"
-                alt=""
-                imageClassName="scene-image scene-image-2"
-                intervalMs={6000}
-                durationMs={200}
-                jitterMs={1100}
-              />
+              {/* Image removed: /images/scene2.png */}
               <div className="scene2-ticker-sticky">
                 <div className="ticker">
                   <div className="ticker-track">
