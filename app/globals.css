@@ -524,9 +524,9 @@ body {
 /* HEADING */
 .common-text,
 .form-text {
+  font-family: 'Galgo';
   filter: blur(var(--hero-heading-base-blur));
 }
-
 .hero-manifesto-line-3 {
   /* You can edit these styles below */
   font-family: 'panchang';
