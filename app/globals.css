@@ -505,7 +505,7 @@ body {
 
 @font-face {
   font-family: 'Galgo';
-  src: url('/fonts/galgo.woff') format('woff');
+  src: url('/fonts/Galgo.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -524,7 +524,7 @@ body {
 /* HEADING */
 .common-text,
 .form-text {
-  font-family: 'humane';
+  font-family: 'Galgo';
   filter: blur(var(--hero-heading-base-blur));
 }
 .hero-manifesto-line-3 {
