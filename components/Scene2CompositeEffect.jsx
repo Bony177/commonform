@@ -49,48 +49,52 @@ export default function Scene2CompositeEffect({
 
   useEffect(() => {
     const container = mountRef.current;
-    if (!container || !isVisible) return;
+    if (!container) return;
 
-    // --- SCENE SETUP ---
-    const scene = new THREE.Scene();
-    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 10);
-    camera.position.z = 1;
+    // Initialize scene immediately (Scene 2 is an overlay, no loading needed)
+    return initializeScene(container);
 
-    // Optimized renderer: disable antialias for performance
-    const isLowEndDevice =
-      window.devicePixelRatio > 2 || navigator.hardwareConcurrency < 4;
-    const renderer = new THREE.WebGLRenderer({
-      antialias: false,
-      alpha: true,
-      powerPreference: "high-performance",
-    });
-    renderer.setPixelRatio(
-      isLowEndDevice ? 1 : Math.min(window.devicePixelRatio, 1.5),
-    );
-    renderer.setSize(container.clientWidth, container.clientHeight);
-    // Explicitly set transparent background
-    renderer.setClearColor(0x000000, 0);
-    container.appendChild(renderer.domElement);
+    function initializeScene(container) {
+      // --- SCENE SETUP ---
+      const scene = new THREE.Scene();
+      const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 10);
+      camera.position.z = 1;
 
-    // --- CUSTOM FILTER SHADER (Simplified) ---
-    const material = new THREE.ShaderMaterial({
-      transparent: true,
-      blending: THREE.AdditiveBlending,
-      uniforms: {
-        time: { value: 0 },
-        nIntensity: { value: nIntensity },
-        sIntensity: { value: sIntensity },
-        sCount: { value: sCount },
-        uOpacity: { value: opacity },
-      },
-      vertexShader: `
+      // Optimized renderer: disable antialias for performance
+      const isLowEndDevice =
+        window.devicePixelRatio > 2 || navigator.hardwareConcurrency < 4;
+      const renderer = new THREE.WebGLRenderer({
+        antialias: false,
+        alpha: true,
+        powerPreference: "high-performance",
+      });
+      renderer.setPixelRatio(
+        isLowEndDevice ? 1 : Math.min(window.devicePixelRatio, 1.5),
+      );
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      // Explicitly set transparent background
+      renderer.setClearColor(0x000000, 0);
+      container.appendChild(renderer.domElement);
+
+      // --- CUSTOM FILTER SHADER (Simplified) ---
+      const material = new THREE.ShaderMaterial({
+        transparent: true,
+        blending: THREE.AdditiveBlending,
+        uniforms: {
+          time: { value: 0 },
+          nIntensity: { value: nIntensity },
+          sIntensity: { value: sIntensity },
+          sCount: { value: sCount },
+          uOpacity: { value: opacity },
+        },
+        vertexShader: `
         varying vec2 vUv;
         void main() {
           vUv = uv;
           gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
         }
       `,
-      fragmentShader: `
+        fragmentShader: `
         uniform float time;
         uniform float nIntensity;
         uniform float sIntensity;
@@ -117,60 +121,83 @@ export default function Scene2CompositeEffect({
           gl_FragColor = vec4(vec3(noise * 0.8), finalAlpha * uOpacity);
         }
       `,
-    });
+      });
 
-    const plane = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
-    scene.add(plane);
+      const plane = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
+      scene.add(plane);
 
-    // --- RESIZE ---
-    const resize = () => {
-      const w = container.clientWidth;
-      const h = container.clientHeight;
-      renderer.setSize(w, h);
-    };
+      // --- RESIZE ---
+      const resize = () => {
+        const w = container.clientWidth;
+        const h = container.clientHeight;
+        renderer.setSize(w, h);
+      };
 
-    window.addEventListener("resize", resize);
-    resize();
+      window.addEventListener("resize", resize);
+      resize();
 
-    // --- ANIMATION (Throttled) ---
-    let frameId;
-    let time = 0;
-    let frameCounter = 0;
+      // --- ANIMATION (Only when visible) ---
+      let frameId;
+      let time = 0;
+      let frameCounter = 0;
+      let isAnimating = false;
 
-    // More aggressive throttling for this overlay effect
-    const frameThrottle = isLowEndDevice ? 3 : 2;
+      const animate = () => {
+        if (!isVisible) {
+          isAnimating = false;
+          return;
+        }
 
-    const animate = () => {
-      frameId = requestAnimationFrame(animate);
+        frameId = requestAnimationFrame(animate);
+        isAnimating = true;
 
-      // Skip frames on low-end devices or when not critical
-      frameCounter++;
-      if (frameCounter % frameThrottle !== 0) return;
+        // Skip frames on low-end devices or when not critical
+        frameCounter++;
+        if (frameCounter % frameThrottle !== 0) return;
 
-      time += 0.05;
+        time += 0.05;
 
-      material.uniforms.time.value = time;
-      material.uniforms.nIntensity.value = propsRef.current.nIntensity;
-      material.uniforms.sIntensity.value = propsRef.current.sIntensity;
-      material.uniforms.sCount.value = propsRef.current.sCount;
-      material.uniforms.uOpacity.value = propsRef.current.opacity;
+        material.uniforms.time.value = time;
+        material.uniforms.nIntensity.value = propsRef.current.nIntensity;
+        material.uniforms.sIntensity.value = propsRef.current.sIntensity;
+        material.uniforms.sCount.value = propsRef.current.sCount;
+        material.uniforms.uOpacity.value = propsRef.current.opacity;
 
-      renderer.render(scene, camera);
-    };
+        renderer.render(scene, camera);
+      };
 
-    animate();
-
-    // --- CLEANUP ---
-    return () => {
-      window.removeEventListener("resize", resize);
-      cancelAnimationFrame(frameId);
-      if (container.contains(renderer.domElement)) {
-        container.removeChild(renderer.domElement);
+      // Start animation when visible
+      if (isVisible && !isAnimating) {
+        animate();
       }
-      renderer.dispose();
-      material.dispose();
-      plane.geometry.dispose();
-    };
+
+      // --- CLEANUP ---
+      return () => {
+        window.removeEventListener("resize", resize);
+        cancelAnimationFrame(frameId);
+        if (container.contains(renderer.domElement)) {
+          container.removeChild(renderer.domElement);
+        }
+        renderer.dispose();
+        material.dispose();
+        plane.geometry.dispose();
+      };
+    } // Close initializeScene function
+  }, []); // Initialize once, no dependencies
+
+  // Handle visibility changes for animation
+  useEffect(() => {
+    if (isVisible && mountRef.current) {
+      // Find the renderer and restart animation
+      const canvas = mountRef.current.querySelector("canvas");
+      if (canvas && canvas._sceneData) {
+        const { animate } = canvas._sceneData;
+        if (animate && !canvas._isAnimating) {
+          canvas._isAnimating = true;
+          animate();
+        }
+      }
+    }
   }, [isVisible]);
 
   return <div ref={mountRef} className="scene2-composite-canvas" />;

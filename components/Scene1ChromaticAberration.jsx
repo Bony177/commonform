@@ -62,32 +62,62 @@ export default function Scene1ChromaticAberration({
 
   useEffect(() => {
     const container = mountRef.current;
-    if (!container || !isVisible) return;
+    if (!container) return;
 
-    // --- SCENE SETUP ---
-    const scene = new THREE.Scene();
-    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-
-    // Optimized renderer: disable antialias for performance, use lower DPI on mobile
-    const isLowEndDevice =
-      window.devicePixelRatio > 2 || navigator.hardwareConcurrency < 4;
-    const renderer = new THREE.WebGLRenderer({
-      antialias: false,
-      alpha: true,
-      powerPreference: "high-performance",
-    });
-    renderer.setPixelRatio(
-      isLowEndDevice ? 1 : Math.min(window.devicePixelRatio, 1.5),
+    // Show loading state immediately with a subtle gradient
+    container.style.background = 'linear-gradient(135deg, #000 0%, #111 100%)';
+    
+    // Preload texture immediately (not waiting for visibility)
+    const textureLoader = new THREE.TextureLoader();
+    textureLoader.load(
+      src,
+      (texture) => {
+        // Texture loaded successfully
+        initializeScene(container, texture);
+      },
+      undefined,
+      (error) => {
+        console.warn('Texture failed to load, using fallback');
+        // Create a simple gradient texture as fallback
+        const canvas = document.createElement('canvas');
+        canvas.width = canvas.height = 512;
+        const ctx = canvas.getContext('2d');
+        const gradient = ctx.createLinearGradient(0, 0, 512, 512);
+        gradient.addColorStop(0, '#000');
+        gradient.addColorStop(1, '#111');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, 512, 512);
+        
+        const fallbackTexture = new THREE.CanvasTexture(canvas);
+        initializeScene(container, fallbackTexture);
+      }
     );
-    renderer.setSize(container.clientWidth, container.clientHeight);
-    container.appendChild(renderer.domElement);
 
-    // --- TEXTURE LOADING WITH OPTIMIZATION ---
-    const loader = new THREE.TextureLoader();
-    const texture = loader.load(src);
-    // Use optimized texture filtering
-    texture.minFilter = THREE.LinearFilter;
-    texture.magFilter = THREE.LinearFilter;
+    function initializeScene(container, texture) {
+      // --- SCENE SETUP ---
+      const scene = new THREE.Scene();
+      const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+      // Optimized renderer: disable antialias for performance, use lower DPI on mobile
+      const isLowEndDevice =
+        window.devicePixelRatio > 2 || navigator.hardwareConcurrency < 4;
+      const renderer = new THREE.WebGLRenderer({
+        antialias: false,
+        alpha: true,
+        powerPreference: "high-performance",
+      });
+      renderer.setPixelRatio(
+        isLowEndDevice ? 1 : Math.min(window.devicePixelRatio, 1.5)
+      );
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      container.appendChild(renderer.domElement);
+
+      // Clear loading background
+      container.style.background = 'transparent';
+
+      // --- TEXTURE SETUP ---
+      texture.minFilter = THREE.LinearFilter;
+      texture.magFilter = THREE.LinearFilter;
 
     // --- SHADER MATERIAL (Simplified, no EffectComposer) ---
     const material = new THREE.ShaderMaterial({
@@ -170,17 +200,20 @@ export default function Scene1ChromaticAberration({
     window.addEventListener("resize", resize);
     resize();
 
-    // --- ANIMATION (Optimized with throttling) ---
+    // --- ANIMATION (Only when visible) ---
     let frameId;
     let time = 0;
-    let lastFrameTime = 0;
-
-    // Throttle on low-end devices
-    const frameThrottle = isLowEndDevice ? 2 : 1; // Skip frames on low-end
     let frameCounter = 0;
+    let isAnimating = false;
 
     const animate = () => {
+      if (!isVisible) {
+        isAnimating = false;
+        return;
+      }
+      
       frameId = requestAnimationFrame(animate);
+      isAnimating = true;
 
       // Skip frames on low-end devices
       frameCounter++;
@@ -198,7 +231,10 @@ export default function Scene1ChromaticAberration({
       renderer.render(scene, camera);
     };
 
-    animate();
+    // Start animation when visible
+    if (isVisible && !isAnimating) {
+      animate();
+    }
 
     // --- CLEANUP ---
     return () => {
@@ -212,6 +248,21 @@ export default function Scene1ChromaticAberration({
       texture.dispose();
       plane.geometry.dispose();
     };
+  }, [src]); // Changed dependency to src only
+
+  // Handle visibility changes for animation
+  useEffect(() => {
+    if (isVisible && mountRef.current) {
+      // Find the renderer and restart animation
+      const canvas = mountRef.current.querySelector('canvas');
+      if (canvas && canvas._sceneData) {
+        const { animate } = canvas._sceneData;
+        if (animate && !canvas._isAnimating) {
+          canvas._isAnimating = true;
+          animate();
+        }
+      }
+    }
   }, [isVisible]);
 
   return <div ref={mountRef} className={styles.canvasContainer} />;

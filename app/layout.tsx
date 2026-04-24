@@ -41,7 +41,56 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Font Preloading for instant loading */}
+        <link
+          rel="preload"
+          as="font"
+          type="font/woff2"
+          href="/fonts/ClashDisplay-Regular.woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          as="font"
+          type="font/woff2"
+          href="/fonts/Panchang-Bold.woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          as="font"
+          type="font/woff2"
+          href="/fonts/Panchang-Extrabold.woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          as="font"
+          type="font/woff"
+          href="/fonts/Galgo.woff"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          as="font"
+          type="font/woff2"
+          href="/fonts/Humane-Regular.woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          as="font"
+          type="font/woff2"
+          href="/fonts/Humane-Bold.woff2"
+          crossOrigin="anonymous"
+        />
+
+        {/* Image Preloading */}
         <link rel="preload" as="image" href="/images/background.jpg" />
+
+        {/* DNS prefetch for external resources */}
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
       </head>
       <body className={`${poppins.className} antialiased texture-all-text`}>
         {children}
