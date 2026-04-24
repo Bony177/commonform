@@ -12,13 +12,14 @@ import LiquidBackgroundRed from "@/components/LiquidBackgroundRed";
 import HalftoneFilter from "@/components/HalftoneFilter";
 import Scene2CompositeEffect from "@/components/Scene2CompositeEffect";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Bold, Variable } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import "../styles/chain.css";
 import "../styles/glitch.css";
 import "@/components/LiquidBckground.css";
 import SignalBars from "@/components/SignalBars";
+import LoadingOverlay from "@/components/LoadingOverlay";
 import {
   Sora,
   Poppins,
@@ -357,13 +358,17 @@ function Scene({
   children,
   sectionRef,
   overlay,
+  isLoaded,
 }) {
   return (
     <section
       ref={sectionRef}
       style={{ ...styles.sceneSection, minHeight: height }}
     >
-      <div
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isLoaded ? 1 : 0 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
         style={{
           ...styles.sceneBackground,
           backgroundImage: `url('${background}')`,
@@ -381,15 +386,30 @@ function ScrollScene({
   children,
   overlay,
   topOverlay,
+  isLoaded,
 }) {
   return (
     <section
       style={{
         ...styles.scrollSceneSection,
         minHeight: height,
-        backgroundImage: `url('${background}')`,
       }}
     >
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isLoaded ? 1 : 0 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
+        style={{
+          ...styles.sceneBackground,
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundImage: `url('${background}')`,
+          zIndex: 0,
+        }}
+      />
       {overlay && (
         <div
           style={{
@@ -399,7 +419,7 @@ function ScrollScene({
             right: 0,
             bottom: 0,
             pointerEvents: "none",
-            zIndex: 0,
+            zIndex: 1,
           }}
         >
           {overlay}
@@ -469,6 +489,39 @@ const HoverWordText = ({ text }) => {
 };
 
 export default function Home() {
+  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const imagesToPreload = [
+      "/images/backgroundSS.jpg",
+      "/images/bg2CC.jpg",
+      "/images/shoeback.png",
+      "/images/logo.png",
+    ];
+
+    let loadedCount = 0;
+    const total = imagesToPreload.length;
+
+    imagesToPreload.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+      img.onload = () => {
+        loadedCount++;
+        setLoadingProgress((loadedCount / total) * 100);
+        if (loadedCount === total) {
+          setTimeout(() => setIsLoaded(true), 800);
+        }
+      };
+      img.onerror = () => {
+        loadedCount++;
+        setLoadingProgress((loadedCount / total) * 100);
+        if (loadedCount === total) {
+          setTimeout(() => setIsLoaded(true), 800);
+        }
+      };
+    });
+  }, []);
   const heroRef = useRef(null);
   const scene2Ref = useRef(null);
   const scene3Ref = useRef(null);
@@ -858,6 +911,15 @@ export default function Home() {
 
   return (
     <>
+      <LoadingOverlay isLoaded={isLoaded} progress={loadingProgress} />
+      <motion.div
+        initial={false}
+        animate={{ 
+          opacity: isLoaded ? 1 : 0,
+          pointerEvents: isLoaded ? "auto" : "none"
+        }}
+        transition={{ duration: 1.2, ease: "easeInOut" }}
+      >
       {/* HEADER */}
       <header style={styles.header}>
         <div style={{ height: "0.5px" }} />
@@ -986,8 +1048,9 @@ export default function Home() {
         <ChainOverlay />
 
         <Scene
+          isLoaded={isLoaded}
           sectionRef={heroRef}
-          background="/images/background.jpg"
+          background="/images/backgroundSS.jpg"
           height="200vh"
           overlay={
             <div
@@ -1192,8 +1255,9 @@ export default function Home() {
 
         {/* Main Content */}
         <Scene
+          isLoaded={isLoaded}
           sectionRef={scene2Ref}
-          background="/images/bg2.jpg"
+          background="/images/bg2CC.jpg"
           height="200vh"
           overlay={
             <>
@@ -1379,6 +1443,7 @@ export default function Home() {
         </Scene>
 
         <Scene
+          isLoaded={isLoaded}
           sectionRef={scene3Ref}
           background="/images/bg3.jpg"
           height="200vh"
@@ -1487,6 +1552,7 @@ export default function Home() {
         </Scene>
 
         <ScrollScene
+          isLoaded={isLoaded}
           background="/images/backgrounds.jpg"
           height="100vh"
           overlay={
@@ -1599,6 +1665,7 @@ export default function Home() {
           </div>
         </ScrollScene>
       </motion.main>
+    </motion.div>
     </>
   );
 }
