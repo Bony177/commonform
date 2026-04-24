@@ -1,17 +1,13 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
-import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer";
-import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass";
-import { GlitchPass } from "three/examples/jsm/postprocessing/GlitchPass";
-import { OutputPass } from "three/examples/jsm/postprocessing/OutputPass";
 import styles from "./Scene1ChromaticAberration.module.css";
 
 /**
- * Scene1ChromaticAberration
+ * Scene1ChromaticAberration (Optimized)
  * A high-end background shader for Scene 1 that applies chromatic aberration
- * to the edges of the screen using a radial vignette mask, now including a Glitch effect.
+ * to the edges of the screen using a radial vignette mask with performance optimizations.
  */
 export default function Scene1ChromaticAberration({
   src = "/images/background.jpg",
@@ -24,49 +20,76 @@ export default function Scene1ChromaticAberration({
   goWild = false,
 }) {
   const mountRef = useRef(null);
-  const propsRef = useRef({ 
-    uIntensity, 
-    uRadius, 
-    uSoftness, 
-    uSpread, 
+  const [isVisible, setIsVisible] = useState(false);
+  const propsRef = useRef({
+    uIntensity,
+    uRadius,
+    uSoftness,
+    uSpread,
     opacity,
     glitchActive,
-    goWild
+    goWild,
   });
+
+  // Detect if component is in viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 },
+    );
+
+    if (mountRef.current) {
+      observer.observe(mountRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   // Update props in real-time for the animation loop
   useEffect(() => {
-    propsRef.current = { 
-      uIntensity, 
-      uRadius, 
-      uSoftness, 
-      uSpread, 
+    propsRef.current = {
+      uIntensity,
+      uRadius,
+      uSoftness,
+      uSpread,
       opacity,
       glitchActive,
-      goWild
+      goWild,
     };
   }, [uIntensity, uRadius, uSoftness, uSpread, opacity, glitchActive, goWild]);
 
   useEffect(() => {
     const container = mountRef.current;
-    if (!container) return;
+    if (!container || !isVisible) return;
 
     // --- SCENE SETUP ---
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-    
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    // Optimized renderer: disable antialias for performance, use lower DPI on mobile
+    const isLowEndDevice =
+      window.devicePixelRatio > 2 || navigator.hardwareConcurrency < 4;
+    const renderer = new THREE.WebGLRenderer({
+      antialias: false,
+      alpha: true,
+      powerPreference: "high-performance",
+    });
+    renderer.setPixelRatio(
+      isLowEndDevice ? 1 : Math.min(window.devicePixelRatio, 1.5),
+    );
     renderer.setSize(container.clientWidth, container.clientHeight);
     container.appendChild(renderer.domElement);
 
-    // --- TEXTURE LOADING ---
+    // --- TEXTURE LOADING WITH OPTIMIZATION ---
     const loader = new THREE.TextureLoader();
     const texture = loader.load(src);
+    // Use optimized texture filtering
     texture.minFilter = THREE.LinearFilter;
     texture.magFilter = THREE.LinearFilter;
 
-    // --- SHADER MATERIAL ---
+    // --- SHADER MATERIAL (Simplified, no EffectComposer) ---
     const material = new THREE.ShaderMaterial({
       uniforms: {
         uTexture: { value: texture },
@@ -76,7 +99,12 @@ export default function Scene1ChromaticAberration({
         uSoftness: { value: uSoftness },
         uSpread: { value: uSpread },
         uOpacity: { value: opacity },
-        uResolution: { value: new THREE.Vector2(container.clientWidth, container.clientHeight) },
+        uResolution: {
+          value: new THREE.Vector2(
+            container.clientWidth,
+            container.clientHeight,
+          ),
+        },
       },
       vertexShader: `
         varying vec2 vUv;
@@ -131,36 +159,33 @@ export default function Scene1ChromaticAberration({
     const plane = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
     scene.add(plane);
 
-    // --- POST-PROCESSING ---
-    const composer = new EffectComposer(renderer);
-    const renderPass = new RenderPass(scene, camera);
-    composer.addPass(renderPass);
-
-    const glitchPass = new GlitchPass();
-    glitchPass.enabled = glitchActive;
-    glitchPass.goWild = goWild;
-    composer.addPass(glitchPass);
-
-    const outputPass = new OutputPass();
-    composer.addPass(outputPass);
-
     // --- RESIZE ---
     const resize = () => {
       const w = container.clientWidth;
       const h = container.clientHeight;
       renderer.setSize(w, h);
-      composer.setSize(w, h);
       material.uniforms.uResolution.value.set(w, h);
     };
 
     window.addEventListener("resize", resize);
     resize();
 
-    // --- ANIMATION ---
+    // --- ANIMATION (Optimized with throttling) ---
     let frameId;
     let time = 0;
+    let lastFrameTime = 0;
+
+    // Throttle on low-end devices
+    const frameThrottle = isLowEndDevice ? 2 : 1; // Skip frames on low-end
+    let frameCounter = 0;
+
     const animate = () => {
       frameId = requestAnimationFrame(animate);
+
+      // Skip frames on low-end devices
+      frameCounter++;
+      if (frameCounter % frameThrottle !== 0) return;
+
       time += 0.01;
 
       material.uniforms.uTime.value = time;
@@ -170,10 +195,7 @@ export default function Scene1ChromaticAberration({
       material.uniforms.uSpread.value = propsRef.current.uSpread;
       material.uniforms.uOpacity.value = propsRef.current.opacity;
 
-      glitchPass.enabled = propsRef.current.glitchActive;
-      glitchPass.goWild = propsRef.current.goWild;
-
-      composer.render();
+      renderer.render(scene, camera);
     };
 
     animate();
@@ -186,12 +208,11 @@ export default function Scene1ChromaticAberration({
         container.removeChild(renderer.domElement);
       }
       renderer.dispose();
-      composer.dispose();
       material.dispose();
       texture.dispose();
       plane.geometry.dispose();
     };
-  }, [src]);
+  }, [isVisible]);
 
   return <div ref={mountRef} className={styles.canvasContainer} />;
 }

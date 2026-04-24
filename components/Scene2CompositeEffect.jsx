@@ -1,23 +1,46 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import "./Scene2CompositeEffect.css";
 
 /**
- * Scene2CompositeEffect
- * A high-end transparent overlay that uses a custom shader for Film Grain and Scanlines.
- * This ensures visibility even when used as a non-intrusive filter over DOM content.
+ * Scene2CompositeEffect (Optimized)
+ * A high-end transparent overlay with Film Grain and Scanlines.
+ * Optimized with visibility detection and reduced render quality.
  */
 export default function Scene2CompositeEffect({
   nIntensity = 0.5,
   sIntensity = 0.15,
   sCount = 1024,
   opacity = 0.2,
-  grayscale = false
+  grayscale = false,
 }) {
   const mountRef = useRef(null);
-  const propsRef = useRef({ nIntensity, sIntensity, sCount, opacity, grayscale });
+  const [isVisible, setIsVisible] = useState(false);
+  const propsRef = useRef({
+    nIntensity,
+    sIntensity,
+    sCount,
+    opacity,
+    grayscale,
+  });
+
+  // Detect if component is in viewport
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.05 },
+    );
+
+    if (mountRef.current) {
+      observer.observe(mountRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   // Update props in real-time for the animation loop
   useEffect(() => {
@@ -26,30 +49,39 @@ export default function Scene2CompositeEffect({
 
   useEffect(() => {
     const container = mountRef.current;
-    if (!container) return;
+    if (!container || !isVisible) return;
 
     // --- SCENE SETUP ---
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 10);
     camera.position.z = 1;
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    // Optimized renderer: disable antialias for performance
+    const isLowEndDevice =
+      window.devicePixelRatio > 2 || navigator.hardwareConcurrency < 4;
+    const renderer = new THREE.WebGLRenderer({
+      antialias: false,
+      alpha: true,
+      powerPreference: "high-performance",
+    });
+    renderer.setPixelRatio(
+      isLowEndDevice ? 1 : Math.min(window.devicePixelRatio, 1.5),
+    );
     renderer.setSize(container.clientWidth, container.clientHeight);
     // Explicitly set transparent background
-    renderer.setClearColor(0x000000, 0); 
+    renderer.setClearColor(0x000000, 0);
     container.appendChild(renderer.domElement);
 
-    // --- CUSTOM FILTER SHADER ---
+    // --- CUSTOM FILTER SHADER (Simplified) ---
     const material = new THREE.ShaderMaterial({
       transparent: true,
-      blending: THREE.AdditiveBlending, // Use additive for the "light grain" look
+      blending: THREE.AdditiveBlending,
       uniforms: {
         time: { value: 0 },
         nIntensity: { value: nIntensity },
         sIntensity: { value: sIntensity },
         sCount: { value: sCount },
-        uOpacity: { value: opacity }
+        uOpacity: { value: opacity },
       },
       vertexShader: `
         varying vec2 vUv;
@@ -72,27 +104,19 @@ export default function Scene2CompositeEffect({
         }
 
         void main() {
-          // 1. Noise Grain
-          // Dynamic seed with time for animation
-          float noise = random(vUv + mod(time, 10.0));
+          // Reduced calculations for performance
+          float noise = random(vUv + mod(time, 100.0));
           
-          // 2. Scanlines 
-          // Use a sine wave for horizontal lines
-          float scanline = sin(vUv.y * sCount) * 0.5 + 0.5;
-          scanline = pow(scanline, 1.5); // sharpen the lines
+          // Scanlines (reduced resolution for performance)
+          float scanline = sin(vUv.y * sCount * 0.5) * 0.5 + 0.5;
+          scanline = pow(scanline, 1.5);
           
-          // 3. Composite Effect
-          // We render grain and scanlines in white/grey to simulate cinematic texture
-          vec3 grainColor = vec3(noise * nIntensity);
           float scanlineAlpha = scanline * sIntensity;
-          
-          // Add some variance to scanlines via noise
           float finalAlpha = (noise * nIntensity * 0.4) + scanlineAlpha;
           
-          // Output white/grey texture with controlled alpha
           gl_FragColor = vec4(vec3(noise * 0.8), finalAlpha * uOpacity);
         }
-      `
+      `,
     });
 
     const plane = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
@@ -108,12 +132,22 @@ export default function Scene2CompositeEffect({
     window.addEventListener("resize", resize);
     resize();
 
-    // --- ANIMATION ---
+    // --- ANIMATION (Throttled) ---
     let frameId;
     let time = 0;
+    let frameCounter = 0;
+
+    // More aggressive throttling for this overlay effect
+    const frameThrottle = isLowEndDevice ? 3 : 2;
+
     const animate = () => {
       frameId = requestAnimationFrame(animate);
-      time += 0.05; // Slightly faster time for visible grain movement
+
+      // Skip frames on low-end devices or when not critical
+      frameCounter++;
+      if (frameCounter % frameThrottle !== 0) return;
+
+      time += 0.05;
 
       material.uniforms.time.value = time;
       material.uniforms.nIntensity.value = propsRef.current.nIntensity;
@@ -137,7 +171,7 @@ export default function Scene2CompositeEffect({
       material.dispose();
       plane.geometry.dispose();
     };
-  }, []);
+  }, [isVisible]);
 
   return <div ref={mountRef} className="scene2-composite-canvas" />;
 }
