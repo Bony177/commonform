@@ -335,11 +335,6 @@ function assignRef(ref, value) {
   ref.current = value;
 }
 
-function getInitialMediaIndex(product) {
-  const imageIndex = product.media.findIndex((media) => media.type === "image");
-  return imageIndex >= 0 ? imageIndex : 0;
-}
-
 function preloadImages(sources) {
   return Promise.all(
     sources.map(
@@ -919,9 +914,7 @@ export default function Home() {
   );
 
   const [activeProduct, setActiveProduct] = useState(products[0]);
-  const [activeMediaIndex, setActiveMediaIndex] = useState(() =>
-    getInitialMediaIndex(products[0]),
-  );
+  const [activeMediaIndex, setActiveMediaIndex] = useState(0);
   const activeMedia = activeProduct.media[activeMediaIndex];
   const goPrev = () => {
     setActiveMediaIndex((prev) =>
@@ -1769,7 +1762,7 @@ export default function Home() {
                   activeProduct={activeProduct}
                   onSelect={(product) => {
                     setActiveProduct(product);
-                    setActiveMediaIndex(getInitialMediaIndex(product));
+                    setActiveMediaIndex(0);
                   }}
                 />
               </div>
