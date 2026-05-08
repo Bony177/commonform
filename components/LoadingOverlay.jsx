@@ -8,7 +8,7 @@ export default function LoadingOverlay({ isLoaded, progress }) {
 
   useEffect(() => {
     if (isLoaded) {
-      const timer = setTimeout(() => setShouldRender(false), 2000); 
+      const timer = setTimeout(() => setShouldRender(false), 700);
       return () => clearTimeout(timer);
     }
   }, [isLoaded]);
@@ -21,9 +21,9 @@ export default function LoadingOverlay({ isLoaded, progress }) {
         <motion.div
           key="loader"
           initial={{ opacity: 1 }}
-          exit={{ 
+          exit={{
             opacity: 0,
-            transition: { duration: 1.0, ease: [0.22, 1, 0.36, 1] } 
+            transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
           }}
           style={{
             position: "fixed",
@@ -82,4 +82,3 @@ export default function LoadingOverlay({ isLoaded, progress }) {
     </AnimatePresence>
   );
 }
-

@@ -84,10 +84,6 @@ export default function RootLayout({
           href="/fonts/Humane-Bold.woff2"
           crossOrigin="anonymous"
         />
-
-        {/* Image Preloading */}
-        <link rel="preload" as="image" href="/images/background.jpg" />
-
         {/* DNS prefetch for external resources */}
         <link rel="dns-prefetch" href="//fonts.googleapis.com" />
         <link rel="dns-prefetch" href="//fonts.gstatic.com" />

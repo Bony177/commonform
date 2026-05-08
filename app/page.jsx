@@ -1,7 +1,5 @@
 "use client";
-import ProductCarousel from "@/components/product-carousel";
 import ProductGrid from "@/components/product-grid";
-import AutoRotateModelViewer from "@/components/AutoRotateModelViewer";
 import FalseColorGlitchImage from "@/components/FalseColorGlitchImage";
 import ThermalGlitchImage from "@/components/ThermalGlitchImage";
 import TextScramble from "@/components/TextScramble";
@@ -11,9 +9,9 @@ import LiquidBackground from "@/components/LiquidBackround";
 import LiquidBackgroundRed from "@/components/LiquidBackgroundRed";
 import HalftoneFilter from "@/components/HalftoneFilter";
 import Scene2CompositeEffect from "@/components/Scene2CompositeEffect";
+import dynamic from "next/dynamic";
 
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { Bold, Variable } from "lucide-react";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useEffect, useMemo, useRef, useState } from "react";
 import "../styles/chain.css";
 import "../styles/glitch.css";
@@ -31,6 +29,18 @@ import {
   Michroma,
   Montserrat,
 } from "next/font/google";
+
+const AutoRotateModelViewer = dynamic(
+  () => import("@/components/AutoRotateModelViewer"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="cf-model-viewer">
+        <div className="cf-model-viewer__loading">PREPARING 3D</div>
+      </div>
+    ),
+  },
+);
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -314,6 +324,37 @@ function readRootCssNumber(variableName, fallback) {
   return Number.isFinite(parsed) ? parsed : fallback;
 }
 
+function assignRef(ref, value) {
+  if (!ref) return;
+
+  if (typeof ref === "function") {
+    ref(value);
+    return;
+  }
+
+  ref.current = value;
+}
+
+function getInitialMediaIndex(product) {
+  const imageIndex = product.media.findIndex((media) => media.type === "image");
+  return imageIndex >= 0 ? imageIndex : 0;
+}
+
+function preloadImages(sources) {
+  return Promise.all(
+    sources.map(
+      (src) =>
+        new Promise((resolve) => {
+          const img = new Image();
+          img.decoding = "async";
+          img.onload = () => resolve(src);
+          img.onerror = () => resolve(src);
+          img.src = src;
+        }),
+    ),
+  );
+}
+
 function ChainOverlay() {
   return (
     <>
@@ -359,10 +400,24 @@ function Scene({
   sectionRef,
   overlay,
   isLoaded,
+  priority = false,
+  backgroundReady = true,
+  fallbackColor = "#000000",
+  overlayEnabled = true,
 }) {
+  const localRef = useRef(null);
+  const isNearViewport = useInView(localRef, {
+    once: true,
+    margin: "1200px 0px",
+  });
+  const shouldLoadScene = priority || isNearViewport;
+
   return (
     <section
-      ref={sectionRef}
+      ref={(node) => {
+        localRef.current = node;
+        assignRef(sectionRef, node);
+      }}
       style={{ ...styles.sceneSection, minHeight: height }}
     >
       <motion.div
@@ -371,10 +426,12 @@ function Scene({
         transition={{ duration: 1.5, ease: "easeOut" }}
         style={{
           ...styles.sceneBackground,
-          backgroundImage: `url('${background}')`,
+          backgroundColor: fallbackColor,
+          backgroundImage: shouldLoadScene ? `url('${background}')` : undefined,
+          opacity: isLoaded && backgroundReady ? 1 : 0.98,
         }}
       />
-      {overlay}
+      {shouldLoadScene && overlayEnabled ? overlay : null}
       <div style={styles.sceneContent}>{children}</div>
     </section>
   );
@@ -387,9 +444,22 @@ function ScrollScene({
   overlay,
   topOverlay,
   isLoaded,
+  priority = false,
+  backgroundReady = true,
+  fallbackColor = "#000000",
+  overlayEnabled = true,
+  topOverlayEnabled = true,
 }) {
+  const sectionRef = useRef(null);
+  const isNearViewport = useInView(sectionRef, {
+    once: true,
+    margin: "1200px 0px",
+  });
+  const shouldLoadScene = priority || isNearViewport;
+
   return (
     <section
+      ref={sectionRef}
       style={{
         ...styles.scrollSceneSection,
         minHeight: height,
@@ -406,11 +476,13 @@ function ScrollScene({
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundImage: `url('${background}')`,
+          backgroundColor: fallbackColor,
+          backgroundImage: shouldLoadScene ? `url('${background}')` : undefined,
+          opacity: isLoaded && backgroundReady ? 1 : 0.98,
           zIndex: 0,
         }}
       />
-      {overlay && (
+      {shouldLoadScene && overlayEnabled && overlay && (
         <div
           style={{
             position: "absolute",
@@ -426,7 +498,7 @@ function ScrollScene({
         </div>
       )}
       <div style={styles.scrollSceneContent}>{children}</div>
-      {topOverlay && (
+      {shouldLoadScene && topOverlayEnabled && topOverlay && (
         <div
           style={{
             position: "absolute",
@@ -491,36 +563,37 @@ const HoverWordText = ({ text }) => {
 export default function Home() {
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [scene2AssetsReady, setScene2AssetsReady] = useState(false);
 
   useEffect(() => {
-    const imagesToPreload = [
-      "/images/backgroundSS.jpg",
-      "/images/bg2CC.jpg",
-      "/images/shoeback.png",
-      "/images/logo.png",
+    const progressTimers = [
+      window.setTimeout(() => setLoadingProgress(35), 120),
+      window.setTimeout(() => setLoadingProgress(72), 320),
+      window.setTimeout(() => setLoadingProgress(100), 700),
+      window.setTimeout(() => setIsLoaded(true), 900),
     ];
 
-    let loadedCount = 0;
-    const total = imagesToPreload.length;
+    return () => {
+      progressTimers.forEach((timer) => window.clearTimeout(timer));
+    };
+  }, []);
 
-    imagesToPreload.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-      img.onload = () => {
-        loadedCount++;
-        setLoadingProgress((loadedCount / total) * 100);
-        if (loadedCount === total) {
-          setTimeout(() => setIsLoaded(true), 800);
-        }
-      };
-      img.onerror = () => {
-        loadedCount++;
-        setLoadingProgress((loadedCount / total) * 100);
-        if (loadedCount === total) {
-          setTimeout(() => setIsLoaded(true), 800);
-        }
-      };
+  useEffect(() => {
+    let isMounted = true;
+
+    preloadImages([
+      "/images/bg2CC.jpg",
+      "/images/clouds.png",
+      "/images/nocloud.png",
+    ]).then(() => {
+      if (isMounted) {
+        setScene2AssetsReady(true);
+      }
     });
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
   const heroRef = useRef(null);
   const scene2Ref = useRef(null);
@@ -846,7 +919,9 @@ export default function Home() {
   );
 
   const [activeProduct, setActiveProduct] = useState(products[0]);
-  const [activeMediaIndex, setActiveMediaIndex] = useState(0);
+  const [activeMediaIndex, setActiveMediaIndex] = useState(() =>
+    getInitialMediaIndex(products[0]),
+  );
   const activeMedia = activeProduct.media[activeMediaIndex];
   const goPrev = () => {
     setActiveMediaIndex((prev) =>
@@ -967,6 +1042,7 @@ export default function Home() {
               loop
               muted
               playsInline
+              preload="none"
               style={{
                 paddingRight: "0.6rem",
                 height: "4.2rem", // Base height
@@ -1008,6 +1084,9 @@ export default function Home() {
             <img
               src="/images/logo.png"
               alt="logo"
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
               style={{
                 height: "2.4rem",
                 width: "auto",
@@ -1052,6 +1131,7 @@ export default function Home() {
           sectionRef={heroRef}
           background="/images/backgroundSS.jpg"
           height="200vh"
+          priority={true}
           overlay={
             <div
               style={{
@@ -1150,6 +1230,8 @@ export default function Home() {
                         className="hero-heading-logo"
                         src="/images/logo.png"
                         alt="logo"
+                        loading="eager"
+                        decoding="async"
                         variants={titleLetter} // 🔥 IMPORTANT
                         custom={7} // delay (adjust if needed)
                         initial="hidden"
@@ -1259,6 +1341,9 @@ export default function Home() {
           sectionRef={scene2Ref}
           background="/images/bg2CC.jpg"
           height="200vh"
+          backgroundReady={scene2AssetsReady}
+          fallbackColor="#5d493c"
+          overlayEnabled={scene2AssetsReady}
           overlay={
             <>
               <HalftoneFilter />
@@ -1270,43 +1355,58 @@ export default function Home() {
                       src="/images/clouds.png"
                       alt=""
                       aria-hidden="true"
+                      loading="eager"
+                      decoding="async"
+                      fetchPriority="high"
                       className="scene2-cloud-img"
                     />
                     <img
                       src="/images/clouds.png"
                       alt=""
                       aria-hidden="true"
+                      loading="eager"
+                      decoding="async"
+                      fetchPriority="high"
                       className="scene2-cloud-img"
                     />
                   </div>
                 </div>
               </div>
               <div className="scene2-nocloud-visible">
-                <img src="/images/nocloud.png" alt="" aria-hidden="true" />
+                <img
+                  src="/images/nocloud.png"
+                  alt=""
+                  aria-hidden="true"
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
+                />
               </div>
             </>
           }
         >
           <div className="scene-image-wrapper">
-            <div className="scene2-video-background">
-              <ThermalGlitchImage
-                src="/images/butter.png"
-                className="scene2-video"
-                intervalMs={3200}
-                durationMs={1800}
-                jitterMs={800}
-                speed="var(--butter-glitch-speed, 180ms)"
-                intensityX="var(--butter-glitch-x, 1.5px)"
-                intensityY="var(--butter-glitch-y, 1.2px)"
-                opacity="var(--butter-glitch-opacity, 0.95)"
-                thermalSaturate="var(--butter-thermal-saturate, 3200%)"
-                negativeSaturate="var(--butter-negative-saturate, 230%)"
-                brightness="var(--butter-glitch-brightness, 1.25)"
-                contrast="var(--butter-glitch-contrast, 1.2)"
-                showThermal={false}
-                showNegative={false}
-              />
-            </div>
+            {scene2AssetsReady ? (
+              <div className="scene2-video-background">
+                <ThermalGlitchImage
+                  src="/images/butter.png"
+                  className="scene2-video"
+                  intervalMs={3200}
+                  durationMs={1800}
+                  jitterMs={800}
+                  speed="var(--butter-glitch-speed, 180ms)"
+                  intensityX="var(--butter-glitch-x, 1.5px)"
+                  intensityY="var(--butter-glitch-y, 1.2px)"
+                  opacity="var(--butter-glitch-opacity, 0.95)"
+                  thermalSaturate="var(--butter-thermal-saturate, 3200%)"
+                  negativeSaturate="var(--butter-negative-saturate, 230%)"
+                  brightness="var(--butter-glitch-brightness, 1.25)"
+                  contrast="var(--butter-glitch-contrast, 1.2)"
+                  showThermal={false}
+                  showNegative={false}
+                />
+              </div>
+            ) : null}
             <div className="scene-image-sticky">
               {/* Image removed: /images/scene2.png */}
               <div className="scene2-ticker-sticky">
@@ -1318,6 +1418,8 @@ export default function Home() {
                         <img
                           src="/images/logo.png"
                           alt="logo"
+                          loading="lazy"
+                          decoding="async"
                           className="ticker-logo"
                         />
                       </p>
@@ -1478,11 +1580,15 @@ export default function Home() {
                   src="/images/b1.png"
                   className="scene-image scene3-b1"
                   alt=""
+                  loading="lazy"
+                  decoding="async"
                 />
                 <img
                   src="/images/b2.png"
                   className="scene-image scene3-b2"
                   alt=""
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
 
@@ -1534,6 +1640,8 @@ export default function Home() {
                 src="/images/shoeback.png"
                 alt="style visual"
                 className="shoebackimage"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div className="scene3-text">CF-AXIS/01</div>
@@ -1611,6 +1719,8 @@ export default function Home() {
                     <img
                       src={activeMedia.src}
                       alt={activeProduct.name}
+                      loading="lazy"
+                      decoding="async"
                       style={styles.viewerImage}
                     />
                   )}
@@ -1640,6 +1750,8 @@ export default function Home() {
                           <img
                             src={media.src}
                             alt=""
+                            loading="lazy"
+                            decoding="async"
                             style={styles.thumbnailImage}
                           />
                         )}
@@ -1657,7 +1769,7 @@ export default function Home() {
                   activeProduct={activeProduct}
                   onSelect={(product) => {
                     setActiveProduct(product);
-                    setActiveMediaIndex(0);
+                    setActiveMediaIndex(getInitialMediaIndex(product));
                   }}
                 />
               </div>
